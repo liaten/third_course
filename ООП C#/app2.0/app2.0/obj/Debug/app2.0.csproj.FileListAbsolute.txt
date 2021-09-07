@@ -1,0 +1,7 @@
+C:\Users\liaten\source\repos\app2.0\app2.0\obj\Debug\app2.0.csproj.AssemblyReference.cache
+C:\Users\liaten\source\repos\app2.0\app2.0\obj\Debug\app2.0.csproj.CoreCompileInputs.cache
+C:\Users\liaten\source\repos\app2.0\app2.0\bin\Debug\app2.0.exe.config
+C:\Users\liaten\source\repos\app2.0\app2.0\bin\Debug\app2.0.exe
+C:\Users\liaten\source\repos\app2.0\app2.0\bin\Debug\app2.0.pdb
+C:\Users\liaten\source\repos\app2.0\app2.0\obj\Debug\app2.0.exe
+C:\Users\liaten\source\repos\app2.0\app2.0\obj\Debug\app2.0.pdb

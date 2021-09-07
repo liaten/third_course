@@ -1,0 +1,7 @@
+C:\Users\liaten\source\repos\Simplex Method\Simplex Method\obj\Debug\Simplex Method.csproj.AssemblyReference.cache
+C:\Users\liaten\source\repos\Simplex Method\Simplex Method\obj\Debug\Simplex Method.csproj.CoreCompileInputs.cache
+C:\Users\liaten\source\repos\Simplex Method\Simplex Method\bin\Debug\Simplex Method.exe.config
+C:\Users\liaten\source\repos\Simplex Method\Simplex Method\bin\Debug\Simplex Method.exe
+C:\Users\liaten\source\repos\Simplex Method\Simplex Method\bin\Debug\Simplex Method.pdb
+C:\Users\liaten\source\repos\Simplex Method\Simplex Method\obj\Debug\Simplex Method.exe
+C:\Users\liaten\source\repos\Simplex Method\Simplex Method\obj\Debug\Simplex Method.pdb

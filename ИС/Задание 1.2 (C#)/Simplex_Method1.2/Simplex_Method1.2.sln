@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplex Method", "Simplex Method\Simplex Method.csproj", "{C2F2B555-C5F6-426E-80A3-AFA4626FD739}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplex_Method1.2", "Simplex_Method1.2\Simplex_Method1.2.csproj", "{B80F8C68-46B3-4919-9CDB-A8ACD2E3E0D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C2F2B555-C5F6-426E-80A3-AFA4626FD739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2F2B555-C5F6-426E-80A3-AFA4626FD739}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2F2B555-C5F6-426E-80A3-AFA4626FD739}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2F2B555-C5F6-426E-80A3-AFA4626FD739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B80F8C68-46B3-4919-9CDB-A8ACD2E3E0D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B80F8C68-46B3-4919-9CDB-A8ACD2E3E0D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B80F8C68-46B3-4919-9CDB-A8ACD2E3E0D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B80F8C68-46B3-4919-9CDB-A8ACD2E3E0D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A8FA7208-B941-445E-9048-F88AAA4F658F}
+		SolutionGuid = {BB5FE2C1-16B0-4EA3-ADA0-BB16DDF52E3C}
 	EndGlobalSection
 EndGlobal

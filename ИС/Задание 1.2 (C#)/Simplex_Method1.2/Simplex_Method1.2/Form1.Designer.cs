@@ -108,6 +108,7 @@ namespace Simplex_Method1._2
             this.r5l1 = new System.Windows.Forms.Label();
             this.r5e1 = new System.Windows.Forms.TextBox();
             this.varslabel = new System.Windows.Forms.Label();
+            this.resultlabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -183,6 +184,7 @@ namespace Simplex_Method1._2
             this.kx1.Size = new System.Drawing.Size(56, 20);
             this.kx1.TabIndex = 6;
             this.kx1.Text = "0";
+            this.kx1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // kl1
             // 
@@ -209,6 +211,7 @@ namespace Simplex_Method1._2
             this.kx2.Size = new System.Drawing.Size(56, 20);
             this.kx2.TabIndex = 8;
             this.kx2.Text = "0";
+            this.kx2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // kl3
             // 
@@ -226,6 +229,7 @@ namespace Simplex_Method1._2
             this.kx3.Size = new System.Drawing.Size(56, 20);
             this.kx3.TabIndex = 10;
             this.kx3.Text = "0";
+            this.kx3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // kl4
             // 
@@ -243,6 +247,7 @@ namespace Simplex_Method1._2
             this.kx4.Size = new System.Drawing.Size(56, 20);
             this.kx4.TabIndex = 12;
             this.kx4.Text = "0";
+            this.kx4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // kl5
             // 
@@ -260,6 +265,7 @@ namespace Simplex_Method1._2
             this.kx5.Size = new System.Drawing.Size(56, 20);
             this.kx5.TabIndex = 14;
             this.kx5.Text = "0";
+            this.kx5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // ComboBoxMaxMin
             // 
@@ -273,7 +279,6 @@ namespace Simplex_Method1._2
             this.ComboBoxMaxMin.Name = "ComboBoxMaxMin";
             this.ComboBoxMaxMin.Size = new System.Drawing.Size(56, 21);
             this.ComboBoxMaxMin.TabIndex = 16;
-            this.ComboBoxMaxMin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             // 
             // label10
             // 
@@ -301,6 +306,7 @@ namespace Simplex_Method1._2
             this.r1e5.Size = new System.Drawing.Size(56, 20);
             this.r1e5.TabIndex = 26;
             this.r1e5.Text = "0";
+            this.r1e5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r1l4
             // 
@@ -318,6 +324,7 @@ namespace Simplex_Method1._2
             this.r1e4.Size = new System.Drawing.Size(56, 20);
             this.r1e4.TabIndex = 24;
             this.r1e4.Text = "0";
+            this.r1e4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r1l3
             // 
@@ -335,6 +342,7 @@ namespace Simplex_Method1._2
             this.r1e3.Size = new System.Drawing.Size(56, 20);
             this.r1e3.TabIndex = 22;
             this.r1e3.Text = "0";
+            this.r1e3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r1l2
             // 
@@ -352,6 +360,7 @@ namespace Simplex_Method1._2
             this.r1e2.Size = new System.Drawing.Size(56, 20);
             this.r1e2.TabIndex = 20;
             this.r1e2.Text = "0";
+            this.r1e2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r1l1
             // 
@@ -369,6 +378,7 @@ namespace Simplex_Method1._2
             this.r1e1.Size = new System.Drawing.Size(56, 20);
             this.r1e1.TabIndex = 18;
             this.r1e1.Text = "0";
+            this.r1e1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // ComboBoxRel1
             // 
@@ -390,6 +400,7 @@ namespace Simplex_Method1._2
             this.r1e6.Size = new System.Drawing.Size(56, 20);
             this.r1e6.TabIndex = 29;
             this.r1e6.Text = "0";
+            this.r1e6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r2e6
             // 
@@ -398,6 +409,7 @@ namespace Simplex_Method1._2
             this.r2e6.Size = new System.Drawing.Size(56, 20);
             this.r2e6.TabIndex = 41;
             this.r2e6.Text = "0";
+            this.r2e6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // ComboBoxRel2
             // 
@@ -428,6 +440,7 @@ namespace Simplex_Method1._2
             this.r2e5.Size = new System.Drawing.Size(56, 20);
             this.r2e5.TabIndex = 38;
             this.r2e5.Text = "0";
+            this.r2e5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r2l4
             // 
@@ -445,6 +458,7 @@ namespace Simplex_Method1._2
             this.r2e4.Size = new System.Drawing.Size(56, 20);
             this.r2e4.TabIndex = 36;
             this.r2e4.Text = "0";
+            this.r2e4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r2l3
             // 
@@ -462,6 +476,7 @@ namespace Simplex_Method1._2
             this.r2e3.Size = new System.Drawing.Size(56, 20);
             this.r2e3.TabIndex = 34;
             this.r2e3.Text = "0";
+            this.r2e3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r2l2
             // 
@@ -479,6 +494,7 @@ namespace Simplex_Method1._2
             this.r2e2.Size = new System.Drawing.Size(56, 20);
             this.r2e2.TabIndex = 32;
             this.r2e2.Text = "0";
+            this.r2e2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r2l1
             // 
@@ -496,6 +512,7 @@ namespace Simplex_Method1._2
             this.r2e1.Size = new System.Drawing.Size(56, 20);
             this.r2e1.TabIndex = 30;
             this.r2e1.Text = "0";
+            this.r2e1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r3e6
             // 
@@ -504,6 +521,7 @@ namespace Simplex_Method1._2
             this.r3e6.Size = new System.Drawing.Size(56, 20);
             this.r3e6.TabIndex = 53;
             this.r3e6.Text = "0";
+            this.r3e6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // ComboBoxRel3
             // 
@@ -534,6 +552,7 @@ namespace Simplex_Method1._2
             this.r3e5.Size = new System.Drawing.Size(56, 20);
             this.r3e5.TabIndex = 50;
             this.r3e5.Text = "0";
+            this.r3e5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r3l4
             // 
@@ -551,6 +570,7 @@ namespace Simplex_Method1._2
             this.r3e4.Size = new System.Drawing.Size(56, 20);
             this.r3e4.TabIndex = 48;
             this.r3e4.Text = "0";
+            this.r3e4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r3l3
             // 
@@ -568,6 +588,7 @@ namespace Simplex_Method1._2
             this.r3e3.Size = new System.Drawing.Size(56, 20);
             this.r3e3.TabIndex = 46;
             this.r3e3.Text = "0";
+            this.r3e3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r3l2
             // 
@@ -585,6 +606,7 @@ namespace Simplex_Method1._2
             this.r3e2.Size = new System.Drawing.Size(56, 20);
             this.r3e2.TabIndex = 44;
             this.r3e2.Text = "0";
+            this.r3e2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r3l1
             // 
@@ -602,6 +624,7 @@ namespace Simplex_Method1._2
             this.r3e1.Size = new System.Drawing.Size(56, 20);
             this.r3e1.TabIndex = 42;
             this.r3e1.Text = "0";
+            this.r3e1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r4e6
             // 
@@ -610,6 +633,7 @@ namespace Simplex_Method1._2
             this.r4e6.Size = new System.Drawing.Size(56, 20);
             this.r4e6.TabIndex = 65;
             this.r4e6.Text = "0";
+            this.r4e6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // ComboBoxRel4
             // 
@@ -640,6 +664,7 @@ namespace Simplex_Method1._2
             this.r4e5.Size = new System.Drawing.Size(56, 20);
             this.r4e5.TabIndex = 62;
             this.r4e5.Text = "0";
+            this.r4e5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r4l4
             // 
@@ -657,6 +682,7 @@ namespace Simplex_Method1._2
             this.r4e4.Size = new System.Drawing.Size(56, 20);
             this.r4e4.TabIndex = 60;
             this.r4e4.Text = "0";
+            this.r4e4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r4l3
             // 
@@ -674,6 +700,7 @@ namespace Simplex_Method1._2
             this.r4e3.Size = new System.Drawing.Size(56, 20);
             this.r4e3.TabIndex = 58;
             this.r4e3.Text = "0";
+            this.r4e3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r4l2
             // 
@@ -691,6 +718,7 @@ namespace Simplex_Method1._2
             this.r4e2.Size = new System.Drawing.Size(56, 20);
             this.r4e2.TabIndex = 56;
             this.r4e2.Text = "0";
+            this.r4e2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r4l1
             // 
@@ -708,6 +736,7 @@ namespace Simplex_Method1._2
             this.r4e1.Size = new System.Drawing.Size(56, 20);
             this.r4e1.TabIndex = 54;
             this.r4e1.Text = "0";
+            this.r4e1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r5e6
             // 
@@ -716,6 +745,7 @@ namespace Simplex_Method1._2
             this.r5e6.Size = new System.Drawing.Size(56, 20);
             this.r5e6.TabIndex = 77;
             this.r5e6.Text = "0";
+            this.r5e6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // ComboBoxRel5
             // 
@@ -746,6 +776,7 @@ namespace Simplex_Method1._2
             this.r5e5.Size = new System.Drawing.Size(56, 20);
             this.r5e5.TabIndex = 74;
             this.r5e5.Text = "0";
+            this.r5e5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r5l4
             // 
@@ -763,6 +794,7 @@ namespace Simplex_Method1._2
             this.r5e4.Size = new System.Drawing.Size(56, 20);
             this.r5e4.TabIndex = 72;
             this.r5e4.Text = "0";
+            this.r5e4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r5l3
             // 
@@ -780,6 +812,7 @@ namespace Simplex_Method1._2
             this.r5e3.Size = new System.Drawing.Size(56, 20);
             this.r5e3.TabIndex = 70;
             this.r5e3.Text = "0";
+            this.r5e3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r5l2
             // 
@@ -797,6 +830,7 @@ namespace Simplex_Method1._2
             this.r5e2.Size = new System.Drawing.Size(56, 20);
             this.r5e2.TabIndex = 68;
             this.r5e2.Text = "0";
+            this.r5e2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // r5l1
             // 
@@ -814,6 +848,7 @@ namespace Simplex_Method1._2
             this.r5e1.Size = new System.Drawing.Size(56, 20);
             this.r5e1.TabIndex = 66;
             this.r5e1.Text = "0";
+            this.r5e1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kx1_KeyPress);
             // 
             // varslabel
             // 
@@ -824,6 +859,15 @@ namespace Simplex_Method1._2
             this.varslabel.TabIndex = 78;
             this.varslabel.Text = "x1, x2, x3, x4, x5>= 0";
             // 
+            // resultlabel
+            // 
+            this.resultlabel.AutoSize = true;
+            this.resultlabel.Location = new System.Drawing.Point(14, 320);
+            this.resultlabel.Name = "resultlabel";
+            this.resultlabel.Size = new System.Drawing.Size(59, 13);
+            this.resultlabel.TabIndex = 79;
+            this.resultlabel.Text = "Результат";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -831,6 +875,7 @@ namespace Simplex_Method1._2
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(615, 450);
+            this.Controls.Add(this.resultlabel);
             this.Controls.Add(this.varslabel);
             this.Controls.Add(this.r5e6);
             this.Controls.Add(this.ComboBoxRel5);
@@ -1000,6 +1045,7 @@ namespace Simplex_Method1._2
         private System.Windows.Forms.Label r5l1;
         private System.Windows.Forms.TextBox r5e1;
         private System.Windows.Forms.Label varslabel;
+        private System.Windows.Forms.Label resultlabel;
     }
 }
 

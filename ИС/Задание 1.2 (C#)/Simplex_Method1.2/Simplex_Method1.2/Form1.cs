@@ -907,6 +907,7 @@ namespace Simplex_Method1._2
                     Row4_Hide();
                     Row5_Hide();
                     varslabel.Location = new Point(14, r1e1.Location.Y+25);
+                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
                     break;
                 case 2:
                     Row3_Hide();
@@ -914,6 +915,7 @@ namespace Simplex_Method1._2
                     Row5_Hide();
                     Row2_Show();
                     varslabel.Location = new Point(14, r2e1.Location.Y + 25);
+                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
                     break;
                 case 3:
                     Row4_Hide();
@@ -921,6 +923,7 @@ namespace Simplex_Method1._2
                     Row2_Show();
                     Row3_Show();
                     varslabel.Location = new Point(14, r3e1.Location.Y + 25);
+                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
                     break;
                 case 4:
                     Row5_Hide();
@@ -928,6 +931,7 @@ namespace Simplex_Method1._2
                     Row3_Show();
                     Row4_Show();
                     varslabel.Location = new Point(14, r4e1.Location.Y + 25);
+                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
                     break;
                 case 5:
                     Row2_Show();
@@ -935,14 +939,26 @@ namespace Simplex_Method1._2
                     Row4_Show();
                     Row5_Show();
                     varslabel.Location = new Point(14, r5e1.Location.Y + 25);
+                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
                     break;
             }
         }
 
-        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
+        private void kx1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ComboBoxMaxMin.Text = "";
-        }
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
 
+            // only allow one decimal point
+            if ((e.KeyChar == '.')
+                && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

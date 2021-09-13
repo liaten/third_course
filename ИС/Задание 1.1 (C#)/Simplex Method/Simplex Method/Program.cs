@@ -11,12 +11,12 @@ namespace Simplex_Method
         static void Main(string[] args)
         {
         // https://vscode.ru/wp-content/uploads/2015/11/test-task-simplex.png
-                               //D>= x1 + x2
+                               //D>= x1 + x2    2 икса и 4 ограничения
             double[,] table = { {25, -3,  5},   //-3x1 + 5x2 <= 25
                                 {30, -2,  5},   //-2x1 + 5x2 <= 30
                                 {10,  1,  0},   //  x1       <= 10
                                 { 6,  3, -8},   // 3x1 - 8x2 <= 6
-                                { 0, -6, -5} }; // 6x1 + 5x2 -> max
+                                { 0, -6, -5} }; // 6x1 + 5x2 -> max целевая функция
                                 //x1, x2 >= 0
 
             double[] result = new double[2];

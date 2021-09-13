@@ -15,6 +15,65 @@ namespace Simplex_Method1._2
         public Form1()
         {
             InitializeComponent();
+            label5.Text = "";
+            ComboBoxMaxMin.SelectedIndex = 0;
+            ComboBoxRel1.SelectedIndex = 0;
+            ComboBoxRel2.SelectedIndex = 0;
+            ComboBoxRel3.SelectedIndex = 0;
+            ComboBoxRel4.SelectedIndex = 0;
+            ComboBoxRel5.SelectedIndex = 0;
+        }
+        public double[] Get_Numbers_From_Form()
+        {
+            double[] start_arr = new double[35];
+            start_arr[0] = double.Parse(kx1.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[1] = double.Parse(kx2.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[2] = double.Parse(kx3.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[3] = double.Parse(kx4.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[4] = double.Parse(kx5.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[5] = double.Parse(r1e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[6] = double.Parse(r1e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[7] = double.Parse(r1e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[8] = double.Parse(r1e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[9] = double.Parse(r1e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[10] = double.Parse(r1e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[11] = double.Parse(r2e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[12] = double.Parse(r2e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[13] = double.Parse(r2e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[14] = double.Parse(r2e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[15] = double.Parse(r2e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[16] = double.Parse(r2e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[17] = double.Parse(r3e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[18] = double.Parse(r3e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[19] = double.Parse(r3e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[20] = double.Parse(r3e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[21] = double.Parse(r3e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[22] = double.Parse(r3e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[23] = double.Parse(r4e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[24] = double.Parse(r4e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[25] = double.Parse(r4e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[26] = double.Parse(r4e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[27] = double.Parse(r4e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[28] = double.Parse(r4e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[29] = double.Parse(r5e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[30] = double.Parse(r5e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[31] = double.Parse(r5e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[32] = double.Parse(r5e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[33] = double.Parse(r5e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+            start_arr[34] = double.Parse(r5e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+            return start_arr;
+        }
+        public void ClearTextBoxes()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (TextBox textBox in Controls.OfType<TextBox>())
+                    textBox.Text = "";
+            };
+
+            func(Controls);
         }
         public void Row2_Hide()
         {
@@ -959,6 +1018,32 @@ namespace Simplex_Method1._2
             {
                 e.Handled = true;
             }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            ClearTextBoxes();
+        }
+
+        private void SolveButton_Click(object sender, EventArgs e)
+        {
+            double[] start_arr = Get_Numbers_From_Form();
+            // numbers of x
+            int x_nums = (int)numericUpDown1.Value;
+            // number restrictions
+            int restriction = (int)numericUpDown2.Value;
+            double[,] table = new double[restriction,x_nums];
+            int[] c_arr = new int[x_nums];
+            for(int i = 0; i < x_nums; i++)
+            {
+                c_arr[i] = (int)start_arr[i];
+            }
+            string outt = "";
+            for(int i = 0; i < 35; i++)
+            {
+                outt = outt + start_arr[i] + " ";
+            }
+            label5.Text = outt;
         }
     }
 }

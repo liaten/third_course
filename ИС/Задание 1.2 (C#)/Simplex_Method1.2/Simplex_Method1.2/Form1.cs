@@ -840,7 +840,6 @@ namespace Simplex_Method1._2
             r4l5.Hide();
             r5l5.Hide();
         }
-
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             if (numericUpDown1.Value < 1)
@@ -948,7 +947,6 @@ namespace Simplex_Method1._2
                     break;
             }
         }
-
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             if (numericUpDown2.Value < 1)
@@ -1008,7 +1006,6 @@ namespace Simplex_Method1._2
                     break;
             }
         }
-
         private void kx1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar)
@@ -1017,7 +1014,6 @@ namespace Simplex_Method1._2
             {
                 e.Handled = true;
             }
-
             // only allow one decimal point
             if ((e.KeyChar == '.')
                 && ((sender as TextBox).Text.IndexOf('.') > -1))
@@ -1025,12 +1021,10 @@ namespace Simplex_Method1._2
                 e.Handled = true;
             }
         }
-
         private void ClearButton_Click(object sender, EventArgs e)
         {
             ClearTextBoxes();
         }
-
         private void SolveButton_Click(object sender, EventArgs e)
         {
             double[] start_arr = new double[35];
@@ -1313,7 +1307,7 @@ namespace Simplex_Method1._2
             }
             if (Is_More_Or_Equals)
             {
-                result = result + "\nМеняем знаки у ограничений с >=, путём умножения на -1:\n";
+                result = result + "\nМеняем знаки у ограничений с >= путём умножения на -1:\n";
                 for (int i = 0; i < restriction + 1; i++)
                 {
                     for (int j = 0; j < x_nums + 1; j++)
@@ -1420,7 +1414,102 @@ namespace Simplex_Method1._2
                     result = result + "\n";
                 }
             }
-            
+            int Inequality_Constraints = 0;
+            for( int i = 0; i < restriction + 1; i ++ )
+            {
+                switch (i)
+                {
+                    case 1:
+                        switch (ComboBoxRel1.SelectedIndex)
+                        {
+                            case 0:
+                                Inequality_Constraints++;
+                                break;
+                            case 2:
+                                Inequality_Constraints++;
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (ComboBoxRel2.SelectedIndex)
+                        {
+                            case 0:
+                                Inequality_Constraints++;
+                                break;
+                            case 2:
+                                Inequality_Constraints++;
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (ComboBoxRel3.SelectedIndex)
+                        {
+                            case 0:
+                                Inequality_Constraints++;
+                                break;
+                            case 2:
+                                Inequality_Constraints++;
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (ComboBoxRel4.SelectedIndex)
+                        {
+                            case 0:
+                                Inequality_Constraints++;
+                                break;
+                            case 2:
+                                Inequality_Constraints++;
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (ComboBoxRel5.SelectedIndex)
+                        {
+                            case 0:
+                                Inequality_Constraints++;
+                                break;
+                            case 2:
+                                Inequality_Constraints++;
+                                break;
+                        }
+                        break;
+                }
+            }
+            if (result.Last() != '\n')
+            {
+                result = result + "\n";
+            }
+            if (Inequality_Constraints > 1)
+            {
+                result = result + "Для каждого ограничения с неравенством добавляем дополнительные переменные";
+                switch (Inequality_Constraints)
+                {
+                    case 2:
+                        result = result + " x" + (x_nums + 1);
+                        result = result + " и x" + (x_nums + 2) + ".";
+                        break;
+                    case 3:
+                        result = result + " x" + (x_nums + 1);
+                        result = result + "..x" + (x_nums + 3) + ".";
+                        break;
+                    case 4:
+                        result = result + " x" + (x_nums + 1);
+                        result = result + "..x" + (x_nums + 4) + ".";
+                        break;
+                    case 5:
+                        result = result + " x" + (x_nums + 1);
+                        result = result + "..x" + (x_nums + 5) + ".";
+                        break;
+                }
+                result = result + "\nПерепишем ограничения в каноническом виде:";
+            }
+            else if(Inequality_Constraints == 1)
+            {
+                result = result + "Для ограничения с неравенством добавляем дополнительную переменную";
+                result = result + " x" + (x_nums + 1);
+                result = result + "\nПерепишем ограничения в каноническом виде:";
+            }
             label5.Text = result;
         }
     }

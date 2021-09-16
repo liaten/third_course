@@ -850,7 +850,7 @@ namespace Simplex_Method1._2
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 341);
+            this.label5.Location = new System.Drawing.Point(14, 340);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 13);
             this.label5.TabIndex = 81;
@@ -862,7 +862,7 @@ namespace Simplex_Method1._2
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 82;
-            this.ClearButton.Text = "Очистить";
+            this.ClearButton.Text = "Обнулить";
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 

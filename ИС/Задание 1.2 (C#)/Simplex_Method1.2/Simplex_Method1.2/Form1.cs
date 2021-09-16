@@ -22,6 +22,7 @@ namespace Simplex_Method1._2
             ComboBoxRel3.SelectedIndex = 0;
             ComboBoxRel4.SelectedIndex = 0;
             ComboBoxRel5.SelectedIndex = 0;
+            ClearTextBoxes();
         }
         public double[] Get_Numbers_From_Form()
         {
@@ -70,7 +71,7 @@ namespace Simplex_Method1._2
             func = (controls) =>
             {
                 foreach (TextBox textBox in Controls.OfType<TextBox>())
-                    textBox.Text = "";
+                    textBox.Text = "0";
             };
 
             func(Controls);
@@ -967,6 +968,7 @@ namespace Simplex_Method1._2
                     Row5_Hide();
                     varslabel.Location = new Point(14, r1e1.Location.Y+25);
                     resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
+                    label5.Location = new Point(14, resultlabel.Location.Y+20);
                     break;
                 case 2:
                     Row3_Hide();
@@ -975,6 +977,7 @@ namespace Simplex_Method1._2
                     Row2_Show();
                     varslabel.Location = new Point(14, r2e1.Location.Y + 25);
                     resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
+                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
                 case 3:
                     Row4_Hide();
@@ -983,6 +986,7 @@ namespace Simplex_Method1._2
                     Row3_Show();
                     varslabel.Location = new Point(14, r3e1.Location.Y + 25);
                     resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
+                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
                 case 4:
                     Row5_Hide();
@@ -991,6 +995,7 @@ namespace Simplex_Method1._2
                     Row4_Show();
                     varslabel.Location = new Point(14, r4e1.Location.Y + 25);
                     resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
+                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
                 case 5:
                     Row2_Show();
@@ -999,6 +1004,7 @@ namespace Simplex_Method1._2
                     Row5_Show();
                     varslabel.Location = new Point(14, r5e1.Location.Y + 25);
                     resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
+                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
             }
         }
@@ -1027,23 +1033,395 @@ namespace Simplex_Method1._2
 
         private void SolveButton_Click(object sender, EventArgs e)
         {
-            double[] start_arr = Get_Numbers_From_Form();
+            double[] start_arr = new double[35];
+            start_arr = Get_Numbers_From_Form();
             // numbers of x
             int x_nums = (int)numericUpDown1.Value;
             // number restrictions
             int restriction = (int)numericUpDown2.Value;
-            double[,] table = new double[restriction,x_nums];
+            double[,] table = new double[restriction+1,x_nums+1];
             int[] c_arr = new int[x_nums];
             for(int i = 0; i < x_nums; i++)
             {
                 c_arr[i] = (int)start_arr[i];
             }
-            string outt = "";
-            for(int i = 0; i < 35; i++)
+            switch (x_nums)
             {
-                outt = outt + start_arr[i] + " ";
+                case 1:
+                    table[0, 0] = start_arr[0];
+                    switch (ComboBoxMaxMin.SelectedIndex)
+                    {
+                        case 0:
+                            table[0, 1] = 0;    // max
+                            break;
+                        case 1:
+                            table[0, 1] = 1;    //min
+                            break;
+                    }
+                    break;
+                case 2:
+                    table[0, 0] = start_arr[0];
+                    table[0, 1] = start_arr[1];
+                    switch (ComboBoxMaxMin.SelectedIndex)
+                    {
+                        case 0:
+                            table[0, 2] = 0;    // max
+                            break;
+                        case 1:
+                            table[0, 2] = 1;    //min
+                            break;
+                    }
+                    break;
+                case 3:
+                    table[0, 0] = start_arr[0];
+                    table[0, 1] = start_arr[1];
+                    table[0, 2] = start_arr[2];
+                    switch (ComboBoxMaxMin.SelectedIndex)
+                    {
+                        case 0:
+                            table[0, 3] = 0;    // max
+                            break;
+                        case 1:
+                            table[0, 3] = 1;    //min
+                            break;
+                    }
+                    break;
+                case 4:
+                    table[0, 0] = start_arr[0];
+                    table[0, 1] = start_arr[1];
+                    table[0, 2] = start_arr[2];
+                    table[0, 3] = start_arr[3];
+                    switch (ComboBoxMaxMin.SelectedIndex)
+                    {
+                        case 0:
+                            table[0, 4] = 0;    // max
+                            break;
+                        case 1:
+                            table[0, 4] = 1;    //min
+                            break;
+                    }
+                    break;
+                case 5:
+                    table[0, 0] = start_arr[0];
+                    table[0, 1] = start_arr[1];
+                    table[0, 2] = start_arr[2];
+                    table[0, 3] = start_arr[3];
+                    table[0, 4] = start_arr[4];
+                    switch (ComboBoxMaxMin.SelectedIndex)
+                    {
+                        case 0:
+                            table[0, 5] = 0;    // max
+                            break;
+                        case 1:
+                            table[0, 5] = 1;    //min
+                            break;
+                    }
+                    break;
             }
-            label5.Text = outt;
+            for (int i = 1; i < restriction + 1; i++)
+            {
+                for(int j = 0; j < x_nums+1; j++)
+                {
+                    if (j == x_nums)
+                    {
+                        table[i, j] = start_arr[5 + ((i - 1) * 6) + 5];
+                    }
+                    else
+                    {
+                        table[i, j] = start_arr[5 + ((i - 1) * 6) + j];
+                    }
+                }
+            }
+            string result = "Введённые данные\n";
+            for(int i = 0; i < restriction + 1; i++)
+            {
+                for (int j = 0; j < x_nums + 1; j++)
+                {
+                    if ((j == x_nums) && (i == 0))
+                    {
+                        switch (table[i, j])
+                        {
+                            case 0:
+                                result = result + "→ max";
+                                break;
+                            case 1:
+                                result = result + "→ min";
+                                break;
+                        }
+                    }
+                    else if (j < x_nums-1)
+                    {
+                        result = result + table[i, j] + "x" + (j+1) + " + ";
+                    }
+                    else if (j == x_nums - 1)
+                    {
+                        result = result + table[i, j] + "x" + (j + 1) + " ";
+                        switch (i)
+                        {
+                            case 1:
+                                switch (ComboBoxRel1.SelectedIndex)
+                                {
+                                    case 0:
+                                        result = result + "<= ";
+                                        break;
+                                    case 1:
+                                        result = result + "= ";
+                                        break;
+                                    case 2:
+                                        result = result + ">= ";
+                                        break;
+                                }
+                                break;
+                            case 2:
+                                switch (ComboBoxRel2.SelectedIndex)
+                                {
+                                    case 0:
+                                        result = result + "<= ";
+                                        break;
+                                    case 1:
+                                        result = result + "= ";
+                                        break;
+                                    case 2:
+                                        result = result + ">= ";
+                                        break;
+                                }
+                                break;
+                            case 3:
+                                switch (ComboBoxRel3.SelectedIndex)
+                                {
+                                    case 0:
+                                        result = result + "<= ";
+                                        break;
+                                    case 1:
+                                        result = result + "= ";
+                                        break;
+                                    case 2:
+                                        result = result + ">= ";
+                                        break;
+                                }
+                                break;
+                            case 4:
+                                switch (ComboBoxRel4.SelectedIndex)
+                                {
+                                    case 0:
+                                        result = result + "<= ";
+                                        break;
+                                    case 1:
+                                        result = result + "= ";
+                                        break;
+                                    case 2:
+                                        result = result + ">= ";
+                                        break;
+                                }
+                                break;
+                            case 5:
+                                switch (ComboBoxRel5.SelectedIndex)
+                                {
+                                    case 0:
+                                        result = result + "<= ";
+                                        break;
+                                    case 1:
+                                        result = result + "= ";
+                                        break;
+                                    case 2:
+                                        result = result + ">= ";
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        result = result + table[i, j];
+                    }
+                    
+                }
+                result = result + "\n";
+            }
+            result = result + "Решение базовым симплекс-методом";
+            bool Is_More_Or_Equals = false;
+            for (int i = 1; i < restriction + 1; i++)
+            {
+                switch (i)
+                {
+                    case 1:
+                        switch (ComboBoxRel1.SelectedIndex)
+                        {
+                            case 2:
+                                // reverse row
+                                for(int j = 0; j < x_nums + 1; j++)
+                                {
+                                    table[i, j] = table[i, j] * (-1);
+                                }
+                                Is_More_Or_Equals = true;
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (ComboBoxRel2.SelectedIndex)
+                        {
+                            case 2:
+                                // reverse row
+                                for (int j = 0; j < x_nums + 1; j++)
+                                {
+                                    table[i, j] = table[i, j] * (-1);
+                                }
+                                Is_More_Or_Equals = true;
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (ComboBoxRel3.SelectedIndex)
+                        {
+                            case 2:
+                                // reverse row
+                                for (int j = 0; j < x_nums + 1; j++)
+                                {
+                                    table[i, j] = table[i, j] * (-1);
+                                }
+                                Is_More_Or_Equals = true;
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (ComboBoxRel4.SelectedIndex)
+                        {
+                            case 2:
+                                // reverse row
+                                for (int j = 0; j < x_nums + 1; j++)
+                                {
+                                    table[i, j] = table[i, j] * (-1);
+                                }
+                                Is_More_Or_Equals = true;
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (ComboBoxRel5.SelectedIndex)
+                        {
+                            case 2:
+                                // reverse row
+                                for (int j = 0; j < x_nums + 1; j++)
+                                {
+                                    table[i, j] = table[i, j] * (-1);
+                                }
+                                Is_More_Or_Equals = true;
+                                break;
+                        }
+                        break;
+                }
+            }
+            if (Is_More_Or_Equals)
+            {
+                result = result + "\nМеняем знаки у ограничений с >=, путём умножения на -1:\n";
+                for (int i = 0; i < restriction + 1; i++)
+                {
+                    for (int j = 0; j < x_nums + 1; j++)
+                    {
+                        if ((j == x_nums) && (i == 0))
+                        {
+                            switch (table[i, j])
+                            {
+                                case 0:
+                                    result = result + "→ max";
+                                    break;
+                                case 1:
+                                    result = result + "→ min";
+                                    break;
+                            }
+                        }
+                        else if (j < x_nums - 1)
+                        {
+                            result = result + table[i, j] + "x" + (j + 1) + " + ";
+                        }
+                        else if (j == x_nums - 1)
+                        {
+                            result = result + table[i, j] + "x" + (j + 1) + " ";
+                            switch (i)
+                            {
+                                case 1:
+                                    switch (ComboBoxRel1.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "<= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "<= ";
+                                            break;
+                                    }
+                                    break;
+                                case 2:
+                                    switch (ComboBoxRel2.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "<= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "<= ";
+                                            break;
+                                    }
+                                    break;
+                                case 3:
+                                    switch (ComboBoxRel3.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "<= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "<= ";
+                                            break;
+                                    }
+                                    break;
+                                case 4:
+                                    switch (ComboBoxRel4.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "<= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "<= ";
+                                            break;
+                                    }
+                                    break;
+                                case 5:
+                                    switch (ComboBoxRel5.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "<= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "<= ";
+                                            break;
+                                    }
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            result = result + table[i, j];
+                        }
+
+                    }
+                    result = result + "\n";
+                }
+            }
+            
+            label5.Text = result;
         }
     }
 }

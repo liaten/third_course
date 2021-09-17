@@ -846,7 +846,7 @@ namespace Simplex_Method1._2
             {
                 numericUpDown1.Value = 1;
             }
-            else if(numericUpDown1.Value > 5)
+            else if (numericUpDown1.Value > 5)
             {
                 numericUpDown1.Value = 5;
             }
@@ -858,9 +858,9 @@ namespace Simplex_Method1._2
                     X3_Hide();
                     X4_Hide();
                     X5_Hide();
-                    ComboBoxMaxMin.Location = new Point(kl1.Location.X+38, 116);
+                    ComboBoxMaxMin.Location = new Point(kl1.Location.X + 38, 116);
                     ComboBoxRel1.Location = new Point(r1l1.Location.X + 24, 171);
-                    r1e6.Location = new Point(ComboBoxRel1.Location.X+55,171);
+                    r1e6.Location = new Point(ComboBoxRel1.Location.X + 55, 171);
                     ComboBoxRel2.Location = new Point(r2l1.Location.X + 24, 197);
                     r2e6.Location = new Point(ComboBoxRel2.Location.X + 55, 197);
                     ComboBoxRel3.Location = new Point(r3l1.Location.X + 24, 223);
@@ -964,9 +964,9 @@ namespace Simplex_Method1._2
                     Row3_Hide();
                     Row4_Hide();
                     Row5_Hide();
-                    varslabel.Location = new Point(14, r1e1.Location.Y+25);
+                    varslabel.Location = new Point(14, r1e1.Location.Y + 25);
                     resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
-                    label5.Location = new Point(14, resultlabel.Location.Y+20);
+                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
                 case 2:
                     Row3_Hide();
@@ -1033,9 +1033,9 @@ namespace Simplex_Method1._2
             int x_nums = (int)numericUpDown1.Value;
             // number restrictions
             int restriction = (int)numericUpDown2.Value;
-            double[,] table = new double[restriction+1,x_nums+1];
+            double[,] table = new double[restriction + 1, x_nums + 1];
             int[] c_arr = new int[x_nums];
-            for(int i = 0; i < x_nums; i++)
+            for (int i = 0; i < x_nums; i++)
             {
                 c_arr[i] = (int)start_arr[i];
             }
@@ -1114,7 +1114,7 @@ namespace Simplex_Method1._2
             }
             for (int i = 1; i < restriction + 1; i++)
             {
-                for(int j = 0; j < x_nums+1; j++)
+                for (int j = 0; j < x_nums + 1; j++)
                 {
                     if (j == x_nums)
                     {
@@ -1127,7 +1127,7 @@ namespace Simplex_Method1._2
                 }
             }
             string result = "Введённые данные\n";
-            for(int i = 0; i < restriction + 1; i++)
+            for (int i = 0; i < restriction + 1; i++)
             {
                 for (int j = 0; j < x_nums + 1; j++)
                 {
@@ -1143,9 +1143,9 @@ namespace Simplex_Method1._2
                                 break;
                         }
                     }
-                    else if (j < x_nums-1)
+                    else if (j < x_nums - 1)
                     {
-                        result = result + table[i, j] + "x" + (j+1) + " + ";
+                        result = result + table[i, j] + "x" + (j + 1) + " + ";
                     }
                     else if (j == x_nums - 1)
                     {
@@ -1228,7 +1228,7 @@ namespace Simplex_Method1._2
                     {
                         result = result + table[i, j];
                     }
-                    
+
                 }
                 result = result + "\n";
             }
@@ -1243,7 +1243,7 @@ namespace Simplex_Method1._2
                         {
                             case 2:
                                 // reverse row
-                                for(int j = 0; j < x_nums + 1; j++)
+                                for (int j = 0; j < x_nums + 1; j++)
                                 {
                                     table[i, j] = table[i, j] * (-1);
                                 }
@@ -1403,7 +1403,7 @@ namespace Simplex_Method1._2
                 }
             }
             int Inequality_Constraints = 0;
-            for( int i = 0; i < restriction + 1; i ++ )
+            for (int i = 0; i < restriction + 1; i++)
             {
                 switch (i)
                 {
@@ -1464,15 +1464,23 @@ namespace Simplex_Method1._2
                         break;
                 }
             }
+            int IC_BACKUP = Inequality_Constraints;
+            int ICN_COUNTER = 0;
+            while (IC_BACKUP != 0)
+            {
+                ICN_COUNTER += IC_BACKUP % 2;
+                IC_BACKUP = IC_BACKUP >> 1;
+            }
+            IC_BACKUP = Inequality_Constraints;
             if (result.Last() != '\n')
             {
                 result = result + "\n";
             }
-            if (Inequality_Constraints > 1)
+            if (ICN_COUNTER > 1)
             {
                 result = result + "Для каждого ограничения с неравенством добавляем дополнительные переменные";
                 // поменять
-                switch (Inequality_Constraints)
+                switch (ICN_COUNTER)
                 {
                     case 2:
                         result = result + " x" + (x_nums + 1);
@@ -1492,6 +1500,7 @@ namespace Simplex_Method1._2
                         break;
                 }
                 result = result + "\nПерепишем ограничения в каноническом виде:\n";
+                int j_max = x_nums + 1;
                 for (int i = 1; i < restriction + 1; i++)
                 {
                     for (int j = 0; j < x_nums + 1; j++)
@@ -1502,73 +1511,100 @@ namespace Simplex_Method1._2
                         }
                         else if (j == x_nums - 1)
                         {
-                            result = result + table[i, j] + "x" + (j + 1) + " + ";
-                            switch (Inequality_Constraints)
+                            result = result + table[i, j] + "x" + (j + 1) + " ";
+                            switch (i)
                             {
-                                case 2:
-                                    switch (i)
+                                case 1:
+                                    switch (ComboBoxRel1.SelectedIndex)
                                     {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
                                         case 1:
-                                            result = result + "1x" + (j + 2) + " ";
+                                            result = result + "= ";
                                             break;
                                         case 2:
-                                            result = result + "1x" + (j + 3) + " ";
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                    }
+                                    break;
+                                case 2:
+                                    switch (ComboBoxRel2.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
                                             break;
                                     }
                                     break;
                                 case 3:
-                                    switch (i)
+                                    switch (ComboBoxRel3.SelectedIndex)
                                     {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
                                         case 1:
-                                            result = result + "1x" + (j + 2) + " ";
+                                            result = result + "= ";
                                             break;
                                         case 2:
-                                            result = result + "1x" + (j + 3) + " ";
-                                            break;
-                                        case 3:
-                                            result = result + "1x" + (j + 4) + " ";
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
                                             break;
                                     }
                                     break;
                                 case 4:
-                                    switch (i)
+                                    switch (ComboBoxRel4.SelectedIndex)
                                     {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
                                         case 1:
-                                            result = result + "1x" + (j + 2) + " ";
+                                            result = result + "= ";
                                             break;
                                         case 2:
-                                            result = result + "1x" + (j + 3) + " ";
-                                            break;
-                                        case 3:
-                                            result = result + "1x" + (j + 4) + " ";
-                                            break;
-                                        case 4:
-                                            result = result + "1x" + (j + 5) + " ";
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
                                             break;
                                     }
                                     break;
                                 case 5:
-                                    switch (i)
+                                    switch (ComboBoxRel5.SelectedIndex)
                                     {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
                                         case 1:
-                                            result = result + "1x" + (j + 2) + " ";
+                                            result = result + "= ";
                                             break;
                                         case 2:
-                                            result = result + "1x" + (j + 3) + " ";
-                                            break;
-                                        case 3:
-                                            result = result + "1x" + (j + 4) + " ";
-                                            break;
-                                        case 4:
-                                            result = result + "1x" + (j + 5) + " ";
-                                            break;
-                                        case 5:
-                                            result = result + "1x" + (j + 6) + " ";
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
                                             break;
                                     }
                                     break;
                             }
-                            result = result + "= ";
                         }
                         else
                         {
@@ -1579,13 +1615,196 @@ namespace Simplex_Method1._2
                     result = result + "\n";
                 }
             }
-            else if(Inequality_Constraints == 1)
+            else if (ICN_COUNTER == 1)
             {
                 result = result + "Для ограничения с неравенством добавляем дополнительную переменную";
                 result = result + " x" + (x_nums + 1);
                 result = result + "\nПерепишем ограничения в каноническом виде:\n";
+                int j_max = x_nums + 1;
+                for (int i = 1; i < restriction + 1; i++)
+                {
+                    for (int j = 0; j < x_nums + 1; j++)
+                    {
+                        if (j < x_nums - 1)
+                        {
+                            result = result + table[i, j] + "x" + (j + 1) + " + ";
+                        }
+                        else if (j == x_nums - 1)
+                        {
+                            result = result + table[i, j] + "x" + (j + 1) + " ";
+                            switch (i)
+                            {
+                                case 1:
+                                    switch (ComboBoxRel1.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                    }
+                                    break;
+                                case 2:
+                                    switch (ComboBoxRel2.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                    }
+                                    break;
+                                case 3:
+                                    switch (ComboBoxRel3.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                    }
+                                    break;
+                                case 4:
+                                    switch (ComboBoxRel4.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                    }
+                                    break;
+                                case 5:
+                                    switch (ComboBoxRel5.SelectedIndex)
+                                    {
+                                        case 0:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                        case 1:
+                                            result = result + "= ";
+                                            break;
+                                        case 2:
+                                            result = result + "+ x" + j_max + " ";
+                                            j_max++;
+                                            result = result + "= ";
+                                            break;
+                                    }
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            result = result + table[i, j];
+                        }
+
+                    }
+                    result = result + "\n";
+                }
+            }
+            result = result + "Ищем начальное базисное решение:\n";
+            int jj_max = x_nums + 1;
+            for (int i = 0; i < restriction+1; i++)
+            {
+                switch (i)
+                {
+                    case 1:
+                        if (ComboBoxRel1.SelectedIndex == 0 || ComboBoxRel1.SelectedIndex == 2)
+                        {
+                            result = result + "Ограничение 1 содержит неравенство, базисной будет добавленная дополнительная переменная x" + jj_max;
+                            jj_max++;
+                        }
+                        else
+                        {
+                            result = result + "Ограничение 1 содержит равенство. Базисная переменная для этого ограничения будет определена позднее.";
+                        }
+                        result = result + "\n";
+                        break;
+                    case 2:
+                        if (ComboBoxRel2.SelectedIndex == 0 || ComboBoxRel2.SelectedIndex == 2)
+                        {
+                            result = result + "Ограничение 2 содержит неравенство, базисной будет добавленная дополнительная переменная x" + jj_max;
+                            jj_max++;
+                        }
+                        else
+                        {
+                            result = result + "Ограничение 2 содержит равенство. Базисная переменная для этого ограничения будет определена позднее.";
+                        }
+                        result = result + "\n";
+                        break;
+                    case 3:
+                        if (ComboBoxRel3.SelectedIndex == 0 || ComboBoxRel3.SelectedIndex == 2)
+                        {
+                            result = result + "Ограничение 3 содержит неравенство, базисной будет добавленная дополнительная переменная x" + jj_max;
+                            jj_max++;
+                        }
+                        else
+                        {
+                            result = result + "Ограничение 3 содержит равенство. Базисная переменная для этого ограничения будет определена позднее.";
+                        }
+                        result = result + "\n";
+                        break;
+                    case 4:
+                        if (ComboBoxRel4.SelectedIndex == 0 || ComboBoxRel4.SelectedIndex == 2)
+                        {
+                            result = result + "Ограничение 4 содержит неравенство, базисной будет добавленная дополнительная переменная x" + jj_max;
+                            jj_max++;
+                        }
+                        else
+                        {
+                            result = result + "Ограничение 4 содержит равенство. Базисная переменная для этого ограничения будет определена позднее.";
+                        }
+                        result = result + "\n";
+                        break;
+                    case 5:
+                        if (ComboBoxRel5.SelectedIndex == 0 || ComboBoxRel5.SelectedIndex == 2)
+                        {
+                            result = result + "Ограничение 5 содержит неравенство, базисной будет добавленная дополнительная переменная x" + jj_max;
+                            jj_max++;
+                        }
+                        else
+                        {
+                            result = result + "Ограничение 5 содержит равенство. Базисная переменная для этого ограничения будет определена позднее.";
+                        }
+                        result = result + "\n";
+                        break;
+                }
             }
             label5.Text = result;
         }
     }
+
 }

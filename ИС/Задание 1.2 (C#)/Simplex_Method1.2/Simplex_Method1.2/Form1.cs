@@ -1308,23 +1308,11 @@ namespace Simplex_Method1._2
             if (Is_More_Or_Equals)
             {
                 result = result + "\nМеняем знаки у ограничений с >= путём умножения на -1:\n";
-                for (int i = 0; i < restriction + 1; i++)
+                for (int i = 1; i < restriction + 1; i++)
                 {
                     for (int j = 0; j < x_nums + 1; j++)
                     {
-                        if ((j == x_nums) && (i == 0))
-                        {
-                            switch (table[i, j])
-                            {
-                                case 0:
-                                    result = result + "→ max";
-                                    break;
-                                case 1:
-                                    result = result + "→ min";
-                                    break;
-                            }
-                        }
-                        else if (j < x_nums - 1)
+                        if (j < x_nums - 1)
                         {
                             result = result + table[i, j] + "x" + (j + 1) + " + ";
                         }
@@ -1434,10 +1422,10 @@ namespace Simplex_Method1._2
                         switch (ComboBoxRel2.SelectedIndex)
                         {
                             case 0:
-                                Inequality_Constraints++;
+                                Inequality_Constraints += 2;
                                 break;
                             case 2:
-                                Inequality_Constraints++;
+                                Inequality_Constraints += 2;
                                 break;
                         }
                         break;
@@ -1445,10 +1433,10 @@ namespace Simplex_Method1._2
                         switch (ComboBoxRel3.SelectedIndex)
                         {
                             case 0:
-                                Inequality_Constraints++;
+                                Inequality_Constraints += 4;
                                 break;
                             case 2:
-                                Inequality_Constraints++;
+                                Inequality_Constraints += 4;
                                 break;
                         }
                         break;
@@ -1456,10 +1444,10 @@ namespace Simplex_Method1._2
                         switch (ComboBoxRel4.SelectedIndex)
                         {
                             case 0:
-                                Inequality_Constraints++;
+                                Inequality_Constraints += 8;
                                 break;
                             case 2:
-                                Inequality_Constraints++;
+                                Inequality_Constraints += 8;
                                 break;
                         }
                         break;
@@ -1467,10 +1455,10 @@ namespace Simplex_Method1._2
                         switch (ComboBoxRel5.SelectedIndex)
                         {
                             case 0:
-                                Inequality_Constraints++;
+                                Inequality_Constraints += 16;
                                 break;
                             case 2:
-                                Inequality_Constraints++;
+                                Inequality_Constraints += 16;
                                 break;
                         }
                         break;
@@ -1483,6 +1471,7 @@ namespace Simplex_Method1._2
             if (Inequality_Constraints > 1)
             {
                 result = result + "Для каждого ограничения с неравенством добавляем дополнительные переменные";
+                // поменять
                 switch (Inequality_Constraints)
                 {
                     case 2:
@@ -1502,13 +1491,99 @@ namespace Simplex_Method1._2
                         result = result + "..x" + (x_nums + 5) + ".";
                         break;
                 }
-                result = result + "\nПерепишем ограничения в каноническом виде:";
+                result = result + "\nПерепишем ограничения в каноническом виде:\n";
+                for (int i = 1; i < restriction + 1; i++)
+                {
+                    for (int j = 0; j < x_nums + 1; j++)
+                    {
+                        if (j < x_nums - 1)
+                        {
+                            result = result + table[i, j] + "x" + (j + 1) + " + ";
+                        }
+                        else if (j == x_nums - 1)
+                        {
+                            result = result + table[i, j] + "x" + (j + 1) + " + ";
+                            switch (Inequality_Constraints)
+                            {
+                                case 2:
+                                    switch (i)
+                                    {
+                                        case 1:
+                                            result = result + "1x" + (j + 2) + " ";
+                                            break;
+                                        case 2:
+                                            result = result + "1x" + (j + 3) + " ";
+                                            break;
+                                    }
+                                    break;
+                                case 3:
+                                    switch (i)
+                                    {
+                                        case 1:
+                                            result = result + "1x" + (j + 2) + " ";
+                                            break;
+                                        case 2:
+                                            result = result + "1x" + (j + 3) + " ";
+                                            break;
+                                        case 3:
+                                            result = result + "1x" + (j + 4) + " ";
+                                            break;
+                                    }
+                                    break;
+                                case 4:
+                                    switch (i)
+                                    {
+                                        case 1:
+                                            result = result + "1x" + (j + 2) + " ";
+                                            break;
+                                        case 2:
+                                            result = result + "1x" + (j + 3) + " ";
+                                            break;
+                                        case 3:
+                                            result = result + "1x" + (j + 4) + " ";
+                                            break;
+                                        case 4:
+                                            result = result + "1x" + (j + 5) + " ";
+                                            break;
+                                    }
+                                    break;
+                                case 5:
+                                    switch (i)
+                                    {
+                                        case 1:
+                                            result = result + "1x" + (j + 2) + " ";
+                                            break;
+                                        case 2:
+                                            result = result + "1x" + (j + 3) + " ";
+                                            break;
+                                        case 3:
+                                            result = result + "1x" + (j + 4) + " ";
+                                            break;
+                                        case 4:
+                                            result = result + "1x" + (j + 5) + " ";
+                                            break;
+                                        case 5:
+                                            result = result + "1x" + (j + 6) + " ";
+                                            break;
+                                    }
+                                    break;
+                            }
+                            result = result + "= ";
+                        }
+                        else
+                        {
+                            result = result + table[i, j];
+                        }
+
+                    }
+                    result = result + "\n";
+                }
             }
             else if(Inequality_Constraints == 1)
             {
                 result = result + "Для ограничения с неравенством добавляем дополнительную переменную";
                 result = result + " x" + (x_nums + 1);
-                result = result + "\nПерепишем ограничения в каноническом виде:";
+                result = result + "\nПерепишем ограничения в каноническом виде:\n";
             }
             label5.Text = result;
         }

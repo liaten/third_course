@@ -15,7 +15,6 @@ namespace Simplex_Method1._2
         public Form1()
         {
             InitializeComponent();
-            label5.Text = "";
             ComboBoxMaxMin.SelectedIndex = 0;
             ComboBoxRel1.SelectedIndex = 0;
             ComboBoxRel2.SelectedIndex = 0;
@@ -965,8 +964,6 @@ namespace Simplex_Method1._2
                     Row4_Hide();
                     Row5_Hide();
                     varslabel.Location = new Point(14, r1e1.Location.Y + 25);
-                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
-                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
                 case 2:
                     Row3_Hide();
@@ -974,8 +971,6 @@ namespace Simplex_Method1._2
                     Row5_Hide();
                     Row2_Show();
                     varslabel.Location = new Point(14, r2e1.Location.Y + 25);
-                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
-                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
                 case 3:
                     Row4_Hide();
@@ -983,8 +978,6 @@ namespace Simplex_Method1._2
                     Row2_Show();
                     Row3_Show();
                     varslabel.Location = new Point(14, r3e1.Location.Y + 25);
-                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
-                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
                 case 4:
                     Row5_Hide();
@@ -992,8 +985,6 @@ namespace Simplex_Method1._2
                     Row3_Show();
                     Row4_Show();
                     varslabel.Location = new Point(14, r4e1.Location.Y + 25);
-                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
-                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
                 case 5:
                     Row2_Show();
@@ -1001,8 +992,6 @@ namespace Simplex_Method1._2
                     Row4_Show();
                     Row5_Show();
                     varslabel.Location = new Point(14, r5e1.Location.Y + 25);
-                    resultlabel.Location = new Point(14, varslabel.Location.Y + 20);
-                    label5.Location = new Point(14, resultlabel.Location.Y + 20);
                     break;
             }
         }
@@ -1803,7 +1792,40 @@ namespace Simplex_Method1._2
                         break;
                 }
             }
-            label5.Text = result;
+            int sy = restriction + 2;
+            int sx = x_nums + 1 + ICN_COUNTER;
+            double[,] simplex = new double[sy, sx];    //место для дельт, базиса, коэффициентов C
+            IC_BACKUP = Inequality_Constraints;
+            for(int i = 0; i < sy; i++)
+            {
+                for(int j = 0; j < sx; j++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            if (j <= x_nums)
+                            {
+                                simplex[i, j] = table[i, j];
+                            }
+                            else
+                            {
+                                simplex[i, j] = 0;
+                            }
+                            break;
+                        default:
+                            simplex[i, j] = table[i, j];
+                            simplex[i, sx - 1] = table[i, x_nums];
+                            // заполнить единицами и нулями дополнительные переменные в симплекс-таблице
+                            break;
+                    }
+                }
+            }
+            richTextBox1.Text = result;
+        }
+
+        private void richTextBox1_Enter(object sender, EventArgs e)
+        {
+            System.Windows.Forms.SendKeys.Send("{tab}");
         }
     }
 

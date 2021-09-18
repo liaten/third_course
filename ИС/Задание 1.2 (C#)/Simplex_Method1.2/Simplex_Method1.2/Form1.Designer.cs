@@ -110,8 +110,8 @@ namespace Simplex_Method1._2
             this.varslabel = new System.Windows.Forms.Label();
             this.resultlabel = new System.Windows.Forms.Label();
             this.SolveButton = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.ClearButton = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -831,7 +831,7 @@ namespace Simplex_Method1._2
             // 
             this.resultlabel.AutoSize = true;
             this.resultlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.resultlabel.Location = new System.Drawing.Point(14, 320);
+            this.resultlabel.Location = new System.Drawing.Point(606, 9);
             this.resultlabel.Name = "resultlabel";
             this.resultlabel.Size = new System.Drawing.Size(59, 13);
             this.resultlabel.TabIndex = 79;
@@ -847,15 +847,6 @@ namespace Simplex_Method1._2
             this.SolveButton.UseVisualStyleBackColor = true;
             this.SolveButton.Click += new System.EventHandler(this.SolveButton_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 340);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 13);
-            this.label5.TabIndex = 81;
-            this.label5.Text = "Здесь будет решение";
-            // 
             // ClearButton
             // 
             this.ClearButton.Location = new System.Drawing.Point(212, 32);
@@ -866,15 +857,26 @@ namespace Simplex_Method1._2
             this.ClearButton.UseVisualStyleBackColor = true;
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(609, 32);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.richTextBox1.Size = new System.Drawing.Size(671, 406);
+            this.richTextBox1.TabIndex = 83;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.Enter += new System.EventHandler(this.richTextBox1_Enter);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(615, 450);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1288, 450);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.ClearButton);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.SolveButton);
             this.Controls.Add(this.resultlabel);
             this.Controls.Add(this.varslabel);
@@ -1048,8 +1050,8 @@ namespace Simplex_Method1._2
         private System.Windows.Forms.Label varslabel;
         private System.Windows.Forms.Label resultlabel;
         private System.Windows.Forms.Button SolveButton;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

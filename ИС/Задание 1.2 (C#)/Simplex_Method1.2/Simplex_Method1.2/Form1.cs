@@ -1815,6 +1815,7 @@ namespace Simplex_Method1._2
                         default:
                             simplex[i, j] = table[i, j];
                             simplex[i, sx - 1] = table[i, x_nums];
+                            
                             // заполнить единицами и нулями дополнительные переменные в симплекс-таблице
                             break;
                     }

@@ -26,41 +26,49 @@ namespace Simplex_Method1._2
         public double[] Get_Numbers_From_Form()
         {
             double[] start_arr = new double[35];
-            start_arr[0] = double.Parse(kx1.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[1] = double.Parse(kx2.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[2] = double.Parse(kx3.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[3] = double.Parse(kx4.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[4] = double.Parse(kx5.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[5] = double.Parse(r1e1.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[6] = double.Parse(r1e2.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[7] = double.Parse(r1e3.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[8] = double.Parse(r1e4.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[9] = double.Parse(r1e5.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[10] = double.Parse(r1e6.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[11] = double.Parse(r2e1.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[12] = double.Parse(r2e2.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[13] = double.Parse(r2e3.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[14] = double.Parse(r2e4.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[15] = double.Parse(r2e5.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[16] = double.Parse(r2e6.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[17] = double.Parse(r3e1.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[18] = double.Parse(r3e2.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[19] = double.Parse(r3e3.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[20] = double.Parse(r3e4.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[21] = double.Parse(r3e5.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[22] = double.Parse(r3e6.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[23] = double.Parse(r4e1.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[24] = double.Parse(r4e2.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[25] = double.Parse(r4e3.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[26] = double.Parse(r4e4.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[27] = double.Parse(r4e5.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[28] = double.Parse(r4e6.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[29] = double.Parse(r5e1.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[30] = double.Parse(r5e2.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[31] = double.Parse(r5e3.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[32] = double.Parse(r5e4.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[33] = double.Parse(r5e5.Text, System.Globalization.CultureInfo.InvariantCulture);
-            start_arr[34] = double.Parse(r5e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+            try
+            {
+                start_arr[0] = double.Parse(kx1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[1] = double.Parse(kx2.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[2] = double.Parse(kx3.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[3] = double.Parse(kx4.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[4] = double.Parse(kx5.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[5] = double.Parse(r1e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[6] = double.Parse(r1e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[7] = double.Parse(r1e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[8] = double.Parse(r1e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[9] = double.Parse(r1e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[10] = double.Parse(r1e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[11] = double.Parse(r2e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[12] = double.Parse(r2e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[13] = double.Parse(r2e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[14] = double.Parse(r2e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[15] = double.Parse(r2e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[16] = double.Parse(r2e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[17] = double.Parse(r3e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[18] = double.Parse(r3e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[19] = double.Parse(r3e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[20] = double.Parse(r3e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[21] = double.Parse(r3e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[22] = double.Parse(r3e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[23] = double.Parse(r4e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[24] = double.Parse(r4e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[25] = double.Parse(r4e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[26] = double.Parse(r4e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[27] = double.Parse(r4e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[28] = double.Parse(r4e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[29] = double.Parse(r5e1.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[30] = double.Parse(r5e2.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[31] = double.Parse(r5e3.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[32] = double.Parse(r5e4.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[33] = double.Parse(r5e5.Text, System.Globalization.CultureInfo.InvariantCulture);
+                start_arr[34] = double.Parse(r5e6.Text, System.Globalization.CultureInfo.InvariantCulture);
+            }
+            catch (System.FormatException)
+            {
+                MessageBox.Show("Неверный формат ввода", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
             return start_arr;
         }
         public void ClearTextBoxes()
@@ -1017,6 +1025,10 @@ namespace Simplex_Method1._2
         private void SolveButton_Click(object sender, EventArgs e)
         {
             double[] start_arr = new double[35];
+            if (Get_Numbers_From_Form() == null)
+            {
+                return;
+            }
             start_arr = Get_Numbers_From_Form();
             // numbers of x
             int x_nums = (int)numericUpDown1.Value;
@@ -1391,7 +1403,7 @@ namespace Simplex_Method1._2
                     result = result + "\n";
                 }
             }
-            int Inequality_Constraints = 0;
+            int Inequality_Constraints = 0; // эту переменную мы не трогаем!!
             for (int i = 0; i < restriction + 1; i++)
             {
                 switch (i)
@@ -1796,32 +1808,107 @@ namespace Simplex_Method1._2
             int sx = x_nums + 1 + ICN_COUNTER;
             double[,] simplex = new double[sy, sx];    //место для дельт, базиса, коэффициентов C
             IC_BACKUP = Inequality_Constraints;
-            for(int i = 0; i < sy; i++)
+            int max_x = x_nums-1;
+            // заполнение первичного массива симплекс метода
+            for (int i = 0; i < sy; i++)
             {
                 for(int j = 0; j < sx; j++)
                 {
-                    switch (i)
+                    if (i == 0)
                     {
-                        case 0:
-                            if (j <= x_nums)
+                        if (j <= x_nums)
+                        {
+                            simplex[i, j] = table[i, j];
+                        }
+                        else
+                        {
+                            simplex[i, j] = 0;
+                        }
+                    }
+                    else if (i == (sy - 1))
+                    {
+                        simplex[i, j] = 0;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            simplex[i, j] = table[i, j];
+                        }
+                        catch (System.IndexOutOfRangeException)
+                        {
+                            if (j == (sx-1) )
                             {
-                                simplex[i, j] = table[i, j];
+                                simplex[i, (sx - 1)] = simplex[i, (x_nums)];
+                                simplex[i, x_nums] = 0;
                             }
                             else
                             {
                                 simplex[i, j] = 0;
                             }
-                            break;
-                        default:
-                            simplex[i, j] = table[i, j];
-                            simplex[i, sx - 1] = table[i, x_nums];
-                            
-                            // заполнить единицами и нулями дополнительные переменные в симплекс-таблице
-                            break;
+                        };
                     }
                 }
             }
-            richTextBox1.Text = result;
+            for(int i = 0; i < sy; i++)
+            {
+                if ((IC_BACKUP % 2) == 1)
+                {
+                    simplex[i + 1, max_x++ + 1] = 1;
+                }
+                IC_BACKUP = IC_BACKUP >> 1;
+            }
+            result = result + "Начальная симплекс-таблица\n";
+            IC_BACKUP = Inequality_Constraints;
+            max_x = x_nums;
+            int unknown = 0;
+            // вывод первичного массива симплекс метода
+            for (int i = 0; i < sy-1; i++)
+            {
+                if (i == 0)
+                {
+                    result = result + "C\t";
+                }
+                else if (i == (sy - 1))
+                {
+                    result = result + "Δ\t";
+                }
+                else
+                {
+                    if ( (IC_BACKUP % 2) == 1 )
+                    {
+                        max_x++;
+                        result = result + "x" + max_x + "\t";
+                    }
+                    else
+                    {
+                        unknown++;
+                        result = result + "?" + unknown + "\t";
+                    }
+                    IC_BACKUP = IC_BACKUP >> 1;
+                    
+                }
+                for (int j = 0; j < sx; j++)
+                {
+                    result = result + simplex[i, j]+"\t";
+                }
+                result = result + "\n";
+                if (i == 0)
+                {
+                    result = result + "базис\t";
+                    for(int j = 0; j < sx - 1; j++)
+                    {
+                        result = result + "x" + (j + 1) + "\t";
+                    }
+                    result = result + "b\n";
+                }
+            }
+            if (ICN_COUNTER != restriction)
+            {
+                result = result + "Ищем базис\n";
+
+            }
+                richTextBox1.Text = result;
         }
 
         private void richTextBox1_Enter(object sender, EventArgs e)

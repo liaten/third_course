@@ -876,6 +876,8 @@ namespace Simplex_Method1._2
                     r4e6.Location = new Point(ComboBoxRel4.Location.X + 55, 249);
                     ComboBoxRel5.Location = new Point(r5l1.Location.X + 24, 275);
                     r5e6.Location = new Point(ComboBoxRel5.Location.X + 55, 275);
+                    richTextBox1.Location = new Point(SolveButton.Location.X + 82, 32);
+                    resultlabel.Location = new Point(richTextBox1.Location.X, 9);
                     break;
                 case 2:
                     varslabel.Text = "x1, x2>= 0";
@@ -895,6 +897,8 @@ namespace Simplex_Method1._2
                     r4e6.Location = new Point(ComboBoxRel4.Location.X + 55, 249);
                     ComboBoxRel5.Location = new Point(r5l2.Location.X + 24, 275);
                     r5e6.Location = new Point(ComboBoxRel5.Location.X + 55, 275);
+                    richTextBox1.Location = new Point(r1e6.Location.X + 62, 32);
+                    resultlabel.Location = new Point(richTextBox1.Location.X, 9);
                     break;
                 case 3:
                     varslabel.Text = "x1, x2, x3>= 0";
@@ -915,6 +919,8 @@ namespace Simplex_Method1._2
                     r4e6.Location = new Point(ComboBoxRel4.Location.X + 55, 249);
                     ComboBoxRel5.Location = new Point(r5l3.Location.X + 24, 275);
                     r5e6.Location = new Point(ComboBoxRel5.Location.X + 55, 275);
+                    richTextBox1.Location = new Point(r1e6.Location.X + 62, 32);
+                    resultlabel.Location = new Point(richTextBox1.Location.X, 9);
                     break;
                 case 4:
                     varslabel.Text = "x1, x2, x3, x4>= 0";
@@ -933,6 +939,8 @@ namespace Simplex_Method1._2
                     r4e6.Location = new Point(ComboBoxRel4.Location.X + 55, 249);
                     ComboBoxRel5.Location = new Point(r5l4.Location.X + 24, 275);
                     r5e6.Location = new Point(ComboBoxRel5.Location.X + 55, 275);
+                    richTextBox1.Location = new Point(r1e6.Location.X + 62, 32);
+                    resultlabel.Location = new Point(richTextBox1.Location.X, 9);
                     break;
                 case 5:
                     varslabel.Text = "x1, x2, x3, x4, x5>= 0";
@@ -951,6 +959,8 @@ namespace Simplex_Method1._2
                     r4e6.Location = new Point(ComboBoxRel4.Location.X + 55, 249);
                     ComboBoxRel5.Location = new Point(r5l5.Location.X + 24, 275);
                     r5e6.Location = new Point(ComboBoxRel5.Location.X + 55, 275);
+                    richTextBox1.Location = new Point(r1e6.Location.X + 62, 32);
+                    resultlabel.Location = new Point(richTextBox1.Location.X, 9);
                     break;
             }
         }
@@ -1731,7 +1741,6 @@ namespace Simplex_Method1._2
                         {
                             result = result + table[i, j];
                         }
-
                     }
                     result = result + "\n";
                 }
@@ -1906,7 +1915,111 @@ namespace Simplex_Method1._2
             if (ICN_COUNTER != restriction)
             {
                 result = result + "Ищем базис\n";
+                IC_BACKUP = Inequality_Constraints;
+                unknown = 0;
+                List<int> PickedList = new List<int>();
+                for (int i = 1; i < sy - 1; i++)
+                {
+                    if ((IC_BACKUP % 2) !=1)
+                    {
+                        unknown++;
+                        for(int j = 0; j < x_nums; j++)
+                        {
+                            if ((simplex[i, j] != 0) && !PickedList.Contains(j))
+                            {
+                                result = result + "В качестве базисной переменной ?" + unknown + " берём x" + (j+1) + ".\n";
+                                double divider = simplex[i, j];
+                                result = result + "Делим строку " + i + " на " + divider + ".\n";
+                                
+                                for(int k = 0; k < sx; k++)
+                                {
+                                    simplex[i, k] /= divider;
+                                }
+                                // выведем строку i
+                                //result = result + "x" + (j + 1) + "\t";
+                                //for(int k = 0; k < sx; k++)
+                                //{
+                                //    result = result + Math.Round(simplex[i,k],2) + "\t";
+                                //}
+                                //result = result + "\n";
 
+                                if (restriction > 1)
+                                {
+                                    result = result + "Из строк";
+                                    if (restriction > 2)
+                                    {
+                                        result = result + " ";
+                                    }
+                                    else
+                                    {
+                                        result = result + "и ";
+                                    }
+                                    for (int k = 1; k < sy - 1; k++)
+                                    {
+                                        if (k != i)
+                                        {
+                                            result = result + k + ", ";
+                                            double simplex_multiplier = simplex[k, j];
+                                            for(int l = 0; l < sx; l++)
+                                            {
+                                                simplex[k, l] += (simplex[i, l] * (-1) * simplex_multiplier); 
+                                            }
+                                        }
+                                    }
+                                    result = result.Remove(result.Length - 2);
+                                    result = result + " вычитаем строку " + i + ", умноженную на соответствующий элемент в столбце " + (j + 1) + ".\n";
+                                }
+                                PickedList.Add(j);
+                                break;
+                            }
+                        }
+                    }
+                    IC_BACKUP = IC_BACKUP >> 1;
+                }
+
+                IC_BACKUP = Inequality_Constraints;
+                max_x = x_nums;
+                unknown = 0;
+                for (int i = 0; i < sy - 1; i++)
+                {
+                    if (i == 0)
+                    {
+                        result = result + "C\t";
+                    }
+                    else if (i == (sy - 1))
+                    {
+                        result = result + "Δ\t";
+                    }
+                    else
+                    {
+                        if ((IC_BACKUP % 2) == 1)
+                        {
+                            max_x++;
+                            result = result + "x" + max_x + "\t";
+                        }
+                        else
+                        {
+                            unknown++;
+                            result = result + "?" + unknown + "\t";
+                        }
+                        IC_BACKUP = IC_BACKUP >> 1;
+
+                    }
+                    for (int j = 0; j < sx; j++)
+                    {
+                        result = result + Math.Round(simplex[i,j],2) + "\t";
+                    }
+                    result = result + "\n";
+                    if (i == 0)
+                    {
+                        result = result + "базис\t";
+                        for (int j = 0; j < sx - 1; j++)
+                        {
+                            result = result + "x" + (j + 1) + "\t";
+                        }
+                        result = result + "b\n";
+                    }
+                }
             }
                 richTextBox1.Text = result;
         }

@@ -831,7 +831,7 @@ namespace Simplex_Method1._2
             // 
             this.resultlabel.AutoSize = true;
             this.resultlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.resultlabel.Location = new System.Drawing.Point(606, 9);
+            this.resultlabel.Location = new System.Drawing.Point(609, 9);
             this.resultlabel.Name = "resultlabel";
             this.resultlabel.Size = new System.Drawing.Size(59, 13);
             this.resultlabel.TabIndex = 79;
@@ -873,6 +873,7 @@ namespace Simplex_Method1._2
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1288, 450);
             this.Controls.Add(this.richTextBox1);

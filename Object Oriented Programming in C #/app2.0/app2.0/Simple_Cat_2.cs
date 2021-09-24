@@ -10,6 +10,8 @@ namespace app2._0
     {
         private int its_age;
         private int its_weight;
+        private int its_years;
+        private int its_months;
         public Simple_Cat_2()
         {
             this.its_age = 2;
@@ -23,9 +25,16 @@ namespace app2._0
         {
             return this.its_age;
         }
-        public void Set_Age(int age)
+        public void Set_Age(double age)
         {
-            this.its_age = age;
+            this.its_age = (int) age;
+            this.its_years = (int) age;
+            this.its_months = (int) ((age - (int)age) * 10 / 12);
+        }
+        public void Set_Age(int years, int months)
+        {
+            this.its_years = years;
+            this.its_months = months;
         }
         public int Get_Weight()
         {

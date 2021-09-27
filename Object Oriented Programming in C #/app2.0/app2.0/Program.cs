@@ -21,6 +21,11 @@ namespace app2._0
             Console.WriteLine("frisky is " + frisky2.Get_Age() + " years old.");
             frisky2.Set_Age(5);
             Console.WriteLine("frisky is " + frisky2.Get_Age() + " years old.");
+            Console.Write("Дополнительная задача:\nВведите возраст frisky в формате с плавающей запятой: ");
+            double age_double = Convert.ToDouble(Console.ReadLine());
+            frisky2.Set_Age(age_double);
+            Console.WriteLine("frisky is " + frisky2.Get_Age() + " years old.");
+            Console.WriteLine("frisky is {0} full years and {1} months old.", frisky2.Get_Years(), frisky2.Get_Months());
             Console.Write("Нажмите любую клавишу, чтобы завершить программу: ");
             Console.ReadKey();
         }

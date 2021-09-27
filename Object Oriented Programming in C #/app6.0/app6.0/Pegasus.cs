@@ -6,7 +6,7 @@ namespace app6._0
 {
     class Pegasus : Horse
     {
-        public virtual void Fly()
+        override public void  Fly()
         {
             Console.WriteLine("I can fly!!");
         }

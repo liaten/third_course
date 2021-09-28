@@ -1017,13 +1017,20 @@ namespace Simplex_Method1._2
         {
             if (!char.IsControl(e.KeyChar)
                 && !char.IsDigit(e.KeyChar)
-                && (e.KeyChar != '.'))
+                && (e.KeyChar != '.')
+                && (e.KeyChar != '-')
+                )
             {
                 e.Handled = true;
             }
             // only allow one decimal point
             if ((e.KeyChar == '.')
                 && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+            if ((e.KeyChar == '-')
+                && ((sender as TextBox).Text.IndexOf('-') > -1))
             {
                 e.Handled = true;
             }
@@ -1871,6 +1878,7 @@ namespace Simplex_Method1._2
             IC_BACKUP = Inequality_Constraints;
             max_x = x_nums;
             int unknown = 0;
+            string[] basis_strings = new string[restriction];
             // вывод первичного массива симплекс метода
             for (int i = 0; i < sy-1; i++)
             {
@@ -1884,15 +1892,20 @@ namespace Simplex_Method1._2
                 }
                 else
                 {
+                    string to_basis = "";
                     if ( (IC_BACKUP % 2) == 1 )
                     {
                         max_x++;
-                        result = result + "x" + max_x + "\t";
+                        to_basis = to_basis + "x" + max_x;
+                        basis_strings[i - 1] = to_basis;
+                        result = result + to_basis + "\t";
                     }
                     else
                     {
                         unknown++;
-                        result = result + "?" + unknown + "\t";
+                        to_basis = to_basis + "?" + unknown;
+                        basis_strings[i - 1] = to_basis;
+                        result = result + to_basis + "\t";
                     }
                     IC_BACKUP = IC_BACKUP >> 1;
                     
@@ -1928,6 +1941,8 @@ namespace Simplex_Method1._2
                             if ((simplex[i, j] != 0) && !PickedList.Contains(j))
                             {
                                 result = result + "В качестве базисной переменной ?" + unknown + " берём x" + (j+1) + ".\n";
+                                string to_basis = "x" + (j + 1);
+                                basis_strings[i - 1] = to_basis;
                                 double divider = simplex[i, j];
                                 result = result + "Делим строку " + i + " на " + divider + ".\n";
                                 
@@ -1978,8 +1993,7 @@ namespace Simplex_Method1._2
                 }
 
                 IC_BACKUP = Inequality_Constraints;
-                max_x = x_nums;
-                unknown = 0;
+                result = result + "Таблица:\n";
                 for (int i = 0; i < sy - 1; i++)
                 {
                     if (i == 0)
@@ -1994,13 +2008,11 @@ namespace Simplex_Method1._2
                     {
                         if ((IC_BACKUP % 2) == 1)
                         {
-                            max_x++;
-                            result = result + "x" + max_x + "\t";
+                            result = result + basis_strings[i - 1] + "\t";
                         }
                         else
                         {
-                            unknown++;
-                            result = result + "?" + unknown + "\t";
+                            result = result + basis_strings[i - 1] + "\t";
                         }
                         IC_BACKUP = IC_BACKUP >> 1;
 
@@ -2021,7 +2033,140 @@ namespace Simplex_Method1._2
                     }
                 }
             }
-                richTextBox1.Text = result;
+            bool Has_Negative_B = false;
+            for(int i = 1; i < sy - 1; i++)
+            {
+                if (simplex[i, sx - 1] < 0)
+                {
+                    Has_Negative_B = true;
+                    result = result + "В столбце b присутствуют отрицательные значения.";
+                    break;
+                }
+            }
+            if (Has_Negative_B)
+            {
+                double max_module_b = 0; // значение макс модуля b в строке
+                int max_module_b_position = 0;  // значение строки с максимальным модулем b
+                if (sy > 3)
+                {
+                    for (int i = 1; i < sy - 1; i++)
+                    {
+                        if ((Math.Abs(simplex[i, sx - 1]) > max_module_b) && (simplex[i, sx - 1]<0) )
+                        {
+                            max_module_b = Math.Abs(simplex[i, sx - 1]);
+                            max_module_b_position = i;
+                        }
+                    }
+                }
+                result = result + "\nМаксимальное по модулю |b|max = |" + simplex[max_module_b_position, sx - 1]
+                                + "| находится в строке " + max_module_b_position + ".";
+                bool Has_Negative_Elements = false;
+                for(int i = 0; i < sx - 1; i++)
+                {
+                    if(simplex[max_module_b_position, i] < 0)
+                    {
+                        Has_Negative_Elements = true;
+                    }
+                }
+                if (Has_Negative_Elements)
+                {
+                    double max_module_element = 0;    // значение максимального элемента в строке
+                    int max_module_element_position = 0;    // значение колонки максимального элемента строки
+                    if (sx > 2)
+                    {
+                        for (int i = 0; i < sx - 1; i++)
+                        {
+                            if ((Math.Abs(simplex[max_module_b_position, i]) > max_module_element) && (simplex[max_module_b_position, i] < 0))
+                            {
+                                max_module_element = Math.Abs(simplex[max_module_b_position, i]);
+                                max_module_element_position = i;
+                            }
+                        }
+                    }
+                    result = result + "\nМаксимальный по модулю элемент в строке " + max_module_b_position + " = "
+                                    + simplex[max_module_b_position, max_module_element_position] + " находится в столбце "
+                                    + (max_module_element_position + 1) + ".";
+                    result = result + "\nВ качестве базисной переменной " + basis_strings[max_module_b_position - 1] + " берём x" + (max_module_element_position + 1) + ".";
+                    result = result + "\nДелим строку " + max_module_b_position + " на " + simplex[max_module_b_position, max_module_element_position] + ".";
+                    double divider = simplex[max_module_b_position, max_module_element_position];
+                    for (int k = 0; k < sx; k++)
+                    {
+                        simplex[max_module_b_position, k] /= divider;
+                    }
+                    if (restriction > 1)
+                    {
+                        result = result + "Из строк";
+                        if (restriction > 2)
+                        {
+                            result = result + " ";
+                        }
+                        else
+                        {
+                            result = result + "и ";
+                        }
+                        for (int k = 1; k < sy - 1; k++)
+                        {
+                            if (k != max_module_b_position)
+                            {
+                                result = result + k + ", ";
+                                double simplex_multiplier = simplex[k, max_module_element_position];
+                                for (int l = 0; l < sx; l++)
+                                {
+                                    simplex[k, l] += (simplex[max_module_b_position, l] * (-1) * simplex_multiplier);
+                                }
+                            }
+                        }
+                        result = result.Remove(result.Length - 2);
+                        result = result + " вычитаем строку " + max_module_b_position + ", умноженную на соответствующий элемент в столбце " + (max_module_element_position + 1) + ".\n";
+                    }
+                    result = result + "Обновлённая таблица:\n";
+                    for (int i = 0; i < sy - 1; i++)
+                    {
+                        if (i == 0)
+                        {
+                            result = result + "C\t";
+                        }
+                        else if (i == (sy - 1))
+                        {
+                            result = result + "Δ\t";
+                        }
+                        else
+                        {
+                            if ((IC_BACKUP % 2) == 1)
+                            {
+                                result = result + basis_strings[i - 1] + "\t";
+                            }
+                            else
+                            {
+                                result = result + basis_strings[i - 1] + "\t";
+                            }
+                            IC_BACKUP = IC_BACKUP >> 1;
+
+                        }
+                        for (int j = 0; j < sx; j++)
+                        {
+                            result = result + Math.Round(simplex[i, j], 2) + "\t";
+                        }
+                        result = result + "\n";
+                        if (i == 0)
+                        {
+                            result = result + "базис\t";
+                            for (int j = 0; j < sx - 1; j++)
+                            {
+                                result = result + "x" + (j + 1) + "\t";
+                            }
+                            result = result + "b\n";
+                        }
+                    }
+
+                }
+                else
+                {
+                    result = result + "\nВ строке " + max_module_b_position + " отсутстуют отрицательные значения. Решение задачи не существует.";
+                }
+
+            }
+            richTextBox1.Text = result;
         }
 
         private void richTextBox1_Enter(object sender, EventArgs e)

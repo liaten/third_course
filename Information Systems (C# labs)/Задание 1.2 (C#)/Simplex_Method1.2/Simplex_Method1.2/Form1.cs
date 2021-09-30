@@ -1879,6 +1879,7 @@ namespace Simplex_Method1._2
             max_x = x_nums;
             int unknown = 0;
             string[] basis_strings = new string[restriction];
+            int[] basis_ints = new int[restriction];
             // вывод первичного массива симплекс метода
             for (int i = 0; i < sy-1; i++)
             {
@@ -1898,6 +1899,7 @@ namespace Simplex_Method1._2
                         max_x++;
                         to_basis = to_basis + "x" + max_x;
                         basis_strings[i - 1] = to_basis;
+                        basis_ints[i - 1] = max_x;
                         result = result + to_basis + "\t";
                     }
                     else
@@ -1943,6 +1945,7 @@ namespace Simplex_Method1._2
                                 result = result + "В качестве базисной переменной ?" + unknown + " берём x" + (j+1) + ".\n";
                                 string to_basis = "x" + (j + 1);
                                 basis_strings[i - 1] = to_basis;
+                                basis_ints[i - 1] = j + 1;
                                 double divider = simplex[i, j];
                                 result = result + "Делим строку " + i + " на " + divider + ".\n";
                                 
@@ -2043,7 +2046,8 @@ namespace Simplex_Method1._2
                     break;
                 }
             }
-            if (Has_Negative_B)
+            bool No_Solution = false;
+            while (Has_Negative_B == true)
             {
                 double max_module_b = 0; // значение макс модуля b в строке
                 int max_module_b_position = 0;  // значение строки с максимальным модулем b
@@ -2163,8 +2167,43 @@ namespace Simplex_Method1._2
                 else
                 {
                     result = result + "\nВ строке " + max_module_b_position + " отсутстуют отрицательные значения. Решение задачи не существует.";
+                    No_Solution = true;
+                    break;
                 }
-
+                Has_Negative_B = false;
+                for (int i = 1; i < sy - 1; i++)
+                {
+                    if (simplex[i, sx - 1] < 0)
+                    {
+                        Has_Negative_B = true;
+                        result = result + "В столбце b присутствуют отрицательные значения.";
+                        break;
+                    }
+                }
+                if(Has_Negative_B == false)
+                {
+                    break;
+                }
+            }
+            if(No_Solution == false)
+            {
+                result += "Вычисляем дельты: Δi = ";
+                for(int i = 0; i < restriction; i++)
+                {
+                    result += "C" + basis_ints[i] + "*a" + (i + 1) + "i + ";
+                }
+                result = result.Remove(result.Length - 2);
+                result += " - Ci\n";
+                for(int i = 0; i < sx - 1; i++)
+                {
+                    result += "Δ" + (i + 1) + " = ";
+                    for(int j = 0; j < restriction; j++)
+                    {
+                        result += "C" + basis_ints[j] + "*a" + (j + 1) + (i+1) + " + ";
+                    }
+                    result = result.Remove(result.Length - 2);
+                    result += " - C" + (i + 1) + "\n";
+                }
             }
             richTextBox1.Text = result;
         }

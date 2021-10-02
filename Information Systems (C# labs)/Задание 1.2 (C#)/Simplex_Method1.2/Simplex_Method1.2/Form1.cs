@@ -23,6 +23,17 @@ namespace Simplex_Method1._2
             ComboBoxRel5.SelectedIndex = 0;
             ClearTextBoxes();
         }
+        public bool IsMax()
+        {
+            if (ComboBoxMaxMin.SelectedIndex == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public double[] Get_Numbers_From_Form()
         {
             double[] start_arr = new double[35];
@@ -1061,57 +1072,21 @@ namespace Simplex_Method1._2
             {
                 case 1:
                     table[0, 0] = start_arr[0];
-                    switch (ComboBoxMaxMin.SelectedIndex)
-                    {
-                        case 0:
-                            table[0, 1] = 0;    // max
-                            break;
-                        case 1:
-                            table[0, 1] = 1;    //min
-                            break;
-                    }
                     break;
                 case 2:
                     table[0, 0] = start_arr[0];
                     table[0, 1] = start_arr[1];
-                    switch (ComboBoxMaxMin.SelectedIndex)
-                    {
-                        case 0:
-                            table[0, 2] = 0;    // max
-                            break;
-                        case 1:
-                            table[0, 2] = 1;    //min
-                            break;
-                    }
                     break;
                 case 3:
                     table[0, 0] = start_arr[0];
                     table[0, 1] = start_arr[1];
                     table[0, 2] = start_arr[2];
-                    switch (ComboBoxMaxMin.SelectedIndex)
-                    {
-                        case 0:
-                            table[0, 3] = 0;    // max
-                            break;
-                        case 1:
-                            table[0, 3] = 1;    //min
-                            break;
-                    }
                     break;
                 case 4:
                     table[0, 0] = start_arr[0];
                     table[0, 1] = start_arr[1];
                     table[0, 2] = start_arr[2];
                     table[0, 3] = start_arr[3];
-                    switch (ComboBoxMaxMin.SelectedIndex)
-                    {
-                        case 0:
-                            table[0, 4] = 0;    // max
-                            break;
-                        case 1:
-                            table[0, 4] = 1;    //min
-                            break;
-                    }
                     break;
                 case 5:
                     table[0, 0] = start_arr[0];
@@ -1119,15 +1094,6 @@ namespace Simplex_Method1._2
                     table[0, 2] = start_arr[2];
                     table[0, 3] = start_arr[3];
                     table[0, 4] = start_arr[4];
-                    switch (ComboBoxMaxMin.SelectedIndex)
-                    {
-                        case 0:
-                            table[0, 5] = 0;    // max
-                            break;
-                        case 1:
-                            table[0, 5] = 1;    //min
-                            break;
-                    }
                     break;
             }
             for (int i = 1; i < restriction + 1; i++)
@@ -1995,8 +1961,8 @@ namespace Simplex_Method1._2
                     IC_BACKUP = IC_BACKUP >> 1;
                 }
 
-                IC_BACKUP = Inequality_Constraints;
                 result = result + "Таблица:\n";
+                IC_BACKUP = Inequality_Constraints;
                 for (int i = 0; i < sy - 1; i++)
                 {
                     if (i == 0)
@@ -2186,11 +2152,13 @@ namespace Simplex_Method1._2
                 }
             }
             if(No_Solution == false)
+                // первая дельта - первый столбец
+                // вторая дельта - второй столбец и так далее
             {
                 result += "Вычисляем дельты: Δi = ";
                 for(int i = 0; i < restriction; i++)
                 {
-                    result += "C" + basis_ints[i] + "*a" + (i + 1) + "i + ";
+                    result += "C" + basis_ints[i] + " * a" + (i + 1) + "i + ";
                 }
                 result = result.Remove(result.Length - 2);
                 result += " - Ci\n";
@@ -2199,10 +2167,131 @@ namespace Simplex_Method1._2
                     result += "Δ" + (i + 1) + " = ";
                     for(int j = 0; j < restriction; j++)
                     {
-                        result += "C" + basis_ints[j] + "*a" + (j + 1) + (i+1) + " + ";
+                        result += "C" + basis_ints[j] + " * a" + (j + 1) + (i+1) + " + ";
                     }
                     result = result.Remove(result.Length - 2);
-                    result += " - C" + (i + 1) + "\n";
+                    result += " - C" + (i + 1) + " = ";
+                    double delta = 0;
+                    for(int j = 0; j < restriction; j++)
+                    {
+                        result += Math.Round(simplex[0, basis_ints[j] - 1], 2) + " * ";
+                        result += Math.Round(simplex[(j + 1), (i)], 2) + " + ";
+                        delta += (simplex[0, basis_ints[j] - 1]) * (simplex[(j + 1), (i)]);
+                    }
+                    result = result.Remove(result.Length - 2);
+                    result += "- " + Math.Round(simplex[0, i], 2);
+                    delta -= simplex[0, i];
+                    result += " = " + Math.Round(delta,2) + "\n";
+                    simplex[sy - 1, i] = delta;
+                }
+
+                result += "Δb = ";
+                for (int i = 0; i < restriction; i++)
+                {
+                    result += "C" + basis_ints[i] + " * b" + (i + 1) + " + ";
+                }
+                result = result.Remove(result.Length - 2);
+                result += " - C" + sx + " = ";
+                double delta_b = 0;
+                for (int j = 0; j < restriction; j++)
+                {
+                    result += Math.Round(simplex[0, basis_ints[j] - 1], 2) + " * ";
+                    result += Math.Round(simplex[(j + 1), (sx - 1)], 2) + " + ";
+                    delta_b += (simplex[0, basis_ints[j] - 1]) * (simplex[(j + 1), (sx - 1)]);
+                }
+                result = result.Remove(result.Length - 2);
+                delta_b -= simplex[0, sx - 1];
+                result += "- " + Math.Round(simplex[0, sx - 1], 2) + " = " + Math.Round(delta_b, 2) + "\n";
+                simplex[sy - 1, sx - 1] = delta_b;
+                result += "Симплекс-таблица с дельтами\n";
+                IC_BACKUP = Inequality_Constraints;
+                for (int i = 0; i < sy; i++)
+                {
+                    if (i == 0)
+                    {
+                        result = result + "C\t";
+                    }
+                    else if (i == (sy - 1))
+                    {
+                        result = result + "Δ\t";
+                    }
+                    else
+                    {
+                        if ((IC_BACKUP % 2) == 1)
+                        {
+                            result = result + basis_strings[i - 1] + "\t";
+                        }
+                        else
+                        {
+                            result = result + basis_strings[i - 1] + "\t";
+                        }
+                        IC_BACKUP = IC_BACKUP >> 1;
+
+                    }
+                    for (int j = 0; j < sx; j++)
+                    {
+                        result = result + Math.Round(simplex[i, j], 2) + "\t";
+                    }
+                    result = result + "\n";
+                    if (i == 0)
+                    {
+                        result = result + "базис\t";
+                        for (int j = 0; j < sx - 1; j++)
+                        {
+                            result = result + "x" + (j + 1) + "\t";
+                        }
+                        result = result + "b\n";
+                    }
+                }
+                result += "Проверяем план на оптимальность\n(Критерий оптимальности: план оптимален, если в таблице отсутствуют ";
+                bool Plan_Is_Optimal = true;
+                double not_optimal_delta = 0;
+                int not_optimal_delta_place = 0;
+                if (IsMax())
+                {
+                    result += "отрицательные дельты).";
+                    for (int i = 0; i < sx-1; i++)
+                    {
+                        if (simplex[sy - 1, i] < 0)
+                        {
+                            Plan_Is_Optimal = false;
+                            not_optimal_delta_place = i;
+                            not_optimal_delta = simplex[sy - 1, i];
+                            break;
+                        }
+                    }
+                    if (Plan_Is_Optimal)
+                    {
+                        result += "\nПлан оптимален, так как отрицательные дельты отсутствуют.";
+                        result += "\nОтвет:";
+                    }
+                    else
+                    {
+                        result += "\nПлан не оптимален, так как Δ" + (not_optimal_delta_place + 1) + " = " + not_optimal_delta + "\n";
+                    }
+                }
+                else
+                {
+                    result += "положительные дельты).";
+                    for (int i = 0; i < sx-1; i++)
+                    {
+                        if (simplex[sy - 1, i] > 0)
+                        {
+                            Plan_Is_Optimal = false;
+                            not_optimal_delta_place = i;
+                            not_optimal_delta = simplex[sy - 1, i];
+                            break;
+                        }
+                    }
+                    if (Plan_Is_Optimal)
+                    {
+                        result += "\nПлан оптимален, так как положительные дельты отсутствуют.";
+                        result += "\nОтвет:";
+                    }
+                    else
+                    {
+                        result += "\nПлан не оптимален, так как Δ" + (not_optimal_delta_place + 1) + " = " + not_optimal_delta + "\n";
+                    }
                 }
             }
             richTextBox1.Text = result;

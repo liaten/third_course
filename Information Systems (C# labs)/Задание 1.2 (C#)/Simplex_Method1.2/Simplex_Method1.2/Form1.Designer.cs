@@ -862,8 +862,7 @@ namespace Simplex_Method1._2
             this.richTextBox1.Location = new System.Drawing.Point(609, 32);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBox1.Size = new System.Drawing.Size(671, 406);
+            this.richTextBox1.Size = new System.Drawing.Size(628, 406);
             this.richTextBox1.TabIndex = 83;
             this.richTextBox1.Text = "";
             this.richTextBox1.Enter += new System.EventHandler(this.richTextBox1_Enter);
@@ -875,7 +874,7 @@ namespace Simplex_Method1._2
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1288, 450);
+            this.ClientSize = new System.Drawing.Size(1243, 450);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.SolveButton);

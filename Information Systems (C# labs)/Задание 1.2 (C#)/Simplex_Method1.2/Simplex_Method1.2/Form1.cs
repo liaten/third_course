@@ -2243,56 +2243,373 @@ namespace Simplex_Method1._2
                         result = result + "b\n";
                     }
                 }
-                result += "Проверяем план на оптимальность\n(Критерий оптимальности: план оптимален, если в таблице отсутствуют ";
-                bool Plan_Is_Optimal = true;
-                double not_optimal_delta = 0;
-                int not_optimal_delta_place = 0;
-                if (IsMax())
+                bool Plan_Is_Optimal = false;
+                while(Plan_Is_Optimal == false)
                 {
-                    result += "отрицательные дельты).";
-                    for (int i = 0; i < sx-1; i++)
+                    result += "Проверяем план на оптимальность\n(Критерий оптимальности: план оптимален, если в таблице отсутствуют ";
+                    Plan_Is_Optimal = true;
+                    double not_optimal_delta = 0;
+                    int not_optimal_delta_place = 0;
+                    if (IsMax())
                     {
-                        if (simplex[sy - 1, i] < 0)
+                        result += "отрицательные дельты).";
+                        for (int i = 0; i < sx - 1; i++)
                         {
-                            Plan_Is_Optimal = false;
-                            not_optimal_delta_place = i;
-                            not_optimal_delta = simplex[sy - 1, i];
-                            break;
+                            if (simplex[sy - 1, i] < 0)
+                            {
+                                Plan_Is_Optimal = false;
+                                not_optimal_delta_place = i;
+                                not_optimal_delta = simplex[sy - 1, i];
+                                break;
+                            }
                         }
-                    }
-                    if (Plan_Is_Optimal)
-                    {
-                        result += "\nПлан оптимален, так как отрицательные дельты отсутствуют.";
-                        result += "\nОтвет:";
+                        if (Plan_Is_Optimal)
+                        {
+                            double[] x_result = new double[x_nums];
+                            for (int i = 0; i < restriction; i++)
+                            {
+                                result += basis_ints[i] + " ";
+                            }
+                            result += "\nПлан оптимален, так как отрицательные дельты отсутствуют.\nОтвет:";
+                            // доделать - ответ неверный
+                            for (int i = 0; i < x_nums; i++)
+                            {
+                                bool i_exists = false;
+                                for (int j = 0; j < restriction; j++)
+                                {
+                                    if ((i + 1) == basis_ints[j])
+                                    {
+                                        x_result[i] = simplex[basis_ints[j] + 1, (sx - 1)];
+                                        result += "\nx" + (i + 1) + " = " + simplex[basis_ints[j] + 1, (sx - 1)];
+                                        i_exists = true;
+                                    }
+                                }
+                                if (i_exists == false)
+                                {
+                                    result += "\nx" + (i + 1) + " = 0";
+                                    x_result[i] = 0;
+                                }
+                            }
+                            result += "\nF = ";
+                            double F = 0;
+                            for (int i = 0; i < x_nums; i++)
+                            {
+                                F += x_result[i] * simplex[0, i];
+                            }
+                            result += F;
+                        }
+                        else
+                        {
+                            result += "\nПлан не оптимален, так как Δ" + (not_optimal_delta_place + 1) + " = " + not_optimal_delta + "\n";
+                            int iteration = 0;
+                            result += "Итерация " + (iteration + 1);
+                            result += "\nОпределяем разрешающий столбец - столбец, в котором находится минимальная дельта: ";
+                            double min_delta = simplex[(sy - 1), 0];
+                            int min_delta_place = 0;
+                            for (int i = 1; i < sx - 1; i++)
+                            {
+                                if (simplex[(sy - 1), i] < min_delta)
+                                {
+                                    min_delta = simplex[(sy - 1), i];
+                                    min_delta_place = i;
+                                }
+                            }
+                            result += (min_delta_place + 1);
+                            result += ", Δ" + (min_delta_place + 1) + " = " + min_delta;
+                            result += "\nНаходим симплекс-отношения Q путём деления коэффициентов b на соответствующие значения столбца " + (min_delta_place + 1) + ".\n";
+                            double Q_min = simplex[1, (sx - 1)] / simplex[1, min_delta_place];
+                            int Q_min_position = 1;
+                            IC_BACKUP = Inequality_Constraints;
+                            for (int i = 0; i < sy; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    result = result + "C\t";
+                                }
+                                else if (i == (sy - 1))
+                                {
+                                    result = result + "Δ\t";
+                                }
+                                else
+                                {
+                                    if ((IC_BACKUP % 2) == 1)
+                                    {
+                                        result = result + basis_strings[i - 1] + "\t";
+                                    }
+                                    else
+                                    {
+                                        result = result + basis_strings[i - 1] + "\t";
+                                    }
+                                    IC_BACKUP = IC_BACKUP >> 1;
+
+                                }
+
+                                for (int j = 0; j < sx; j++)
+                                {
+                                    result = result + Math.Round(simplex[i, j], 2) + "\t";
+                                    if ((j == (sx - 1)) && (i > 0) && (i < sy - 1))
+                                    {
+                                        double Q = simplex[i, j] / simplex[i, min_delta_place];
+                                        if (Q < Q_min)
+                                        {
+                                            Q_min = Q;
+                                            Q_min_position = i;
+                                        }
+                                        result += Math.Round(simplex[i, j], 2) + " / " + Math.Round(simplex[i, min_delta_place], 2) + " = " + Math.Round(Q, 2);
+                                    }
+                                }
+                                result = result + "\n";
+                                if (i == 0)
+                                {
+                                    result = result + "базис\t";
+                                    for (int j = 0; j < sx - 1; j++)
+                                    {
+                                        result = result + "x" + (j + 1) + "\t";
+                                    }
+                                    result = result + "b\tQ\n";
+                                }
+                            }
+                            result += "В найденном столбце ищем строку с наименьшим значением Q: Q(min) = " + Q_min + ", строка " + Q_min_position + ".\n";
+                            result += "На пересечении найденных строки и столбца находится разрешающий элемент: " + simplex[Q_min_position, min_delta_place] + ".\n";
+                            result += "В качестве базисной переменной x" + basis_ints[Q_min_position - 1] + " берём x" + (min_delta_place + 1) + "\n";
+                            basis_ints[Q_min_position - 1] = min_delta_place + 1;
+                            basis_strings[Q_min_position - 1] = "x" + (min_delta_place + 1);
+                            IC_BACKUP = Inequality_Constraints;
+                            bool All_Q_Negative = true;
+                            for (int i = 0; i < sy; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    result = result + "C\t";
+                                }
+                                else if (i == (sy - 1))
+                                {
+                                    result = result + "Δ\t";
+                                }
+                                else
+                                {
+                                    if ((IC_BACKUP % 2) == 1)
+                                    {
+                                        result = result + basis_strings[i - 1] + "\t";
+                                    }
+                                    else
+                                    {
+                                        result = result + basis_strings[i - 1] + "\t";
+                                    }
+                                    IC_BACKUP = IC_BACKUP >> 1;
+
+                                }
+
+                                for (int j = 0; j < sx; j++)
+                                {
+                                    result = result + Math.Round(simplex[i, j], 2) + "\t";
+                                    if ((j == (sx - 1)) && (i > 0) && (i < sy - 1))
+                                    {
+                                        double Q = simplex[i, j] / simplex[i, min_delta_place];
+                                        if (Q > 0)
+                                        {
+                                            result += Math.Round(Q, 2);
+                                            All_Q_Negative = false;
+                                        }
+                                        else
+                                        {
+                                            result += "-";
+                                        }
+                                    }
+                                }
+                                result = result + "\n";
+                                if (i == 0)
+                                {
+                                    result = result + "базис\t";
+                                    for (int j = 0; j < sx - 1; j++)
+                                    {
+                                        result = result + "x" + (j + 1) + "\t";
+                                    }
+                                    result = result + "b\tQ\n";
+                                }
+                            }
+                            if (All_Q_Negative == false)
+                            {
+                                result += "Делим строку " + Q_min_position + " на " + simplex[Q_min_position, min_delta_place] + ".";
+                                double divider = simplex[Q_min_position, min_delta_place];
+                                for (int k = 0; k < sx; k++)
+                                {
+                                    simplex[Q_min_position, k] /= divider;
+                                }
+                                if (restriction > 1)
+                                {
+                                    result = result + " Из строк";
+                                    if (restriction > 2)
+                                    {
+                                        result = result + " ";
+                                    }
+                                    else
+                                    {
+                                        result = result + "и ";
+                                    }
+                                    for (int k = 1; k < sy - 1; k++)
+                                    {
+                                        if (k != Q_min_position)
+                                        {
+                                            result = result + k + ", ";
+                                            double simplex_multiplier = simplex[k, min_delta_place];
+                                            for (int l = 0; l < sx; l++)
+                                            {
+                                                simplex[k, l] += (simplex[Q_min_position, l] * (-1) * simplex_multiplier);
+                                            }
+                                        }
+                                    }
+                                    result = result.Remove(result.Length - 2);
+                                    result = result + " вычитаем строку " + Q_min_position + ", умноженную на соответствующий элемент в столбце " + (min_delta_place + 1) + ".\n";
+                                }
+                                result += "Вычисляем новые дельты: Δi = ";
+                                for (int i = 0; i < restriction; i++)
+                                {
+                                    result += "C" + basis_ints[i] + " * a" + (i + 1) + "i + ";
+                                }
+                                result = result.Remove(result.Length - 2);
+                                result += " - Ci\n";
+                                for (int i = 0; i < sx - 1; i++)
+                                {
+                                    result += "Δ" + (i + 1) + " = ";
+                                    for (int j = 0; j < restriction; j++)
+                                    {
+                                        result += "C" + basis_ints[j] + " * a" + (j + 1) + (i + 1) + " + ";
+                                    }
+                                    result = result.Remove(result.Length - 2);
+                                    result += " - C" + (i + 1) + " = ";
+                                    double delta = 0;
+                                    for (int j = 0; j < restriction; j++)
+                                    {
+                                        result += Math.Round(simplex[0, basis_ints[j] - 1], 2) + " * ";
+                                        result += Math.Round(simplex[(j + 1), (i)], 2) + " + ";
+                                        delta += (simplex[0, basis_ints[j] - 1]) * (simplex[(j + 1), (i)]);
+                                    }
+                                    result = result.Remove(result.Length - 2);
+                                    result += "- " + Math.Round(simplex[0, i], 2);
+                                    delta -= simplex[0, i];
+                                    result += " = " + Math.Round(delta, 2) + "\n";
+                                    simplex[sy - 1, i] = delta;
+                                }
+
+                                result += "Δb = ";
+                                for (int i = 0; i < restriction; i++)
+                                {
+                                    result += "C" + basis_ints[i] + " * b" + (i + 1) + " + ";
+                                }
+                                result = result.Remove(result.Length - 2);
+                                result += " - C" + sx + " = ";
+                                delta_b = 0;
+                                for (int j = 0; j < restriction; j++)
+                                {
+                                    result += Math.Round(simplex[0, basis_ints[j] - 1], 2) + " * ";
+                                    result += Math.Round(simplex[(j + 1), (sx - 1)], 2) + " + ";
+                                    delta_b += (simplex[0, basis_ints[j] - 1]) * (simplex[(j + 1), (sx - 1)]);
+                                }
+                                result = result.Remove(result.Length - 2);
+                                delta_b -= simplex[0, sx - 1];
+                                result += "- " + Math.Round(simplex[0, sx - 1], 2) + " = " + Math.Round(delta_b, 2) + "\n";
+                                simplex[sy - 1, sx - 1] = delta_b;
+                                result += "Симплекс-таблица с обновлёнными дельтами\n";
+                                IC_BACKUP = Inequality_Constraints;
+                                for (int i = 0; i < sy; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        result = result + "C\t";
+                                    }
+                                    else if (i == (sy - 1))
+                                    {
+                                        result = result + "Δ\t";
+                                    }
+                                    else
+                                    {
+                                        if ((IC_BACKUP % 2) == 1)
+                                        {
+                                            result = result + basis_strings[i - 1] + "\t";
+                                        }
+                                        else
+                                        {
+                                            result = result + basis_strings[i - 1] + "\t";
+                                        }
+                                        IC_BACKUP = IC_BACKUP >> 1;
+
+                                    }
+                                    for (int j = 0; j < sx; j++)
+                                    {
+                                        result = result + Math.Round(simplex[i, j], 2) + "\t";
+                                    }
+                                    result = result + "\n";
+                                    if (i == 0)
+                                    {
+                                        result = result + "базис\t";
+                                        for (int j = 0; j < sx - 1; j++)
+                                        {
+                                            result = result + "x" + (j + 1) + "\t";
+                                        }
+                                        result = result + "b\n";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                result += "Все значения ключевого столбца отрицательны. Функция не ограничена. Оптимальное решение отсутствует.";
+                            }
+                        }
                     }
                     else
                     {
-                        result += "\nПлан не оптимален, так как Δ" + (not_optimal_delta_place + 1) + " = " + not_optimal_delta + "\n";
-                    }
-                }
-                else
-                {
-                    result += "положительные дельты).";
-                    for (int i = 0; i < sx-1; i++)
-                    {
-                        if (simplex[sy - 1, i] > 0)
+                        result += "положительные дельты).\n";
+                        for (int i = 0; i < sx - 1; i++)
                         {
-                            Plan_Is_Optimal = false;
-                            not_optimal_delta_place = i;
-                            not_optimal_delta = simplex[sy - 1, i];
-                            break;
+                            if (simplex[sy - 1, i] > 0)
+                            {
+                                Plan_Is_Optimal = false;
+                                not_optimal_delta_place = i;
+                                not_optimal_delta = simplex[sy - 1, i];
+                                break;
+                            }
+                        }
+                        if (Plan_Is_Optimal)
+                        {
+                            double[] x_result = new double[x_nums];
+                           
+                            result += "\nПлан оптимален, так как положительные дельты отсутствуют.\nОтвет:";
+                            for (int i = 0; i < x_nums; i++)
+                            {
+                                bool i_exists = false;
+                                for (int j = 0; j < restriction; j++)
+                                {
+                                    if ((i + 1) == basis_ints[j])
+                                    {
+                                        x_result[i] = simplex[basis_ints[j] + 1, (sx - 1)];
+                                        result += "\nx" + (i + 1) + " = " + simplex[basis_ints[j] + 1, (sx - 1)];
+                                        i_exists = true;
+                                    }
+                                }
+                                if (i_exists == false)
+                                {
+                                    result += "\nx" + (i + 1) + " = 0";
+                                    x_result[i] = 0;
+                                }
+                            }
+                            result += "\nF = ";
+                            double F = 0;
+                            for (int i = 0; i < x_nums; i++)
+                            {
+                                F += x_result[i] * simplex[0, i];
+                            }
+                            result += F;
+                        }
+                        else
+                        {
+                            result += "\nПлан не оптимален, так как Δ" + (not_optimal_delta_place + 1) + " = " + not_optimal_delta + "\n";
+                            int iteration = 0;
+                            result += "Итерация " + (iteration + 1);
                         }
                     }
-                    if (Plan_Is_Optimal)
-                    {
-                        result += "\nПлан оптимален, так как положительные дельты отсутствуют.";
-                        result += "\nОтвет:";
-                    }
-                    else
-                    {
-                        result += "\nПлан не оптимален, так как Δ" + (not_optimal_delta_place + 1) + " = " + not_optimal_delta + "\n";
-                    }
                 }
+                
             }
             richTextBox1.Text = result;
         }

@@ -13,3 +13,23 @@
 7. [case 7](https://docs.google.com/document/d/15OKEj3LA9DXqpEfMqRx1GCrzyZwlm6Mtlr5rCuRnqKk/edit)
 8. [case 8](https://docs.google.com/document/d/1HxVxZp7pjk4sN4zbSPfVNjtz3HLjZ6SJZgyOOZwoDTo/edit)
 9. [case 9](https://docs.google.com/document/d/1E87rgQnpgBCco5VdRjI-D2FlrOOC_ecHGkmBrWCsofY/edit)
+
+Informational Systems:
+
+Необходимо реализовать программу, которая выведет характеристики ПК, сервера (1 блок, вкладка):
+1) процессора;
+2) ОЗУ;
+3) HDD;
+4) GPU;
+
+Следующий блок, должен вывести:
+1) Нагрузку на процессор.
+2) Выделение оперативной памяти: использовано, свободно.
+3) Емкость диска (hdd/ssd): занято, свободно.
+
+Последний блок (или вкладка в этой части), должна предоставлять информацию о списке процессов с возможностью сортировки по памяти ОЗУ или нагрузке на процессор.
+
+** (усложнение) реализовать SMART проверку HDD/SSD.
+
+ОГРАНИЧЕНИЯ!!!
+Запрещается использовать скриптовые языки программирования (awk, python, ...) и оболочки (powershell, bash, ksh, ...).

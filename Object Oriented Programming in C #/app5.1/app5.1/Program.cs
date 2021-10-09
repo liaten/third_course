@@ -55,16 +55,30 @@ namespace app5._1
     class Dog : Mammal
     {
         private Breed its_breed;
+        private int age;
         public Dog()
         {
             this.its_breed = Breed.golden;
+            this.age = 2;
         }
         public Dog(Breed br)
         {
             this.its_breed = br;
         }
+        public Dog(double age)
+        {
+            this.age = (int) age;   // приведение с отсечением
+        }
         ~Dog()
         {
+        }
+        public int Get_Age()
+        {
+            return this.age;
+        }
+        public void Set_Age(double age)
+        {
+            this.age = (int) age;   // приведение с отсечением
         }
         public Breed Get_Breed()
         {
@@ -97,7 +111,10 @@ namespace app5._1
             Dog Archie = new Dog(Breed.dandie);
             // демонстрация перегрузки
             Console.WriteLine("Archie's breed is " + Archie.Get_Breed());
-
+            // Задание 5.3
+            // отсечение значения
+            Dog Charlie = new Dog(7.5);
+            Console.WriteLine("Charlie's age is " + Charlie.Get_Age());
             Console.Write("Press any key to close: ");
             Console.ReadKey();
         }

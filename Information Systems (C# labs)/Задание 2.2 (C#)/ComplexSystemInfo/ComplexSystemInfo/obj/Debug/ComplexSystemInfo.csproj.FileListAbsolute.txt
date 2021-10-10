@@ -1,0 +1,28 @@
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\ComplexSystemInfo.exe.config
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\ComplexSystemInfo.exe
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\ComplexSystemInfo.pdb
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.csproj.AssemblyReference.cache
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.Properties.Resources.resources
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.csproj.GenerateResource.cache
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.csproj.CoreCompileInputs.cache
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.exe
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.pdb
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\MetroFramework.Design.dll
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\MetroFramework.dll
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.csproj.CopyComplete
+C:\Users\liaten\source\repos\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.ComplexSystemInfoForm.resources
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\ComplexSystemInfo.exe.config
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\ComplexSystemInfo.exe
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\ComplexSystemInfo.pdb
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\MetroFramework.Design.dll
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\MetroFramework.dll
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.csproj.AssemblyReference.cache
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.ComplexSystemInfoForm.resources
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.Properties.Resources.resources
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.csproj.GenerateResource.cache
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.csproj.CoreCompileInputs.cache
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.csproj.CopyComplete
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.exe
+C:\Users\liaten\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\Debug\ComplexSystemInfo.pdb

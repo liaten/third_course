@@ -39,6 +39,8 @@ namespace ComplexSystemInfo
             this.ProcLabel = new System.Windows.Forms.Label();
             this.LoadPage = new MetroFramework.Controls.MetroTabPage();
             this.TaskManagerPage = new MetroFramework.Controls.MetroTabPage();
+            this.RamLabel = new System.Windows.Forms.Label();
+            this.RamLabel2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.metroTabControl.SuspendLayout();
             this.SystemInfoPage.SuspendLayout();
@@ -76,11 +78,11 @@ namespace ComplexSystemInfo
             // 
             this.HeaderLabel.AutoSize = true;
             this.HeaderLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.HeaderLabel.Font = new System.Drawing.Font("Roboto", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HeaderLabel.Font = new System.Drawing.Font("Roboto", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.HeaderLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
             this.HeaderLabel.Location = new System.Drawing.Point(0, 0);
             this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Size = new System.Drawing.Size(326, 33);
+            this.HeaderLabel.Size = new System.Drawing.Size(330, 33);
             this.HeaderLabel.TabIndex = 0;
             this.HeaderLabel.Text = "Complex System Info App";
             this.HeaderLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
@@ -89,11 +91,13 @@ namespace ComplexSystemInfo
             // 
             // metroTabControl
             // 
+            this.metroTabControl.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.metroTabControl.Controls.Add(this.SystemInfoPage);
             this.metroTabControl.Controls.Add(this.LoadPage);
             this.metroTabControl.Controls.Add(this.TaskManagerPage);
             this.metroTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl.Location = new System.Drawing.Point(0, 34);
+            this.metroTabControl.Multiline = true;
             this.metroTabControl.Name = "metroTabControl";
             this.metroTabControl.SelectedIndex = 0;
             this.metroTabControl.Size = new System.Drawing.Size(866, 560);
@@ -103,15 +107,18 @@ namespace ComplexSystemInfo
             // SystemInfoPage
             // 
             this.SystemInfoPage.BackColor = System.Drawing.Color.Transparent;
+            this.SystemInfoPage.Controls.Add(this.RamLabel2);
+            this.SystemInfoPage.Controls.Add(this.RamLabel);
             this.SystemInfoPage.Controls.Add(this.ProcLabel2);
             this.SystemInfoPage.Controls.Add(this.ProcLabel);
             this.SystemInfoPage.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SystemInfoPage.HorizontalScrollbarBarColor = true;
             this.SystemInfoPage.HorizontalScrollbarHighlightOnWheel = false;
             this.SystemInfoPage.HorizontalScrollbarSize = 10;
-            this.SystemInfoPage.Location = new System.Drawing.Point(4, 38);
+            this.SystemInfoPage.Location = new System.Drawing.Point(4, 41);
             this.SystemInfoPage.Name = "SystemInfoPage";
-            this.SystemInfoPage.Size = new System.Drawing.Size(858, 518);
+            this.SystemInfoPage.Size = new System.Drawing.Size(858, 515);
+            this.SystemInfoPage.Style = MetroFramework.MetroColorStyle.Black;
             this.SystemInfoPage.TabIndex = 0;
             this.SystemInfoPage.Text = "Информация о системе";
             this.SystemInfoPage.VerticalScrollbarBarColor = true;
@@ -123,7 +130,7 @@ namespace ComplexSystemInfo
             this.ProcLabel2.AutoSize = true;
             this.ProcLabel2.BackColor = System.Drawing.Color.Transparent;
             this.ProcLabel2.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ProcLabel2.ForeColor = System.Drawing.Color.Red;
+            this.ProcLabel2.ForeColor = System.Drawing.Color.Black;
             this.ProcLabel2.Location = new System.Drawing.Point(8, 36);
             this.ProcLabel2.Name = "ProcLabel2";
             this.ProcLabel2.Size = new System.Drawing.Size(94, 17);
@@ -134,10 +141,11 @@ namespace ComplexSystemInfo
             // 
             this.ProcLabel.AutoSize = true;
             this.ProcLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ProcLabel.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ProcLabel.Location = new System.Drawing.Point(8, 9);
+            this.ProcLabel.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ProcLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
+            this.ProcLabel.Location = new System.Drawing.Point(8, 8);
             this.ProcLabel.Name = "ProcLabel";
-            this.ProcLabel.Size = new System.Drawing.Size(79, 17);
+            this.ProcLabel.Size = new System.Drawing.Size(81, 17);
             this.ProcLabel.TabIndex = 2;
             this.ProcLabel.Text = "Процессор";
             // 
@@ -147,9 +155,9 @@ namespace ComplexSystemInfo
             this.LoadPage.HorizontalScrollbarBarColor = true;
             this.LoadPage.HorizontalScrollbarHighlightOnWheel = false;
             this.LoadPage.HorizontalScrollbarSize = 10;
-            this.LoadPage.Location = new System.Drawing.Point(4, 38);
+            this.LoadPage.Location = new System.Drawing.Point(4, 41);
             this.LoadPage.Name = "LoadPage";
-            this.LoadPage.Size = new System.Drawing.Size(858, 518);
+            this.LoadPage.Size = new System.Drawing.Size(858, 515);
             this.LoadPage.TabIndex = 1;
             this.LoadPage.Text = "Ресурсы ПК";
             this.LoadPage.VerticalScrollbarBarColor = true;
@@ -162,14 +170,38 @@ namespace ComplexSystemInfo
             this.TaskManagerPage.HorizontalScrollbarBarColor = true;
             this.TaskManagerPage.HorizontalScrollbarHighlightOnWheel = false;
             this.TaskManagerPage.HorizontalScrollbarSize = 10;
-            this.TaskManagerPage.Location = new System.Drawing.Point(4, 38);
+            this.TaskManagerPage.Location = new System.Drawing.Point(4, 41);
             this.TaskManagerPage.Name = "TaskManagerPage";
-            this.TaskManagerPage.Size = new System.Drawing.Size(858, 518);
+            this.TaskManagerPage.Size = new System.Drawing.Size(858, 515);
             this.TaskManagerPage.TabIndex = 2;
             this.TaskManagerPage.Text = "Диспетчер Задач";
             this.TaskManagerPage.VerticalScrollbarBarColor = true;
             this.TaskManagerPage.VerticalScrollbarHighlightOnWheel = false;
             this.TaskManagerPage.VerticalScrollbarSize = 10;
+            // 
+            // RamLabel
+            // 
+            this.RamLabel.AutoSize = true;
+            this.RamLabel.BackColor = System.Drawing.Color.Transparent;
+            this.RamLabel.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RamLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
+            this.RamLabel.Location = new System.Drawing.Point(8, 64);
+            this.RamLabel.Name = "RamLabel";
+            this.RamLabel.Size = new System.Drawing.Size(150, 17);
+            this.RamLabel.TabIndex = 4;
+            this.RamLabel.Text = "Оперативная память";
+            // 
+            // RamLabel2
+            // 
+            this.RamLabel2.AutoSize = true;
+            this.RamLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.RamLabel2.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RamLabel2.ForeColor = System.Drawing.Color.Black;
+            this.RamLabel2.Location = new System.Drawing.Point(8, 90);
+            this.RamLabel2.Name = "RamLabel2";
+            this.RamLabel2.Size = new System.Drawing.Size(94, 17);
+            this.RamLabel2.TabIndex = 5;
+            this.RamLabel2.Text = "intel blah blah";
             // 
             // ComplexSystemInfoForm
             // 
@@ -181,6 +213,8 @@ namespace ComplexSystemInfo
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ComplexSystemInfoForm";
             this.Text = "SystemManager";
             this.panel1.ResumeLayout(false);
@@ -203,6 +237,8 @@ namespace ComplexSystemInfo
         private MetroFramework.Controls.MetroTabPage TaskManagerPage;
         private System.Windows.Forms.Label ProcLabel;
         private System.Windows.Forms.Label ProcLabel2;
+        private System.Windows.Forms.Label RamLabel;
+        private System.Windows.Forms.Label RamLabel2;
     }
 }
 

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Management;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ComplexSystemInfo
 {
@@ -76,6 +71,49 @@ namespace ComplexSystemInfo
             }
             return result;
         }
+        public string Get_RAM_Info()
+        {
+            ObjectQuery wql = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(wql);
+            ManagementObjectCollection results = searcher.Get();
+
+            foreach (ManagementObject result in results)
+            {
+                int TotalVisibleMemorySize = Convert.ToInt32(result["TotalVisibleMemorySize"]);
+                TotalVisibleMemorySize >>= 20;
+                TotalVisibleMemorySize++;
+
+                return TotalVisibleMemorySize + " GB\n";
+            }
+            return string.Empty;
+        }
+        public static string Get_Drive_Info()
+        {
+            DriveInfo[] allDrives = DriveInfo.GetDrives();
+            string resultstring = string.Empty;
+            foreach (DriveInfo d in allDrives)
+            {
+                Console.WriteLine("Drive {0}", d.Name);
+                Console.WriteLine("  Drive type: {0}", d.DriveType);
+                if (d.IsReady == true)
+                {
+                    if (d.VolumeLabel == string.Empty)
+                    {
+                        resultstring += "Volume label: " + d.RootDirectory;
+                    }
+                    else
+                    {
+                        resultstring += "Volume label: " + d.VolumeLabel;
+                    }
+                    resultstring += "\nFile system: " + d.DriveFormat;
+                    long TotalSize = d.TotalSize;
+                    TotalSize >>= 30;
+                    resultstring += "\nTotal size of drive: " + TotalSize + " GB";
+                    resultstring += "\nRoot directory: " + d.RootDirectory + "\n\n";
+                }
+            }
+            return resultstring;
+        }
         public ComplexSystemInfoForm()
         {
             InitializeComponent();
@@ -84,7 +122,10 @@ namespace ComplexSystemInfo
             ProcLabel2.Location = new Point(8, ProcLabel.Location.Y + ProcLabel.Size.Height + 8);
             RamLabel.Location = new Point(8, ProcLabel2.Location.Y + ProcLabel2.Size.Height + 8);
             RamLabel2.Location = new Point(8, RamLabel.Location.Y + RamLabel.Size.Height + 8);
-            RamLabel2.Text = RamType();
+            HDD_Label.Location = new Point(8, RamLabel2.Location.Y + RamLabel2.Size.Height + 8);
+            HDD_Label2.Location = new Point(8, HDD_Label.Location.Y + HDD_Label.Size.Height + 8);
+            RamLabel2.Text = RamType() + " " + Get_RAM_Info();
+            HDD_Label2.Text = Get_Drive_Info();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

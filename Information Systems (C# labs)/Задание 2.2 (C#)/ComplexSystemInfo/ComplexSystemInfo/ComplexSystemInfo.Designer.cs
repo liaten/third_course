@@ -35,12 +35,14 @@ namespace ComplexSystemInfo
             this.HeaderLabel = new System.Windows.Forms.Label();
             this.metroTabControl = new MetroFramework.Controls.MetroTabControl();
             this.SystemInfoPage = new MetroFramework.Controls.MetroTabPage();
+            this.RamLabel2 = new System.Windows.Forms.Label();
+            this.RamLabel = new System.Windows.Forms.Label();
             this.ProcLabel2 = new System.Windows.Forms.Label();
             this.ProcLabel = new System.Windows.Forms.Label();
             this.LoadPage = new MetroFramework.Controls.MetroTabPage();
             this.TaskManagerPage = new MetroFramework.Controls.MetroTabPage();
-            this.RamLabel = new System.Windows.Forms.Label();
-            this.RamLabel2 = new System.Windows.Forms.Label();
+            this.HDD_Label = new System.Windows.Forms.Label();
+            this.HDD_Label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.metroTabControl.SuspendLayout();
             this.SystemInfoPage.SuspendLayout();
@@ -107,6 +109,8 @@ namespace ComplexSystemInfo
             // SystemInfoPage
             // 
             this.SystemInfoPage.BackColor = System.Drawing.Color.Transparent;
+            this.SystemInfoPage.Controls.Add(this.HDD_Label2);
+            this.SystemInfoPage.Controls.Add(this.HDD_Label);
             this.SystemInfoPage.Controls.Add(this.RamLabel2);
             this.SystemInfoPage.Controls.Add(this.RamLabel);
             this.SystemInfoPage.Controls.Add(this.ProcLabel2);
@@ -125,6 +129,30 @@ namespace ComplexSystemInfo
             this.SystemInfoPage.VerticalScrollbarHighlightOnWheel = false;
             this.SystemInfoPage.VerticalScrollbarSize = 10;
             // 
+            // RamLabel2
+            // 
+            this.RamLabel2.AutoSize = true;
+            this.RamLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.RamLabel2.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RamLabel2.ForeColor = System.Drawing.Color.Black;
+            this.RamLabel2.Location = new System.Drawing.Point(8, 90);
+            this.RamLabel2.Name = "RamLabel2";
+            this.RamLabel2.Size = new System.Drawing.Size(86, 17);
+            this.RamLabel2.TabIndex = 5;
+            this.RamLabel2.Text = "RAM_LABEL";
+            // 
+            // RamLabel
+            // 
+            this.RamLabel.AutoSize = true;
+            this.RamLabel.BackColor = System.Drawing.Color.Transparent;
+            this.RamLabel.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RamLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
+            this.RamLabel.Location = new System.Drawing.Point(8, 64);
+            this.RamLabel.Name = "RamLabel";
+            this.RamLabel.Size = new System.Drawing.Size(150, 17);
+            this.RamLabel.TabIndex = 4;
+            this.RamLabel.Text = "Оперативная память";
+            // 
             // ProcLabel2
             // 
             this.ProcLabel2.AutoSize = true;
@@ -133,9 +161,9 @@ namespace ComplexSystemInfo
             this.ProcLabel2.ForeColor = System.Drawing.Color.Black;
             this.ProcLabel2.Location = new System.Drawing.Point(8, 36);
             this.ProcLabel2.Name = "ProcLabel2";
-            this.ProcLabel2.Size = new System.Drawing.Size(94, 17);
+            this.ProcLabel2.Size = new System.Drawing.Size(93, 17);
             this.ProcLabel2.TabIndex = 3;
-            this.ProcLabel2.Text = "intel blah blah";
+            this.ProcLabel2.Text = "PROC_LABEL";
             // 
             // ProcLabel
             // 
@@ -179,29 +207,29 @@ namespace ComplexSystemInfo
             this.TaskManagerPage.VerticalScrollbarHighlightOnWheel = false;
             this.TaskManagerPage.VerticalScrollbarSize = 10;
             // 
-            // RamLabel
+            // HDD_Label
             // 
-            this.RamLabel.AutoSize = true;
-            this.RamLabel.BackColor = System.Drawing.Color.Transparent;
-            this.RamLabel.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RamLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
-            this.RamLabel.Location = new System.Drawing.Point(8, 64);
-            this.RamLabel.Name = "RamLabel";
-            this.RamLabel.Size = new System.Drawing.Size(150, 17);
-            this.RamLabel.TabIndex = 4;
-            this.RamLabel.Text = "Оперативная память";
+            this.HDD_Label.AutoSize = true;
+            this.HDD_Label.BackColor = System.Drawing.Color.Transparent;
+            this.HDD_Label.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HDD_Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
+            this.HDD_Label.Location = new System.Drawing.Point(8, 120);
+            this.HDD_Label.Name = "HDD_Label";
+            this.HDD_Label.Size = new System.Drawing.Size(103, 17);
+            this.HDD_Label.TabIndex = 6;
+            this.HDD_Label.Text = "Жесткий диск";
             // 
-            // RamLabel2
+            // HDD_Label2
             // 
-            this.RamLabel2.AutoSize = true;
-            this.RamLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.RamLabel2.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RamLabel2.ForeColor = System.Drawing.Color.Black;
-            this.RamLabel2.Location = new System.Drawing.Point(8, 90);
-            this.RamLabel2.Name = "RamLabel2";
-            this.RamLabel2.Size = new System.Drawing.Size(94, 17);
-            this.RamLabel2.TabIndex = 5;
-            this.RamLabel2.Text = "intel blah blah";
+            this.HDD_Label2.AutoSize = true;
+            this.HDD_Label2.BackColor = System.Drawing.Color.Transparent;
+            this.HDD_Label2.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HDD_Label2.ForeColor = System.Drawing.Color.Black;
+            this.HDD_Label2.Location = new System.Drawing.Point(8, 152);
+            this.HDD_Label2.Name = "HDD_Label2";
+            this.HDD_Label2.Size = new System.Drawing.Size(84, 17);
+            this.HDD_Label2.TabIndex = 7;
+            this.HDD_Label2.Text = "HDD_LABEL";
             // 
             // ComplexSystemInfoForm
             // 
@@ -239,6 +267,8 @@ namespace ComplexSystemInfo
         private System.Windows.Forms.Label ProcLabel2;
         private System.Windows.Forms.Label RamLabel;
         private System.Windows.Forms.Label RamLabel2;
+        private System.Windows.Forms.Label HDD_Label;
+        private System.Windows.Forms.Label HDD_Label2;
     }
 }
 

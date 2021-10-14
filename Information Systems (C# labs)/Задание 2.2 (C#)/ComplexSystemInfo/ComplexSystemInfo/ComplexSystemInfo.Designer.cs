@@ -35,14 +35,15 @@ namespace ComplexSystemInfo
             this.HeaderLabel = new System.Windows.Forms.Label();
             this.metroTabControl = new MetroFramework.Controls.MetroTabControl();
             this.SystemInfoPage = new MetroFramework.Controls.MetroTabPage();
+            this.HDD_Label2 = new System.Windows.Forms.Label();
+            this.HDD_Label = new System.Windows.Forms.Label();
             this.RamLabel2 = new System.Windows.Forms.Label();
             this.RamLabel = new System.Windows.Forms.Label();
             this.ProcLabel2 = new System.Windows.Forms.Label();
             this.ProcLabel = new System.Windows.Forms.Label();
             this.LoadPage = new MetroFramework.Controls.MetroTabPage();
             this.TaskManagerPage = new MetroFramework.Controls.MetroTabPage();
-            this.HDD_Label = new System.Windows.Forms.Label();
-            this.HDD_Label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.metroTabControl.SuspendLayout();
             this.SystemInfoPage.SuspendLayout();
@@ -51,6 +52,7 @@ namespace ComplexSystemInfo
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(214)))), ((int)(((byte)(214)))));
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.CloseButton);
             this.panel1.Controls.Add(this.HeaderLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -84,7 +86,7 @@ namespace ComplexSystemInfo
             this.HeaderLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
             this.HeaderLabel.Location = new System.Drawing.Point(0, 0);
             this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Size = new System.Drawing.Size(330, 33);
+            this.HeaderLabel.Size = new System.Drawing.Size(349, 33);
             this.HeaderLabel.TabIndex = 0;
             this.HeaderLabel.Text = "Complex System Info App";
             this.HeaderLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
@@ -108,6 +110,7 @@ namespace ComplexSystemInfo
             // 
             // SystemInfoPage
             // 
+            this.SystemInfoPage.AutoScroll = true;
             this.SystemInfoPage.BackColor = System.Drawing.Color.Transparent;
             this.SystemInfoPage.Controls.Add(this.HDD_Label2);
             this.SystemInfoPage.Controls.Add(this.HDD_Label);
@@ -116,6 +119,7 @@ namespace ComplexSystemInfo
             this.SystemInfoPage.Controls.Add(this.ProcLabel2);
             this.SystemInfoPage.Controls.Add(this.ProcLabel);
             this.SystemInfoPage.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SystemInfoPage.HorizontalScrollbar = true;
             this.SystemInfoPage.HorizontalScrollbarBarColor = true;
             this.SystemInfoPage.HorizontalScrollbarHighlightOnWheel = false;
             this.SystemInfoPage.HorizontalScrollbarSize = 10;
@@ -125,9 +129,34 @@ namespace ComplexSystemInfo
             this.SystemInfoPage.Style = MetroFramework.MetroColorStyle.Black;
             this.SystemInfoPage.TabIndex = 0;
             this.SystemInfoPage.Text = "Информация о системе";
+            this.SystemInfoPage.VerticalScrollbar = true;
             this.SystemInfoPage.VerticalScrollbarBarColor = true;
             this.SystemInfoPage.VerticalScrollbarHighlightOnWheel = false;
             this.SystemInfoPage.VerticalScrollbarSize = 10;
+            // 
+            // HDD_Label2
+            // 
+            this.HDD_Label2.AutoSize = true;
+            this.HDD_Label2.BackColor = System.Drawing.Color.Transparent;
+            this.HDD_Label2.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HDD_Label2.ForeColor = System.Drawing.Color.Black;
+            this.HDD_Label2.Location = new System.Drawing.Point(8, 152);
+            this.HDD_Label2.Name = "HDD_Label2";
+            this.HDD_Label2.Size = new System.Drawing.Size(84, 17);
+            this.HDD_Label2.TabIndex = 7;
+            this.HDD_Label2.Text = "HDD_LABEL";
+            // 
+            // HDD_Label
+            // 
+            this.HDD_Label.AutoSize = true;
+            this.HDD_Label.BackColor = System.Drawing.Color.Transparent;
+            this.HDD_Label.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HDD_Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
+            this.HDD_Label.Location = new System.Drawing.Point(8, 120);
+            this.HDD_Label.Name = "HDD_Label";
+            this.HDD_Label.Size = new System.Drawing.Size(112, 17);
+            this.HDD_Label.TabIndex = 6;
+            this.HDD_Label.Text = "Жесткий диск";
             // 
             // RamLabel2
             // 
@@ -149,7 +178,7 @@ namespace ComplexSystemInfo
             this.RamLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
             this.RamLabel.Location = new System.Drawing.Point(8, 64);
             this.RamLabel.Name = "RamLabel";
-            this.RamLabel.Size = new System.Drawing.Size(150, 17);
+            this.RamLabel.Size = new System.Drawing.Size(166, 17);
             this.RamLabel.TabIndex = 4;
             this.RamLabel.Text = "Оперативная память";
             // 
@@ -173,7 +202,7 @@ namespace ComplexSystemInfo
             this.ProcLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
             this.ProcLabel.Location = new System.Drawing.Point(8, 8);
             this.ProcLabel.Name = "ProcLabel";
-            this.ProcLabel.Size = new System.Drawing.Size(81, 17);
+            this.ProcLabel.Size = new System.Drawing.Size(88, 17);
             this.ProcLabel.TabIndex = 2;
             this.ProcLabel.Text = "Процессор";
             // 
@@ -207,34 +236,26 @@ namespace ComplexSystemInfo
             this.TaskManagerPage.VerticalScrollbarHighlightOnWheel = false;
             this.TaskManagerPage.VerticalScrollbarSize = 10;
             // 
-            // HDD_Label
+            // button1
             // 
-            this.HDD_Label.AutoSize = true;
-            this.HDD_Label.BackColor = System.Drawing.Color.Transparent;
-            this.HDD_Label.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.HDD_Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
-            this.HDD_Label.Location = new System.Drawing.Point(8, 120);
-            this.HDD_Label.Name = "HDD_Label";
-            this.HDD_Label.Size = new System.Drawing.Size(103, 17);
-            this.HDD_Label.TabIndex = 6;
-            this.HDD_Label.Text = "Жесткий диск";
-            // 
-            // HDD_Label2
-            // 
-            this.HDD_Label2.AutoSize = true;
-            this.HDD_Label2.BackColor = System.Drawing.Color.Transparent;
-            this.HDD_Label2.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.HDD_Label2.ForeColor = System.Drawing.Color.Black;
-            this.HDD_Label2.Location = new System.Drawing.Point(8, 152);
-            this.HDD_Label2.Name = "HDD_Label2";
-            this.HDD_Label2.Size = new System.Drawing.Size(84, 17);
-            this.HDD_Label2.TabIndex = 7;
-            this.HDD_Label2.Text = "HDD_LABEL";
+            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(798, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(34, 34);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "_";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // ComplexSystemInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
             this.ClientSize = new System.Drawing.Size(866, 594);
             this.Controls.Add(this.metroTabControl);
@@ -269,6 +290,7 @@ namespace ComplexSystemInfo
         private System.Windows.Forms.Label RamLabel2;
         private System.Windows.Forms.Label HDD_Label;
         private System.Windows.Forms.Label HDD_Label2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

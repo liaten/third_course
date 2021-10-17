@@ -30,9 +30,6 @@ namespace ComplexSystemInfo
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComplexSystemInfoForm));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.CloseButton = new System.Windows.Forms.Button();
-            this.HeaderLabel = new System.Windows.Forms.Label();
             this.metroTabControl = new MetroFramework.Controls.MetroTabControl();
             this.SystemInfoPage = new MetroFramework.Controls.MetroTabPage();
             this.HDD_Label2 = new System.Windows.Forms.Label();
@@ -43,55 +40,9 @@ namespace ComplexSystemInfo
             this.ProcLabel = new System.Windows.Forms.Label();
             this.LoadPage = new MetroFramework.Controls.MetroTabPage();
             this.TaskManagerPage = new MetroFramework.Controls.MetroTabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
             this.metroTabControl.SuspendLayout();
             this.SystemInfoPage.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(214)))), ((int)(((byte)(214)))));
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.CloseButton);
-            this.panel1.Controls.Add(this.HeaderLabel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(866, 34);
-            this.panel1.TabIndex = 0;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CloseButton.FlatAppearance.BorderSize = 0;
-            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButton.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CloseButton.Location = new System.Drawing.Point(832, 0);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(34, 34);
-            this.CloseButton.TabIndex = 1;
-            this.CloseButton.Text = "X";
-            this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
-            // HeaderLabel
-            // 
-            this.HeaderLabel.AutoSize = true;
-            this.HeaderLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.HeaderLabel.Font = new System.Drawing.Font("Roboto", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.HeaderLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
-            this.HeaderLabel.Location = new System.Drawing.Point(0, 0);
-            this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Size = new System.Drawing.Size(349, 33);
-            this.HeaderLabel.TabIndex = 0;
-            this.HeaderLabel.Text = "Complex System Info App";
-            this.HeaderLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            this.HeaderLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
-            this.HeaderLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
             // metroTabControl
             // 
@@ -100,11 +51,11 @@ namespace ComplexSystemInfo
             this.metroTabControl.Controls.Add(this.LoadPage);
             this.metroTabControl.Controls.Add(this.TaskManagerPage);
             this.metroTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroTabControl.Location = new System.Drawing.Point(0, 34);
+            this.metroTabControl.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl.Multiline = true;
             this.metroTabControl.Name = "metroTabControl";
             this.metroTabControl.SelectedIndex = 0;
-            this.metroTabControl.Size = new System.Drawing.Size(866, 560);
+            this.metroTabControl.Size = new System.Drawing.Size(951, 512);
             this.metroTabControl.TabIndex = 1;
             this.metroTabControl.UseSelectable = true;
             // 
@@ -125,7 +76,7 @@ namespace ComplexSystemInfo
             this.SystemInfoPage.HorizontalScrollbarSize = 10;
             this.SystemInfoPage.Location = new System.Drawing.Point(4, 41);
             this.SystemInfoPage.Name = "SystemInfoPage";
-            this.SystemInfoPage.Size = new System.Drawing.Size(858, 515);
+            this.SystemInfoPage.Size = new System.Drawing.Size(943, 467);
             this.SystemInfoPage.Style = MetroFramework.MetroColorStyle.Black;
             this.SystemInfoPage.TabIndex = 0;
             this.SystemInfoPage.Text = "Информация о системе";
@@ -154,7 +105,7 @@ namespace ComplexSystemInfo
             this.HDD_Label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
             this.HDD_Label.Location = new System.Drawing.Point(8, 120);
             this.HDD_Label.Name = "HDD_Label";
-            this.HDD_Label.Size = new System.Drawing.Size(112, 17);
+            this.HDD_Label.Size = new System.Drawing.Size(103, 17);
             this.HDD_Label.TabIndex = 6;
             this.HDD_Label.Text = "Жесткий диск";
             // 
@@ -178,7 +129,7 @@ namespace ComplexSystemInfo
             this.RamLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
             this.RamLabel.Location = new System.Drawing.Point(8, 64);
             this.RamLabel.Name = "RamLabel";
-            this.RamLabel.Size = new System.Drawing.Size(166, 17);
+            this.RamLabel.Size = new System.Drawing.Size(150, 17);
             this.RamLabel.TabIndex = 4;
             this.RamLabel.Text = "Оперативная память";
             // 
@@ -202,7 +153,7 @@ namespace ComplexSystemInfo
             this.ProcLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(74)))), ((int)(((byte)(95)))));
             this.ProcLabel.Location = new System.Drawing.Point(8, 8);
             this.ProcLabel.Name = "ProcLabel";
-            this.ProcLabel.Size = new System.Drawing.Size(88, 17);
+            this.ProcLabel.Size = new System.Drawing.Size(81, 17);
             this.ProcLabel.TabIndex = 2;
             this.ProcLabel.Text = "Процессор";
             // 
@@ -214,7 +165,7 @@ namespace ComplexSystemInfo
             this.LoadPage.HorizontalScrollbarSize = 10;
             this.LoadPage.Location = new System.Drawing.Point(4, 41);
             this.LoadPage.Name = "LoadPage";
-            this.LoadPage.Size = new System.Drawing.Size(858, 515);
+            this.LoadPage.Size = new System.Drawing.Size(862, 549);
             this.LoadPage.TabIndex = 1;
             this.LoadPage.Text = "Ресурсы ПК";
             this.LoadPage.VerticalScrollbarBarColor = true;
@@ -229,26 +180,12 @@ namespace ComplexSystemInfo
             this.TaskManagerPage.HorizontalScrollbarSize = 10;
             this.TaskManagerPage.Location = new System.Drawing.Point(4, 41);
             this.TaskManagerPage.Name = "TaskManagerPage";
-            this.TaskManagerPage.Size = new System.Drawing.Size(858, 515);
+            this.TaskManagerPage.Size = new System.Drawing.Size(862, 549);
             this.TaskManagerPage.TabIndex = 2;
             this.TaskManagerPage.Text = "Диспетчер Задач";
             this.TaskManagerPage.VerticalScrollbarBarColor = true;
             this.TaskManagerPage.VerticalScrollbarHighlightOnWheel = false;
             this.TaskManagerPage.VerticalScrollbarSize = 10;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(798, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(34, 34);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "_";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // ComplexSystemInfoForm
             // 
@@ -257,17 +194,12 @@ namespace ComplexSystemInfo
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-            this.ClientSize = new System.Drawing.Size(866, 594);
+            this.ClientSize = new System.Drawing.Size(951, 512);
             this.Controls.Add(this.metroTabControl);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "ComplexSystemInfoForm";
             this.Text = "SystemManager";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Resize += new System.EventHandler(this.ComplexSystemInfoForm_Resize);
             this.metroTabControl.ResumeLayout(false);
             this.SystemInfoPage.ResumeLayout(false);
             this.SystemInfoPage.PerformLayout();
@@ -276,10 +208,6 @@ namespace ComplexSystemInfo
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label HeaderLabel;
-        private System.Windows.Forms.Button CloseButton;
         private MetroFramework.Controls.MetroTabControl metroTabControl;
         private MetroFramework.Controls.MetroTabPage SystemInfoPage;
         private MetroFramework.Controls.MetroTabPage LoadPage;
@@ -290,7 +218,6 @@ namespace ComplexSystemInfo
         private System.Windows.Forms.Label RamLabel2;
         private System.Windows.Forms.Label HDD_Label;
         private System.Windows.Forms.Label HDD_Label2;
-        private System.Windows.Forms.Button button1;
     }
 }
 

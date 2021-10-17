@@ -8,8 +8,6 @@ namespace ComplexSystemInfo
 {
     public partial class ComplexSystemInfoForm : Form
     {
-        new bool MouseDown;
-        private Point offset;
         public static string RamType()
         {
             int type = 0;
@@ -128,35 +126,9 @@ namespace ComplexSystemInfo
             HDD_Label2.Text = Get_Drive_Info();
         }
 
-        private void CloseButton_Click(object sender, EventArgs e)
+        private void ComplexSystemInfoForm_Resize(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void panel1_MouseDown(object sender, MouseEventArgs e)
-        {
-            offset.X = e.X;
-            offset.Y = e.Y;
-            MouseDown = true;
-        }
-
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (MouseDown)
-            {
-                Point currentScreenPos = PointToScreen(e.Location);
-                Location = new Point(currentScreenPos.X - offset.X, currentScreenPos.Y - offset.Y);
-            }
-        }
-
-        private void panel1_MouseUp(object sender, MouseEventArgs e)
-        {
-            MouseDown = false;
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
+            //
         }
     }
 }

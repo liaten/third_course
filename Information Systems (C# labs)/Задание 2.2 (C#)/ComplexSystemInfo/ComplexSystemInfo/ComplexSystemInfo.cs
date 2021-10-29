@@ -112,23 +112,24 @@ namespace ComplexSystemInfo
             }
             return resultstring;
         }
+        public string Get_GPU_Info()
+        {
+
+        }
         public ComplexSystemInfoForm()
         {
             InitializeComponent();
             ProcLabel2.Text = Get_Processor_Info();
+            RamLabel2.Text = RamType() + " " + Get_RAM_Info();
+            HDD_Label2.Text = Get_Drive_Info();
             ProcLabel.Location = new Point(8, 8);
             ProcLabel2.Location = new Point(8, ProcLabel.Location.Y + ProcLabel.Size.Height + 8);
             RamLabel.Location = new Point(8, ProcLabel2.Location.Y + ProcLabel2.Size.Height + 8);
             RamLabel2.Location = new Point(8, RamLabel.Location.Y + RamLabel.Size.Height + 8);
             HDD_Label.Location = new Point(8, RamLabel2.Location.Y + RamLabel2.Size.Height + 8);
             HDD_Label2.Location = new Point(8, HDD_Label.Location.Y + HDD_Label.Size.Height + 8);
-            RamLabel2.Text = RamType() + " " + Get_RAM_Info();
-            HDD_Label2.Text = Get_Drive_Info();
-        }
-
-        private void ComplexSystemInfoForm_Resize(object sender, EventArgs e)
-        {
-            //
+            GPU_Label1.Location = new Point(8, HDD_Label2.Location.Y + HDD_Label2.Size.Height + 8);
+            GPU_Label2.Location = new Point(8, GPU_Label1.Location.Y + GPU_Label1.Size.Height + 8);
         }
     }
 }

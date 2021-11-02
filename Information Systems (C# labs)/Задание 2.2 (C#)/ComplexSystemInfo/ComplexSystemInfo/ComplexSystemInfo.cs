@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.VisualBasic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Management;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ComplexSystemInfo
 {
@@ -24,8 +24,9 @@ namespace ComplexSystemInfo
         static ManagementObjectSearcher RAM_Searcher = new ManagementObjectSearcher(Win32_Object_Query);
         static ManagementObjectCollection RAM_Results = RAM_Searcher.Get();
         static DriveInfo[] allDrives = DriveInfo.GetDrives();
-        // Получить процент использования ЦПУ
         private List<Process> processes = null;
+        private ListViewItemComparer comparer = null;
+
         private void GetProcesses()
         {
             processes.Clear();
@@ -41,37 +42,40 @@ namespace ComplexSystemInfo
                 PerformanceCounter pc = new PerformanceCounter();
                 pc.CategoryName = "Process";
                 pc.CounterName = "Working Set - Private";
-                pc.CounterName = p.ProcessName;
-
-                memSize = (double)pc.NextValue() / 1000000;
+                pc.InstanceName = p.ProcessName;
+                memSize = (double)pc.NextValue() / (1000 * 1000);
                 string[] row = new string[] { p.ProcessName.ToString(), Math.Round(memSize, 1).ToString() };
                 metroListView1.Items.Add(new ListViewItem(row));
-
                 pc.Close();
                 pc.Dispose();
             }
-            Text = "Запущено процессов: " + processes.Count.ToString();
+            Text = "System Manager | Запущено процессов: " + processes.Count.ToString();
         }
-        private void RefreshProcessesList( List<Process> processes, string keyword)
+        private void RefreshProcessesList(List<Process> processes, string keyword)
         {
-            metroListView1.Items.Clear();
-            double memSize = 0;
-            foreach (Process p in processes)
+            try
             {
-                memSize = 0;
-                PerformanceCounter pc = new PerformanceCounter();
-                pc.CategoryName = "Process";
-                pc.CounterName = "Working Set - Private";
-                pc.CounterName = p.ProcessName;
-
-                memSize = (double)pc.NextValue() / 1000000;
-                string[] row = new string[] { p.ProcessName.ToString(), Math.Round(memSize, 1).ToString() };
-                metroListView1.Items.Add(new ListViewItem(row));
-
-                pc.Close();
-                pc.Dispose();
+                metroListView1.Items.Clear();
+                float memSize = 0;
+                foreach (Process p in processes)
+                {
+                    if (p != null)
+                    {
+                        memSize = 0;
+                        PerformanceCounter pc = new PerformanceCounter();
+                        pc.CategoryName = "Process";
+                        pc.CounterName = "Working Set - Private";
+                        pc.CounterName = p.ProcessName;
+                        memSize = pc.NextValue() / 1000000;
+                        string[] row = new string[] { p.ProcessName.ToString(), Math.Round(memSize, 1).ToString() };
+                        metroListView1.Items.Add(new ListViewItem(row));
+                        pc.Close();
+                        pc.Dispose();
+                    }
+                }
+                Text = $"System Manager | Запущено процессов '{keyword}': " + processes.Count.ToString();
             }
-            Text = $"Запущено процессов '{keyword}': " + processes.Count.ToString();
+            catch (Exception) { }
         }
         private void KillProces(Process process)
         {
@@ -80,14 +84,14 @@ namespace ComplexSystemInfo
         }
         private void KillProcessAndChildren(int pid)
         {
-            if(pid == 0)
+            if (pid == 0)
             {
                 return;
             }
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(
                 "Select * from Win32_Process Where ParentProcessID=" + pid);
             ManagementObjectCollection oc = searcher.Get();
-            foreach(ManagementObject obj in oc)
+            foreach (ManagementObject obj in oc)
             {
                 KillProcessAndChildren(Convert.ToInt32(obj["ProcessID"]));
             }
@@ -104,11 +108,11 @@ namespace ComplexSystemInfo
             int parentID = 0;
             try
             {
-                ManagementObject mo = new ManagementObject("win32_process.handle='"+p.Id+"'");
+                ManagementObject mo = new ManagementObject("win32_process.handle='" + p.Id + "'");
                 mo.Get();
                 parentID = Convert.ToInt32(mo["ParentProcessId"]);
             }
-            catch(Exception) { }
+            catch (Exception) { }
             return parentID;
         }
         public string Get_CPU_Usage()
@@ -340,12 +344,102 @@ namespace ComplexSystemInfo
         {
             if (metroTabControl.SelectedIndex == 1)
             {
-                Update_Timer.Enabled = true;
+                Update_Resourses_Timer.Enabled = true;
             }
             else
             {
-                Update_Timer.Enabled = false;
+                Update_Resourses_Timer.Enabled = false;
             }
+            if(metroTabControl.SelectedIndex == 2)
+            {
+                Text = "System Manager | Запущено процессов: " + processes.Count.ToString();
+                Update_TaskManager.Enabled = true;
+            }
+            else
+            {
+                Text = "System Manager";
+                Update_TaskManager.Enabled = false;
+            }
+        }
+
+        private void ComplexSystemInfoForm_Load(object sender, EventArgs e)
+        {
+            processes = new List<Process>();
+            comparer = new ListViewItemComparer();
+            comparer.ColumnIndex = 0;
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            GetProcesses();
+            RefreshProcessesList();
+        }
+
+        private void Stop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (metroListView1.SelectedItems[0] != null)
+                {
+                    Process processToKill = processes.Where((x) => x.ProcessName ==
+                    metroListView1.SelectedItems[0].SubItems[0].Text).ToList()[0];
+                    KillProces(processToKill);
+                    GetProcesses();
+                    RefreshProcessesList();
+                }
+            }
+            catch (Exception) { }
+        }
+
+        private void StopTree_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (metroListView1.SelectedItems[0] != null)
+                {
+                    Process processToKill = processes.Where((x) => x.ProcessName ==
+                    metroListView1.SelectedItems[0].SubItems[0].Text).ToList()[0];
+                    KillProcessAndChildren(GetParentProcessID(processToKill));
+                    GetProcesses();
+                    RefreshProcessesList();
+                }
+            }
+            catch (Exception) { }
+        }
+
+        private void завершитьДеревоПроцессовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StopTree_Click(sender, e);
+        }
+
+        private void завершитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Stop_Click(sender, e);
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            string path = Interaction.InputBox("Введите имя программы", "Запуск новой задачи");
+            try
+            {
+                Process.Start(path);
+                GetProcesses();
+                RefreshProcessesList();
+            }
+            catch (Exception) { }
+        }
+        private void metroListView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            comparer.ColumnIndex = e.Column;
+            comparer.SortDirection = comparer.SortDirection == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+            metroListView1.ListViewItemSorter = comparer;
+            metroListView1.Sort();
+        }
+
+        private void Update_TaskManager_Tick(object sender, EventArgs e)
+        {
+            GetProcesses();
+            RefreshProcessesList();
         }
     }
 }

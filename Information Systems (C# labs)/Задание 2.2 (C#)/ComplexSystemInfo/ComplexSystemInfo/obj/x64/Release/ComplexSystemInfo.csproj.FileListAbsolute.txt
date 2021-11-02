@@ -1,0 +1,13 @@
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Release\ComplexSystemInfo.exe.config
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Release\ComplexSystemInfo.exe
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Release\ComplexSystemInfo.pdb
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Release\MetroFramework.Design.dll
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Release\MetroFramework.dll
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Release\MetroFramework.Fonts.dll
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Release\ComplexSystemInfo.ComplexSystemInfoForm.resources
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Release\ComplexSystemInfo.Properties.Resources.resources
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Release\ComplexSystemInfo.csproj.GenerateResource.cache
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Release\ComplexSystemInfo.csproj.CoreCompileInputs.cache
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Release\ComplexSystemInfo.exe
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Release\ComplexSystemInfo.pdb
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Release\ComplexSystemInfo.csproj.AssemblyReference.cache

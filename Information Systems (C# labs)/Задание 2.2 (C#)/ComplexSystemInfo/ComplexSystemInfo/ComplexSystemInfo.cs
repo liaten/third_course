@@ -13,19 +13,19 @@ namespace ComplexSystemInfo
 {
     public partial class ComplexSystemInfoForm : Form
     {
-        static PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-        static PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
-        static ConnectionOptions connection = new ConnectionOptions();
-        static ManagementScope RAM_Scope = new ManagementScope("\\\\.\\root\\CIMV2", connection);
-        static ObjectQuery RAM_Query = new ObjectQuery("SELECT * FROM Win32_PhysicalMemory");
-        static ManagementObjectSearcher RamType_Searcher = new ManagementObjectSearcher(RAM_Scope, RAM_Query);
-        static ManagementObjectSearcher myProcessorObject = new ManagementObjectSearcher("select * from Win32_Processor");
-        static ObjectQuery Win32_Object_Query = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
-        static ManagementObjectSearcher RAM_Searcher = new ManagementObjectSearcher(Win32_Object_Query);
-        static ManagementObjectCollection RAM_Results = RAM_Searcher.Get();
-        static DriveInfo[] allDrives = DriveInfo.GetDrives();
-        private List<Process> processes = null;
-        private ListViewItemComparer comparer = null;
+        static PerformanceCounter cpuCounter;
+        static PerformanceCounter ramCounter;
+        static ConnectionOptions connection;
+        static ManagementScope RAM_Scope;
+        static ObjectQuery RAM_Query;
+        static ManagementObjectSearcher RamType_Searcher;
+        static ManagementObjectSearcher myProcessorObject;
+        static ObjectQuery Win32_Object_Query;
+        static ManagementObjectSearcher RAM_Searcher;
+        static ManagementObjectCollection RAM_Results;
+        static DriveInfo[] allDrives;
+        private static List<Process> processes;
+        private static ListViewItemComparer comparer;
 
         private void GetProcesses()
         {
@@ -49,7 +49,7 @@ namespace ComplexSystemInfo
                 pc.Close();
                 pc.Dispose();
             }
-            Text = "System Manager | Запущено процессов: " + processes.Count.ToString();
+            Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
         }
         private void RefreshProcessesList(List<Process> processes, string keyword)
         {
@@ -73,7 +73,7 @@ namespace ComplexSystemInfo
                         pc.Dispose();
                     }
                 }
-                Text = $"System Manager | Запущено процессов '{keyword}': " + processes.Count.ToString();
+                Text = $"Complex System Information | Запущено процессов '{keyword}': " + processes.Count.ToString();
             }
             catch (Exception) { }
         }
@@ -292,32 +292,8 @@ namespace ComplexSystemInfo
         public ComplexSystemInfoForm()
         {
             InitializeComponent();
-
-            ProcLabel2.Text = Get_Processor_Info();
-            RamLabel2.Text = RamType() + " " + Get_RAM_Info();
-            HDD_Label2.Text = Get_Drive_Info();
-            GPU_Label2.Text = Get_GPU_Info();
-            string is_loading = "Идёт загрузка...";
-            PROC_Load_2.Text = is_loading;
-            RAM_Load_2.Text = is_loading;
-            HDD_Cap2.Text = is_loading;
-            PROC_Load_2.ForeColor = Color.Red;
-            RAM_Load_2.ForeColor = Color.Red;
-            HDD_Cap2.ForeColor = Color.Red;
-            ProcLabel.Location = new Point(8, 8);
-            ProcLabel2.Location = new Point(8, ProcLabel.Location.Y + ProcLabel.Size.Height + 8);
-            RamLabel.Location = new Point(8, ProcLabel2.Location.Y + ProcLabel2.Size.Height + 8);
-            RamLabel2.Location = new Point(8, RamLabel.Location.Y + RamLabel.Size.Height + 8);
-            HDD_Label.Location = new Point(8, RamLabel2.Location.Y + RamLabel2.Size.Height + 8);
-            HDD_Label2.Location = new Point(8, HDD_Label.Location.Y + HDD_Label.Size.Height + 8);
-            GPU_Label1.Location = new Point(8, HDD_Label2.Location.Y + HDD_Label2.Size.Height + 8);
-            GPU_Label2.Location = new Point(8, GPU_Label1.Location.Y + GPU_Label1.Size.Height + 8);
-            PROC_Load_1.Location = new Point(8, 8);
-            PROC_Load_2.Location = new Point(8, PROC_Load_1.Location.Y + PROC_Load_1.Size.Height + 8);
-            RAM_Load_1.Location = new Point(8, PROC_Load_2.Location.Y + PROC_Load_2.Size.Height + 8);
-            RAM_Load_2.Location = new Point(8, RAM_Load_1.Location.Y + RAM_Load_1.Size.Height + 8);
-            HDD_Cap1.Location = new Point(8, RAM_Load_2.Location.Y + RAM_Load_2.Size.Height + 8);
-            HDD_Cap2.Location = new Point(8, HDD_Cap1.Location.Y + HDD_Cap1.Size.Height + 8);
+            this.Load += new System.EventHandler(this.ComplexSystemInfoForm_Load);
+            Load_Static_Elements();
         }
         private void Update_Timer_Tick(object sender, EventArgs e)
         {
@@ -352,12 +328,13 @@ namespace ComplexSystemInfo
             }
             if(metroTabControl.SelectedIndex == 2)
             {
-                Text = "System Manager | Запущено процессов: " + processes.Count.ToString();
+                Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
+                AutoUpdateButton.Text = "Автообновление: вкл";
                 Update_TaskManager.Enabled = true;
             }
             else
             {
-                Text = "System Manager";
+                Text = "Complex System Information";
                 Update_TaskManager.Enabled = false;
             }
         }
@@ -373,6 +350,7 @@ namespace ComplexSystemInfo
         {
             GetProcesses();
             RefreshProcessesList();
+            Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
         }
 
         private void Stop_Click(object sender, EventArgs e)
@@ -386,6 +364,7 @@ namespace ComplexSystemInfo
                     KillProces(processToKill);
                     GetProcesses();
                     RefreshProcessesList();
+                    Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
                 }
             }
             catch (Exception) { }
@@ -402,6 +381,7 @@ namespace ComplexSystemInfo
                     KillProcessAndChildren(GetParentProcessID(processToKill));
                     GetProcesses();
                     RefreshProcessesList();
+                    Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
                 }
             }
             catch (Exception) { }
@@ -425,6 +405,7 @@ namespace ComplexSystemInfo
                 Process.Start(path);
                 GetProcesses();
                 RefreshProcessesList();
+                Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
             }
             catch (Exception) { }
         }
@@ -440,6 +421,62 @@ namespace ComplexSystemInfo
         {
             GetProcesses();
             RefreshProcessesList();
+            Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
+        }
+        public void Load_Static_Elements()
+        {
+            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+            connection = new ConnectionOptions();
+            RAM_Scope = new ManagementScope("\\\\.\\root\\CIMV2", connection);
+            RAM_Query = new ObjectQuery("SELECT * FROM Win32_PhysicalMemory");
+            RamType_Searcher = new ManagementObjectSearcher(RAM_Scope, RAM_Query);
+            myProcessorObject = new ManagementObjectSearcher("select * from Win32_Processor");
+            Win32_Object_Query = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
+            RAM_Searcher = new ManagementObjectSearcher(Win32_Object_Query);
+            RAM_Results = RAM_Searcher.Get();
+            allDrives = DriveInfo.GetDrives();
+            processes = null;
+            comparer = null;
+            ProcLabel2.Text = Get_Processor_Info();
+            RamLabel2.Text = RamType() + " " + Get_RAM_Info();
+            HDD_Label2.Text = Get_Drive_Info();
+            GPU_Label2.Text = Get_GPU_Info();
+            string is_loading = "Идёт загрузка...";
+            PROC_Load_2.Text = is_loading;
+            RAM_Load_2.Text = is_loading;
+            HDD_Cap2.Text = is_loading;
+            PROC_Load_2.ForeColor = Color.Red;
+            RAM_Load_2.ForeColor = Color.Red;
+            HDD_Cap2.ForeColor = Color.Red;
+            ProcLabel.Location = new Point(8, 8);
+            ProcLabel2.Location = new Point(8, ProcLabel.Location.Y + ProcLabel.Size.Height + 8);
+            RamLabel.Location = new Point(8, ProcLabel2.Location.Y + ProcLabel2.Size.Height + 8);
+            RamLabel2.Location = new Point(8, RamLabel.Location.Y + RamLabel.Size.Height + 8);
+            HDD_Label.Location = new Point(8, RamLabel2.Location.Y + RamLabel2.Size.Height + 8);
+            HDD_Label2.Location = new Point(8, HDD_Label.Location.Y + HDD_Label.Size.Height + 8);
+            GPU_Label1.Location = new Point(8, HDD_Label2.Location.Y + HDD_Label2.Size.Height + 8);
+            GPU_Label2.Location = new Point(8, GPU_Label1.Location.Y + GPU_Label1.Size.Height + 8);
+            PROC_Load_1.Location = new Point(8, 8);
+            PROC_Load_2.Location = new Point(8, PROC_Load_1.Location.Y + PROC_Load_1.Size.Height + 8);
+            RAM_Load_1.Location = new Point(8, PROC_Load_2.Location.Y + PROC_Load_2.Size.Height + 8);
+            RAM_Load_2.Location = new Point(8, RAM_Load_1.Location.Y + RAM_Load_1.Size.Height + 8);
+            HDD_Cap1.Location = new Point(8, RAM_Load_2.Location.Y + RAM_Load_2.Size.Height + 8);
+            HDD_Cap2.Location = new Point(8, HDD_Cap1.Location.Y + HDD_Cap1.Size.Height + 8);
+        }
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if(AutoUpdateButton.Text== "Автообновление: вкл")
+            {
+                AutoUpdateButton.Text = "Автообновление: выкл";
+                Update_TaskManager.Enabled = false;
+            }
+            else
+            {
+                AutoUpdateButton.Text = "Автообновление: вкл";
+                Update_TaskManager.Enabled = true;
+                Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
+            }
         }
     }
 }

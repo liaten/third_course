@@ -1,0 +1,13 @@
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Debug\ComplexSystemInfo.exe.config
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Debug\ComplexSystemInfo.exe
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Debug\ComplexSystemInfo.pdb
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Debug\MetroFramework.Design.dll
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Debug\MetroFramework.dll
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\bin\x64\Debug\MetroFramework.Fonts.dll
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Debug\ComplexSystemInfo.csproj.AssemblyReference.cache
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Debug\ComplexSystemInfo.ComplexSystemInfoForm.resources
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Debug\ComplexSystemInfo.Properties.Resources.resources
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Debug\ComplexSystemInfo.csproj.GenerateResource.cache
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Debug\ComplexSystemInfo.csproj.CoreCompileInputs.cache
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Debug\ComplexSystemInfo.exe
+D:\Desktop\third_course\Information Systems (C# labs)\Задание 2.2 (C#)\ComplexSystemInfo\ComplexSystemInfo\obj\x64\Debug\ComplexSystemInfo.pdb

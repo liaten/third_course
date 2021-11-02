@@ -30,8 +30,8 @@ namespace ComplexSystemInfo
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComplexSystemInfoForm));
             this.metroTabControl = new MetroFramework.Controls.MetroTabControl();
             this.SystemInfoPage = new MetroFramework.Controls.MetroTabPage();
@@ -64,6 +64,7 @@ namespace ComplexSystemInfo
             this.Update = new System.Windows.Forms.ToolStripButton();
             this.Stop = new System.Windows.Forms.ToolStripButton();
             this.StopTree = new System.Windows.Forms.ToolStripButton();
+            this.AutoUpdateButton = new System.Windows.Forms.ToolStripButton();
             this.Update_Resourses_Timer = new System.Windows.Forms.Timer(this.components);
             this.Update_TaskManager = new System.Windows.Forms.Timer(this.components);
             this.metroTabControl.SuspendLayout();
@@ -239,19 +240,19 @@ namespace ComplexSystemInfo
             // 
             // RAM_Chart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.RAM_Chart.ChartAreas.Add(chartArea4);
+            chartArea2.Name = "ChartArea1";
+            this.RAM_Chart.ChartAreas.Add(chartArea2);
             this.RAM_Chart.Location = new System.Drawing.Point(340, 8);
             this.RAM_Chart.Name = "RAM_Chart";
             this.RAM_Chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             this.RAM_Chart.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Red,
         System.Drawing.Color.Lime};
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Name = "Series1";
-            series4.YValuesPerPoint = 6;
-            this.RAM_Chart.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Name = "Series1";
+            series2.YValuesPerPoint = 6;
+            this.RAM_Chart.Series.Add(series2);
             this.RAM_Chart.Size = new System.Drawing.Size(256, 256);
             this.RAM_Chart.TabIndex = 9;
             this.RAM_Chart.Text = "chart1";
@@ -410,7 +411,8 @@ namespace ComplexSystemInfo
             this.toolStripButton1,
             this.Update,
             this.Stop,
-            this.StopTree});
+            this.StopTree,
+            this.AutoUpdateButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(943, 25);
@@ -457,6 +459,17 @@ namespace ComplexSystemInfo
             this.StopTree.Text = "Завершить дерево процессов";
             this.StopTree.Click += new System.EventHandler(this.StopTree_Click);
             // 
+            // AutoUpdateButton
+            // 
+            this.AutoUpdateButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.AutoUpdateButton.Image = ((System.Drawing.Image)(resources.GetObject("AutoUpdateButton.Image")));
+            this.AutoUpdateButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.AutoUpdateButton.Name = "AutoUpdateButton";
+            this.AutoUpdateButton.Size = new System.Drawing.Size(138, 22);
+            this.AutoUpdateButton.Text = "Автообновление: выкл";
+            this.AutoUpdateButton.ToolTipText = "Автообновление: выкл";
+            this.AutoUpdateButton.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // Update_Resourses_Timer
             // 
             this.Update_Resourses_Timer.Enabled = true;
@@ -465,8 +478,7 @@ namespace ComplexSystemInfo
             // 
             // Update_TaskManager
             // 
-            this.Update_TaskManager.Enabled = true;
-            this.Update_TaskManager.Interval = 20000;
+            this.Update_TaskManager.Interval = 6000;
             this.Update_TaskManager.Tick += new System.EventHandler(this.Update_TaskManager_Tick);
             // 
             // ComplexSystemInfoForm
@@ -480,7 +492,7 @@ namespace ComplexSystemInfo
             this.Controls.Add(this.metroTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ComplexSystemInfoForm";
-            this.Text = "SystemManager";
+            this.Text = "Complex System Information";
             this.Load += new System.EventHandler(this.ComplexSystemInfoForm_Load);
             this.metroTabControl.ResumeLayout(false);
             this.SystemInfoPage.ResumeLayout(false);
@@ -531,6 +543,7 @@ namespace ComplexSystemInfo
         private System.Windows.Forms.ToolStripMenuItem завершитьДеревоПроцессовToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Timer Update_TaskManager;
+        private System.Windows.Forms.ToolStripButton AutoUpdateButton;
     }
 }
 

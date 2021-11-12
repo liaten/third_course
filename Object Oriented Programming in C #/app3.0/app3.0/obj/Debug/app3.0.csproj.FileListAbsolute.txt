@@ -1,7 +1,0 @@
-C:\Users\liaten\source\repos\app3.0\app3.0\bin\Debug\app3.0.exe.config
-C:\Users\liaten\source\repos\app3.0\app3.0\bin\Debug\app3.0.exe
-C:\Users\liaten\source\repos\app3.0\app3.0\bin\Debug\app3.0.pdb
-C:\Users\liaten\source\repos\app3.0\app3.0\obj\Debug\app3.0.csproj.AssemblyReference.cache
-C:\Users\liaten\source\repos\app3.0\app3.0\obj\Debug\app3.0.csproj.CoreCompileInputs.cache
-C:\Users\liaten\source\repos\app3.0\app3.0\obj\Debug\app3.0.exe
-C:\Users\liaten\source\repos\app3.0\app3.0\obj\Debug\app3.0.pdb

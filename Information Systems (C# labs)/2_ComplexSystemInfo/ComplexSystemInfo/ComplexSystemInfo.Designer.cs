@@ -30,8 +30,8 @@ namespace ComplexSystemInfo
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComplexSystemInfoForm));
             this.metroTabControl = new MetroFramework.Controls.MetroTabControl();
             this.SystemInfoPage = new MetroFramework.Controls.MetroTabPage();
@@ -55,7 +55,6 @@ namespace ComplexSystemInfo
             this.metroListView1 = new MetroFramework.Controls.MetroListView();
             this.ProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ProcessorLoad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.завершитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.завершитьДеревоПроцессовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +66,7 @@ namespace ComplexSystemInfo
             this.AutoUpdateButton = new System.Windows.Forms.ToolStripButton();
             this.Update_Resourses_Timer = new System.Windows.Forms.Timer(this.components);
             this.Update_TaskManager = new System.Windows.Forms.Timer(this.components);
+            this.ViewPage = new MetroFramework.Controls.MetroTabPage();
             this.metroTabControl.SuspendLayout();
             this.SystemInfoPage.SuspendLayout();
             this.LoadPage.SuspendLayout();
@@ -82,12 +82,13 @@ namespace ComplexSystemInfo
             this.metroTabControl.Controls.Add(this.SystemInfoPage);
             this.metroTabControl.Controls.Add(this.LoadPage);
             this.metroTabControl.Controls.Add(this.TaskManagerPage);
+            this.metroTabControl.Controls.Add(this.ViewPage);
             this.metroTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl.Multiline = true;
             this.metroTabControl.Name = "metroTabControl";
-            this.metroTabControl.SelectedIndex = 2;
-            this.metroTabControl.Size = new System.Drawing.Size(951, 512);
+            this.metroTabControl.SelectedIndex = 0;
+            this.metroTabControl.Size = new System.Drawing.Size(783, 512);
             this.metroTabControl.TabIndex = 0;
             this.metroTabControl.UseSelectable = true;
             this.metroTabControl.SelectedIndexChanged += new System.EventHandler(this.metroTabControl_SelectedIndexChanged);
@@ -111,7 +112,7 @@ namespace ComplexSystemInfo
             this.SystemInfoPage.HorizontalScrollbarSize = 10;
             this.SystemInfoPage.Location = new System.Drawing.Point(4, 41);
             this.SystemInfoPage.Name = "SystemInfoPage";
-            this.SystemInfoPage.Size = new System.Drawing.Size(943, 467);
+            this.SystemInfoPage.Size = new System.Drawing.Size(775, 467);
             this.SystemInfoPage.Style = MetroFramework.MetroColorStyle.Black;
             this.SystemInfoPage.TabIndex = 0;
             this.SystemInfoPage.Text = "Информация о системе";
@@ -231,7 +232,7 @@ namespace ComplexSystemInfo
             this.LoadPage.HorizontalScrollbarSize = 10;
             this.LoadPage.Location = new System.Drawing.Point(4, 41);
             this.LoadPage.Name = "LoadPage";
-            this.LoadPage.Size = new System.Drawing.Size(943, 467);
+            this.LoadPage.Size = new System.Drawing.Size(775, 467);
             this.LoadPage.TabIndex = 1;
             this.LoadPage.Text = "Ресурсы ПК";
             this.LoadPage.VerticalScrollbarBarColor = true;
@@ -240,19 +241,19 @@ namespace ComplexSystemInfo
             // 
             // RAM_Chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.RAM_Chart.ChartAreas.Add(chartArea2);
+            chartArea3.Name = "ChartArea1";
+            this.RAM_Chart.ChartAreas.Add(chartArea3);
             this.RAM_Chart.Location = new System.Drawing.Point(340, 8);
             this.RAM_Chart.Name = "RAM_Chart";
             this.RAM_Chart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             this.RAM_Chart.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Red,
         System.Drawing.Color.Lime};
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Name = "Series1";
-            series2.YValuesPerPoint = 6;
-            this.RAM_Chart.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Name = "Series1";
+            series3.YValuesPerPoint = 6;
+            this.RAM_Chart.Series.Add(series3);
             this.RAM_Chart.Size = new System.Drawing.Size(256, 256);
             this.RAM_Chart.TabIndex = 9;
             this.RAM_Chart.Text = "chart1";
@@ -339,7 +340,7 @@ namespace ComplexSystemInfo
             this.TaskManagerPage.HorizontalScrollbarSize = 10;
             this.TaskManagerPage.Location = new System.Drawing.Point(4, 41);
             this.TaskManagerPage.Name = "TaskManagerPage";
-            this.TaskManagerPage.Size = new System.Drawing.Size(943, 467);
+            this.TaskManagerPage.Size = new System.Drawing.Size(775, 467);
             this.TaskManagerPage.TabIndex = 2;
             this.TaskManagerPage.Text = "Диспетчер Задач";
             this.TaskManagerPage.VerticalScrollbarBarColor = true;
@@ -350,8 +351,7 @@ namespace ComplexSystemInfo
             // 
             this.metroListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ProcessName,
-            this.Memory,
-            this.ProcessorLoad});
+            this.Memory});
             this.metroListView1.ContextMenuStrip = this.metroContextMenu1;
             this.metroListView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroListView1.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -361,7 +361,7 @@ namespace ComplexSystemInfo
             this.metroListView1.MultiSelect = false;
             this.metroListView1.Name = "metroListView1";
             this.metroListView1.OwnerDraw = true;
-            this.metroListView1.Size = new System.Drawing.Size(943, 442);
+            this.metroListView1.Size = new System.Drawing.Size(775, 442);
             this.metroListView1.TabIndex = 4;
             this.metroListView1.UseCompatibleStateImageBehavior = false;
             this.metroListView1.UseSelectable = true;
@@ -375,13 +375,8 @@ namespace ComplexSystemInfo
             // 
             // Memory
             // 
-            this.Memory.Text = "Память";
+            this.Memory.Text = "Память (Мегабайт)";
             this.Memory.Width = 200;
-            // 
-            // ProcessorLoad
-            // 
-            this.ProcessorLoad.Text = "ЦПУ";
-            this.ProcessorLoad.Width = 200;
             // 
             // metroContextMenu1
             // 
@@ -415,7 +410,7 @@ namespace ComplexSystemInfo
             this.AutoUpdateButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(943, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(775, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -481,6 +476,20 @@ namespace ComplexSystemInfo
             this.Update_TaskManager.Interval = 6000;
             this.Update_TaskManager.Tick += new System.EventHandler(this.Update_TaskManager_Tick);
             // 
+            // ViewPage
+            // 
+            this.ViewPage.HorizontalScrollbarBarColor = true;
+            this.ViewPage.HorizontalScrollbarHighlightOnWheel = false;
+            this.ViewPage.HorizontalScrollbarSize = 10;
+            this.ViewPage.Location = new System.Drawing.Point(4, 41);
+            this.ViewPage.Name = "ViewPage";
+            this.ViewPage.Size = new System.Drawing.Size(775, 467);
+            this.ViewPage.TabIndex = 3;
+            this.ViewPage.Text = "Обзор";
+            this.ViewPage.VerticalScrollbarBarColor = true;
+            this.ViewPage.VerticalScrollbarHighlightOnWheel = false;
+            this.ViewPage.VerticalScrollbarSize = 10;
+            // 
             // ComplexSystemInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -488,7 +497,7 @@ namespace ComplexSystemInfo
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-            this.ClientSize = new System.Drawing.Size(951, 512);
+            this.ClientSize = new System.Drawing.Size(783, 512);
             this.Controls.Add(this.metroTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ComplexSystemInfoForm";
@@ -532,18 +541,18 @@ namespace ComplexSystemInfo
         private System.Windows.Forms.DataVisualization.Charting.Chart RAM_Chart;
         private MetroFramework.Controls.MetroListView metroListView1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton Update;
+        private  System.Windows.Forms.ToolStripButton Update;
         private System.Windows.Forms.ToolStripButton Stop;
         private System.Windows.Forms.ToolStripButton StopTree;
         private System.Windows.Forms.ColumnHeader ProcessName;
         private System.Windows.Forms.ColumnHeader Memory;
-        private System.Windows.Forms.ColumnHeader ProcessorLoad;
         private MetroFramework.Controls.MetroContextMenu metroContextMenu1;
         private System.Windows.Forms.ToolStripMenuItem завершитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem завершитьДеревоПроцессовToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Timer Update_TaskManager;
         private System.Windows.Forms.ToolStripButton AutoUpdateButton;
+        private MetroFramework.Controls.MetroTabPage ViewPage;
     }
 }
 

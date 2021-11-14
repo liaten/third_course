@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Management;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -26,12 +27,18 @@ namespace ComplexSystemInfo
         static DriveInfo[] allDrives;
         private static List<Process> processes;
         private static ListViewItemComparer comparer;
+        public static Load_Screen ls = new Load_Screen();
+
+        // получить все процессы
 
         private void GetProcesses()
         {
             processes.Clear();
             processes = Process.GetProcesses().ToList<Process>();
         }
+
+        // занести все процессы в табличку
+
         private void RefreshProcessesList()
         {
             metroListView1.Items.Clear();
@@ -43,39 +50,13 @@ namespace ComplexSystemInfo
                 pc.CategoryName = "Process";
                 pc.CounterName = "Working Set - Private";
                 pc.InstanceName = p.ProcessName;
-                memSize = (double)pc.NextValue() / (1000 * 1000);
-                string[] row = new string[] { p.ProcessName.ToString(), Math.Round(memSize, 1).ToString() };
+                memSize = (double)pc.NextValue() / (1024*1024);
+                string[] row = new string[] { p.ProcessName.ToString(), Math.Round(memSize, 2).ToString() };
                 metroListView1.Items.Add(new ListViewItem(row));
                 pc.Close();
                 pc.Dispose();
             }
             Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
-        }
-        private void RefreshProcessesList(List<Process> processes, string keyword)
-        {
-            try
-            {
-                metroListView1.Items.Clear();
-                float memSize = 0;
-                foreach (Process p in processes)
-                {
-                    if (p != null)
-                    {
-                        memSize = 0;
-                        PerformanceCounter pc = new PerformanceCounter();
-                        pc.CategoryName = "Process";
-                        pc.CounterName = "Working Set - Private";
-                        pc.CounterName = p.ProcessName;
-                        memSize = pc.NextValue() / 1000000;
-                        string[] row = new string[] { p.ProcessName.ToString(), Math.Round(memSize, 1).ToString() };
-                        metroListView1.Items.Add(new ListViewItem(row));
-                        pc.Close();
-                        pc.Dispose();
-                    }
-                }
-                Text = $"Complex System Information | Запущено процессов '{keyword}': " + processes.Count.ToString();
-            }
-            catch (Exception) { }
         }
         private void KillProces(Process process)
         {
@@ -291,9 +272,26 @@ namespace ComplexSystemInfo
         }
         public ComplexSystemInfoForm()
         {
+            var thread = new Thread(ThreadStart);
+            // allow UI with ApartmentState.STA though [STAThread] above should give that to you
+            thread.TrySetApartmentState(ApartmentState.STA);
+            thread.Start();
+            this.Visible = false;
             InitializeComponent();
-            this.Load += new System.EventHandler(this.ComplexSystemInfoForm_Load);
+            this.Load += new EventHandler(this.ComplexSystemInfoForm_Load);
             Load_Static_Elements();
+            thread.Abort();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Visible = true;
+            this.WindowState = FormWindowState.Minimized;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+        private static void ThreadStart()
+        {
+            //Load_Screen ls = new Load_Screen();
+            Application.Run(ls); // <-- other form started on its own UI thread
+           
         }
         private void Update_Timer_Tick(object sender, EventArgs e)
         {
@@ -326,7 +324,7 @@ namespace ComplexSystemInfo
             {
                 Update_Resourses_Timer.Enabled = false;
             }
-            if(metroTabControl.SelectedIndex == 2)
+            if (metroTabControl.SelectedIndex == 2)
             {
                 Text = "Complex System Information | Запущено процессов: " + processes.Count.ToString();
                 AutoUpdateButton.Text = "Автообновление: вкл";
@@ -425,22 +423,43 @@ namespace ComplexSystemInfo
         }
         public void Load_Static_Elements()
         {
+            ls.ChangeStatusLabel("Получаем данные о системе...");
+            ls.ChangePB(5);
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            ls.ChangePB(10);
             ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+            ls.ChangePB(12);
             connection = new ConnectionOptions();
+            ls.ChangePB(14);
             RAM_Scope = new ManagementScope("\\\\.\\root\\CIMV2", connection);
+            ls.ChangePB(16);
             RAM_Query = new ObjectQuery("SELECT * FROM Win32_PhysicalMemory");
+            ls.ChangePB(18);
             RamType_Searcher = new ManagementObjectSearcher(RAM_Scope, RAM_Query);
+            ls.ChangePB(20);
             myProcessorObject = new ManagementObjectSearcher("select * from Win32_Processor");
+            ls.ChangePB(22);
             Win32_Object_Query = new ObjectQuery("SELECT * FROM Win32_OperatingSystem");
+            ls.ChangePB(24);
             RAM_Searcher = new ManagementObjectSearcher(Win32_Object_Query);
+            ls.ChangePB(40);
             RAM_Results = RAM_Searcher.Get();
+            ls.ChangeStatusLabel("Получаем данные о дисках...");
+            ls.ChangePB(50);
             allDrives = DriveInfo.GetDrives();
             processes = null;
             comparer = null;
+            ls.ChangeStatusLabel("Получаем данные о процессоре...");
+            ls.ChangePB(60);
             ProcLabel2.Text = Get_Processor_Info();
+            ls.ChangeStatusLabel("Получаем данные об ОЗУ...");
+            ls.ChangePB(70);
             RamLabel2.Text = RamType() + " " + Get_RAM_Info();
+            ls.ChangeStatusLabel("Снова получаем данные о дисках...");
+            ls.ChangePB(80);
             HDD_Label2.Text = Get_Drive_Info();
+            ls.ChangeStatusLabel("Получаем данные о видеокарте...");
+            ls.ChangePB(90);
             GPU_Label2.Text = Get_GPU_Info();
             string is_loading = "Идёт загрузка...";
             PROC_Load_2.Text = is_loading;
@@ -449,6 +468,8 @@ namespace ComplexSystemInfo
             PROC_Load_2.ForeColor = Color.Red;
             RAM_Load_2.ForeColor = Color.Red;
             HDD_Cap2.ForeColor = Color.Red;
+            ls.ChangePB(100);
+            ls.ChangeStatusLabel("Расставляем элементы на форме...");
             ProcLabel.Location = new Point(8, 8);
             ProcLabel2.Location = new Point(8, ProcLabel.Location.Y + ProcLabel.Size.Height + 8);
             RamLabel.Location = new Point(8, ProcLabel2.Location.Y + ProcLabel2.Size.Height + 8);
@@ -466,7 +487,7 @@ namespace ComplexSystemInfo
         }
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            if(AutoUpdateButton.Text== "Автообновление: вкл")
+            if (AutoUpdateButton.Text == "Автообновление: вкл")
             {
                 AutoUpdateButton.Text = "Автообновление: выкл";
                 Update_TaskManager.Enabled = false;

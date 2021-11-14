@@ -9,18 +9,17 @@ namespace app6._4
     public class Square : Rectangle
     {
         public Square(int len)
-        {
-            new Rectangle(len, len);
-        }
+            : base(len, len) { }
 
         public Square(int len, int width)
+            : base(len, width)
         {
-            if (this.Get_Lenght() != this.Get_Width())
+            if (Get_Lenght() != Get_Width())
             {
-                Console.Write("Not a square\n");
+                Console.Write("not a square\n");
             }
         }
         ~Square() { }
-        long Get_Perim() { return 4 * Get_Lenght(); }
+        override public long Get_Perim() { return 4 * Get_Lenght(); }
     }
 }

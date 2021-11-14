@@ -14,9 +14,9 @@ namespace app6._4
             this.its_radius = Radius;
         }
         ~Circle() { }
-        public long Get_Area() { return (long)(3.1415926 * its_radius * its_radius); }
-        public long Get_Perim() { return (long)(2 * 3.1415926 * its_radius); }
-        public void Draw()
+        public override long Get_Area() { return (long)(3.1415926 * its_radius * its_radius); }
+        public override long Get_Perim() { return (long)(2 * 3.1415926 * its_radius); }
+        public override void Draw()
         {
             Console.Write("Circle draw here\n");
         }

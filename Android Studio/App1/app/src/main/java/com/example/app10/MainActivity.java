@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
                 double d = Math.pow(b, 2) - 4*a*c;
                 double x1 = (-b - Math.pow(d, 0.5))/(2*a);
                 double x2 = (-b + Math.pow(d, 0.5))/(2*a);
-                String ans = "x1 = "+String.valueOf(x1)+", x2 = "+String.valueOf(x2);
+                String sx1 = String.format("%.2f",x1);
+                String sx2 = String.format("%.2f",x2);
+                String ans = "x1 = "+sx1+"\nx2 = "+ sx2;
                 textView2.setText(ans);
             }
         });

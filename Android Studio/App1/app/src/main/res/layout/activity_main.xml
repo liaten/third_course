@@ -18,7 +18,9 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
 
     <EditText
         android:id="@+id/et1"
@@ -28,11 +30,13 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        android:digits="0123456789."
+        android:inputType="numberDecimal"
+        />
 
     <EditText
         android:id="@+id/et2"
@@ -46,12 +50,14 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text=""
         app:layout_constraintEnd_toStartOf="@+id/et3"
         app:layout_constraintStart_toEndOf="@+id/et1"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        android:digits="0123456789."
+        android:inputType="numberDecimal"
+        />
 
 
     <EditText
@@ -61,11 +67,13 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        android:digits="0123456789."
+        android:inputType="numberDecimal"
+        />
 
     <Button
         android:id="@+id/button"

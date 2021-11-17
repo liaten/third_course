@@ -15,6 +15,7 @@ namespace app6._2
         const int Number_Of_Horses = 5;
         static void Main(string[] args)
         {
+            Console.Write("Занятие 6.2\n");
             Horse[] Ranch = new Horse[Number_Of_Horses];
             Horse P_Horse;
             int choice, i;

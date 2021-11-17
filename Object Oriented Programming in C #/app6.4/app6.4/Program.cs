@@ -10,6 +10,7 @@ namespace app6._4
     {
         static void Main(string[] args)
         {
+            Console.Write("Занятие 6.4\n");
             int choice;
             bool fquit = false;
             Shape sp = new Shape();

@@ -97,25 +97,187 @@ namespace app7._1
                     case 3:
                         if (CNumbers.Count() == 0)
                         {
-                            Console.Write("Нет комплексных чисел для Сложения\n");
+                            Console.Write("Нет комплексных чисел для сложения\n");
                         }
                         else
                         {
-                            Console.Write($"Выберите комплексное число в промежутке от 0 до {CNumbers.Count() - 1} в качестве слагаемого\n:");
-                            int result;
+                            Console.Write($"Выберите комплексное число в промежутке от 0 до {CNumbers.Count() - 1} в качестве слагаемого 1\n:");
+                            int result1;
+                            int result2;
                             try
                             {
-                                result = Convert.ToInt32(Console.ReadLine());
+                                // введено число
+                                result1 = Convert.ToInt32(Console.ReadLine());
+                                if (result1 >= 0 && result1 <= (CNumbers.Count() - 1))
+                                {
+                                    // число в промежутке
+                                    Console.Write($"Выбрано CNumbers[{result1}] = ");
+                                    CNumbers[result1].Write();
+                                    Console.Write($"\nВыберите комплексное число в промежутке от 0 до {CNumbers.Count() - 1} в качестве слагаемого 2\n:");
+                                    try
+                                    {
+                                        result2 = Convert.ToInt32(Console.ReadLine());
+                                        if (result2 >= 0 && result2 <= (CNumbers.Count() - 1))
+                                        {
+                                            // число в промежутке
+                                            Console.Write($"Выбрано CNumbers[{result2}] = ");
+                                            CNumbers[result2].Write();
+                                            Complex CSum = new Complex().Sum(CNumbers[result1], CNumbers[result2]);
+                                            Console.Write($"\nРезультат суммы CNumbers[{result1}] + CNumbers[{result2}] = ");
+                                            CSum.Write();
+                                            Console.WriteLine();
+                                        }
+                                        else
+                                        {
+                                            // число не в промежутке
+                                            Console.Write("Число не в промежутке\n");
+                                            break;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        Console.Write("Введено не число\n");
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    // число не в промежутке
+                                    Console.Write("Число не в промежутке\n");
+                                    break;
+                                }
                             }
                             catch
                             {
+                                // введено не число
                                 Console.Write("Введено не число\n");
+                                break;
                             }
                         }
                         break;
+                    // разница
                     case 4:
+                        if (CNumbers.Count() == 0)
+                        {
+                            Console.Write("Нет комплексных чисел для вычитания\n");
+                        }
+                        else
+                        {
+                            Console.Write($"Выберите комплексное число в промежутке от 0 до {CNumbers.Count() - 1} в качестве уменьшаемого\n:");
+                            int result1;
+                            int result2;
+                            try
+                            {
+                                // введено число
+                                result1 = Convert.ToInt32(Console.ReadLine());
+                                if (result1 >= 0 && result1 <= (CNumbers.Count() - 1))
+                                {
+                                    // число в промежутке
+                                    Console.Write($"Выбрано CNumbers[{result1}] = ");
+                                    CNumbers[result1].Write();
+                                    Console.Write($"\nВыберите комплексное число в промежутке от 0 до {CNumbers.Count() - 1} в качестве вычитаемого\n:");
+                                    try
+                                    {
+                                        result2 = Convert.ToInt32(Console.ReadLine());
+                                        if (result2 >= 0 && result2 <= (CNumbers.Count() - 1))
+                                        {
+                                            // число в промежутке
+                                            Console.Write($"Выбрано CNumbers[{result2}] = ");
+                                            CNumbers[result2].Write();
+                                            Complex CSub = new Complex().Subtract(CNumbers[result1], CNumbers[result2]);
+                                            Console.Write($"\nРезультат разности CNumbers[{result1}] - CNumbers[{result2}] = ");
+                                            CSub.Write();
+                                            Console.WriteLine();
+                                        }
+                                        else
+                                        {
+                                            // число не в промежутке
+                                            Console.Write("Число не в промежутке\n");
+                                            break;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        Console.Write("Введено не число\n");
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    // число не в промежутке
+                                    Console.Write("Число не в промежутке\n");
+                                    break;
+                                }
+                            }
+                            catch
+                            {
+                                // введено не число
+                                Console.Write("Введено не число\n");
+                                break;
+                            }
+                        }
                         break;
+                    // умножение
                     case 5:
+                        if (CNumbers.Count() == 0)
+                        {
+                            Console.Write("Нет комплексных чисел для умножения\n");
+                        }
+                        else
+                        {
+                            Console.Write($"Выберите комплексное число в промежутке от 0 до {CNumbers.Count() - 1} в качестве множителя 1\n:");
+                            int result1;
+                            int result2;
+                            try
+                            {
+                                // введено число
+                                result1 = Convert.ToInt32(Console.ReadLine());
+                                if (result1 >= 0 && result1 <= (CNumbers.Count() - 1))
+                                {
+                                    // число в промежутке
+                                    Console.Write($"Выбрано CNumbers[{result1}] = ");
+                                    CNumbers[result1].Write();
+                                    Console.Write($"\nВыберите комплексное число в промежутке от 0 до {CNumbers.Count() - 1} в качестве множителя 2\n:");
+                                    try
+                                    {
+                                        result2 = Convert.ToInt32(Console.ReadLine());
+                                        if (result2 >= 0 && result2 <= (CNumbers.Count() - 1))
+                                        {
+                                            // число в промежутке
+                                            Console.Write($"Выбрано CNumbers[{result2}] = ");
+                                            CNumbers[result2].Write();
+                                            Complex CMul = new Complex().Multi(CNumbers[result1], CNumbers[result2]);
+                                            Console.Write($"\nРезультат произведения CNumbers[{result1}] * CNumbers[{result2}] = ");
+                                            CMul.Write();
+                                            Console.WriteLine();
+                                        }
+                                        else
+                                        {
+                                            // число не в промежутке
+                                            Console.Write("Число не в промежутке\n");
+                                            break;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        Console.Write("Введено не число\n");
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    // число не в промежутке
+                                    Console.Write("Число не в промежутке\n");
+                                    break;
+                                }
+                            }
+                            catch
+                            {
+                                // введено не число
+                                Console.Write("Введено не число\n");
+                                break;
+                            }
+                        }
                         break;
                     case 6:
                         if (CNumbers.Count() == 0)

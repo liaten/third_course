@@ -66,7 +66,7 @@ namespace app4._0
             int a3 = 2;
             Counter3 var1 = new Counter3(a3);
             Counter3 var2 = new Counter3(5);
-            Counter3 var3 = new Counter3();
+            Counter3 var3;
             var3 = var1 + var2;
             Console.WriteLine("var1 = " + var1.Get_Its_Value());
             Console.WriteLine("var2 = " + var2.Get_Its_Value());

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Работа с файлами</string>
+    <string name="info">Программа осуществляет запись и чтение файлов следующих форматов:\n- txt\n- csv\n- xml\n- json</string>
+    <string name="Button_file_open">Открыть файл</string>
+    <string name="txt">Открыть txt файл</string>
+    <string name="csv">Открыть csv файл</string>
+    <string name="xml">Открыть xml файл</string>
+    <string name="json">Открыть json файл</string>
+</resources>

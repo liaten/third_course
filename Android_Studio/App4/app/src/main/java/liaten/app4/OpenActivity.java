@@ -1,0 +1,43 @@
+package liaten.app4;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class OpenActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.open_activity);
+        Button txt_button = (Button) findViewById(R.id.txt);
+        Button csv_button = (Button) findViewById(R.id.csv);
+        Button xml_button = (Button) findViewById(R.id.xml);
+        Button json_button = (Button) findViewById(R.id.json);
+
+    }
+    private View.OnClickListener txt_listener = new View.OnClickListener(){
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+    private View.OnClickListener csv_listener = new View.OnClickListener(){
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+    private View.OnClickListener xml_listener = new View.OnClickListener(){
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+    private View.OnClickListener json_listener = new View.OnClickListener(){
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+}

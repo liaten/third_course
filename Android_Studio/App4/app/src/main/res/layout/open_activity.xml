@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:a="http://schemas.android.com/apk/res/android"
+    a:layout_width="match_parent"
+    a:layout_height="match_parent"
+    a:orientation="vertical"
+    a:gravity="center"
+
+    >
+
+    <Button
+        a:id="@+id/txt"
+        a:layout_width="wrap_content"
+        a:layout_height="wrap_content"
+        a:fontFamily="@font/roboto"
+        a:text="@string/txt"
+
+        />
+    <Button
+        a:id="@+id/csv"
+        a:layout_width="wrap_content"
+        a:layout_height="wrap_content"
+        a:fontFamily="@font/roboto"
+        a:text="@string/csv"
+
+        />
+    <Button
+        a:id="@+id/xml"
+        a:layout_width="wrap_content"
+        a:layout_height="wrap_content"
+        a:fontFamily="@font/roboto"
+        a:text="@string/xml"
+
+        />
+    <Button
+        a:id="@+id/json"
+        a:layout_width="wrap_content"
+        a:layout_height="wrap_content"
+        a:fontFamily="@font/roboto"
+        a:text="@string/json"
+
+        />
+</LinearLayout>

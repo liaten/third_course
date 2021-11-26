@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:a="http://schemas.android.com/apk/res/android"
-    a:layout_width="match_parent"
-    a:layout_height="match_parent"
-    a:orientation="vertical"
-    a:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
 
     >
 
     <Button
-        a:id="@+id/txt"
-        a:layout_width="wrap_content"
-        a:layout_height="wrap_content"
-        a:fontFamily="@font/roboto"
-        a:text="@string/txt"
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="@string/txt"
 
         />
     <Button
-        a:id="@+id/csv"
-        a:layout_width="wrap_content"
-        a:layout_height="wrap_content"
-        a:fontFamily="@font/roboto"
-        a:text="@string/csv"
+        android:id="@+id/csv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="@string/csv"
 
         />
     <Button
-        a:id="@+id/xml"
-        a:layout_width="wrap_content"
-        a:layout_height="wrap_content"
-        a:fontFamily="@font/roboto"
-        a:text="@string/xml"
+        android:id="@+id/xml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="@string/xml"
 
         />
     <Button
-        a:id="@+id/json"
-        a:layout_width="wrap_content"
-        a:layout_height="wrap_content"
-        a:fontFamily="@font/roboto"
-        a:text="@string/json"
+        android:id="@+id/json"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="@string/json"
 
         />
 </LinearLayout>

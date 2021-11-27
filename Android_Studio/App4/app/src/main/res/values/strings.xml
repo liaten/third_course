@@ -10,7 +10,18 @@
     <string name="csv_head">Это - текстовый документ формата .csv</string>
     <string name="xml_head">Это - визуальное представление формата .xml</string>
     <string name="json_head">Это - визуальное представление формата .json</string>
-    <string name="save_file">Сохранить файл</string>
+    <string name="save_file">Сохр.</string>
     <string name="enter_text">Введите текст</string>
-    <string name="change_parameter">Изм. параметр</string>
+    <string name="change_parameter">Изм.</string>
+    <string name="add_parameter">Доб.</string>
+    <string name="add_student_head">Добавление параметра \"Студент\"</string>
+    <string name="change_student_head">Изменение параметра \"Студент\"</string>
+    <string name="full_name">ФИО</string>
+    <string name="full_name_hint">Введите полные фамилию, имя, отчество</string>
+    <string name="gender">Пол</string>
+    <string name="gender_enter">Введите пол</string>
+    <string name="programming_lang">ЯП</string>
+    <string name="enter_lang">Введите языки программиорования</string>
+    <string name="IDE_enter">Введите среды разработки</string>
+    <string name="save">Сохранить</string>
 </resources>

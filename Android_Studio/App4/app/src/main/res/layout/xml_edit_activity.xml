@@ -53,5 +53,15 @@
             a:textSize="15sp"
 
             />
+
+        <Button
+            a:id="@+id/add_param_button"
+            a:layout_width="0dp"
+            a:layout_height="wrap_content"
+            a:layout_marginEnd="15dp"
+            a:layout_weight="1"
+            a:fontFamily="@font/roboto"
+            a:text="@string/add_parameter"
+            a:textSize="15sp" />
     </LinearLayout>
 </LinearLayout>

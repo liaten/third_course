@@ -31,19 +31,22 @@ public class OpenActivity extends Activity {
     private View.OnClickListener csv_listener = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
-
+            Intent addIntent = new Intent("android.intent.action.CsvEditActivity");
+            startActivity(addIntent);
         }
     };
     private View.OnClickListener xml_listener = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
-
+            Intent addIntent = new Intent("android.intent.action.XmlEditActivity");
+            startActivity(addIntent);
         }
     };
     private View.OnClickListener json_listener = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
-
+            Intent addIntent = new Intent("android.intent.action.JsonEditActivity");
+            startActivity(addIntent);
         }
     };
 }

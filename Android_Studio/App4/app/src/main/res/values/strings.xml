@@ -6,7 +6,11 @@
     <string name="csv">Открыть csv файл</string>
     <string name="xml">Открыть xml файл</string>
     <string name="json">Открыть json файл</string>
-    <string name="txt_head">Это - текстовый документ</string>
+    <string name="txt_head">Это - текстовый документ формата .txt</string>
+    <string name="csv_head">Это - текстовый документ формата .csv</string>
+    <string name="xml_head">Это - визуальное представление формата .xml</string>
+    <string name="json_head">Это - визуальное представление формата .json</string>
     <string name="save_file">Сохранить файл</string>
     <string name="enter_text">Введите текст</string>
+    <string name="change_parameter">Изм. параметр</string>
 </resources>

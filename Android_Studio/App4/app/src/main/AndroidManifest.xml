@@ -38,6 +38,32 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".CsvEditActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.CsvEditActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".XmlEditActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.XmlEditActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".JsonEditActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.JsonEditActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

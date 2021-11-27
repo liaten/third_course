@@ -1,7 +1,6 @@
 package liaten.app4;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,17 +11,18 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class TxtEditActivity extends Activity {
+public class CsvEditActivity extends Activity {
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.txt_edit_activity);
+        setContentView(R.layout.csv_edit_activity);
 
         // выгрузить текст из файла
         EditText et = (EditText) findViewById(R.id.editTextTextMultiLine);
         FileInputStream f = null;
         try{
-            f = openFileInput("1.txt");
+            f = openFileInput("1.csv");
             byte[] bytes = new byte[f.available()];
             f.read(bytes);
             String text = new String(bytes);
@@ -35,9 +35,9 @@ public class TxtEditActivity extends Activity {
 
         // добавить текст в файл
         Button push_txt = (Button) findViewById(R.id.push_button);
-        push_txt.setOnClickListener(txt_export_listener);
+        push_txt.setOnClickListener(csv_export_listener);
     }
-    private View.OnClickListener txt_export_listener = new View.OnClickListener()
+    private View.OnClickListener csv_export_listener = new View.OnClickListener()
     {
         @Override
         public void onClick(View view)
@@ -47,13 +47,13 @@ public class TxtEditActivity extends Activity {
             {
                 EditText et = (EditText) findViewById(R.id.editTextTextMultiLine);
                 String text = et.getText().toString();
-                f = openFileOutput("1.txt", MODE_PRIVATE);
+                f = openFileOutput("1.csv", MODE_PRIVATE);
                 f.write(text.getBytes());
-                Toast.makeText(TxtEditActivity.this,"Файл сохранен", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CsvEditActivity.this,"Файл сохранен", Toast.LENGTH_SHORT).show();
             }
             catch (IOException ex)
             {
-                Toast.makeText(TxtEditActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CsvEditActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     };

@@ -19,8 +19,8 @@ public class CsvEditActivity extends Activity {
         setContentView(R.layout.csv_edit_activity);
 
         // выгрузить текст из файла
-        EditText et = (EditText) findViewById(R.id.editTextTextMultiLine);
-        FileInputStream f = null;
+        EditText et = findViewById(R.id.editTextTextMultiLineCsv);
+        FileInputStream f;
         try{
             f = openFileInput("1.csv");
             byte[] bytes = new byte[f.available()];
@@ -34,27 +34,22 @@ public class CsvEditActivity extends Activity {
         }
 
         // добавить текст в файл
-        Button push_txt = (Button) findViewById(R.id.push_button);
+        Button push_txt = findViewById(R.id.push_button);
         push_txt.setOnClickListener(csv_export_listener);
     }
-    private View.OnClickListener csv_export_listener = new View.OnClickListener()
-    {
-        @Override
-        public void onClick(View view)
+    private final View.OnClickListener csv_export_listener = view -> {
+        FileOutputStream f;
+        try
         {
-            FileOutputStream f = null;
-            try
-            {
-                EditText et = (EditText) findViewById(R.id.editTextTextMultiLine);
-                String text = et.getText().toString();
-                f = openFileOutput("1.csv", MODE_PRIVATE);
-                f.write(text.getBytes());
-                Toast.makeText(CsvEditActivity.this,"Файл сохранен", Toast.LENGTH_SHORT).show();
-            }
-            catch (IOException ex)
-            {
-                Toast.makeText(CsvEditActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+            EditText et = findViewById(R.id.editTextTextMultiLine);
+            String text = et.getText().toString();
+            f = openFileOutput("1.csv", MODE_PRIVATE);
+            f.write(text.getBytes());
+            Toast.makeText(CsvEditActivity.this,"Файл сохранен", Toast.LENGTH_SHORT).show();
+        }
+        catch (IOException ex)
+        {
+            Toast.makeText(CsvEditActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
 }

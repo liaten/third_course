@@ -19,7 +19,7 @@ public class TxtEditActivity extends Activity {
         setContentView(R.layout.txt_edit_activity);
 
         // выгрузить текст из файла
-        EditText et = (EditText) findViewById(R.id.editTextTextMultiLine);
+        EditText et = (EditText) findViewById(R.id.editTextTextMultiLineTxt);
         FileInputStream f = null;
         try{
             f = openFileInput("1.txt");

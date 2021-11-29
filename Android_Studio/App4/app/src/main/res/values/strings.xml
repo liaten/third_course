@@ -8,12 +8,12 @@
     <string name="json">Открыть json файл</string>
     <string name="txt_head">Это - текстовый документ формата .txt</string>
     <string name="csv_head">Это - текстовый документ формата .csv</string>
-    <string name="xml_head">Это - визуальное представление формата .xml</string>
+    <string name="xml_head_visual">Это - визуальное представление формата .xml</string>
+    <string name="xml_head_text">Это - текстовое представление формата .xml</string>
     <string name="json_head">Это - визуальное представление формата .json</string>
-    <string name="save_file">Сохр.</string>
+    <string name="save_file">Сохранить</string>
     <string name="enter_text">Введите текст</string>
-    <string name="change_parameter">Изм.</string>
-    <string name="add_parameter">Доб.</string>
+    <string name="add_parameter">Добавить</string>
     <string name="add_student_head">Добавление параметра \"Студент\"</string>
     <string name="change_student_head">Изменение параметра \"Студент\"</string>
     <string name="full_name">ФИО</string>

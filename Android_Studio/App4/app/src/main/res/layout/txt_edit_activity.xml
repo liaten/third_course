@@ -20,7 +20,7 @@
         a:textSize="15sp"/>
 
     <EditText
-        a:id="@+id/editTextTextMultiLine"
+        a:id="@+id/editTextTextMultiLineTxt"
         a:layout_width="match_parent"
         a:layout_height="0dp"
         a:ems="10"

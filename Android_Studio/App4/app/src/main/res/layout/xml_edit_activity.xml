@@ -9,23 +9,44 @@
     >
 
     <TextView
-        a:id="@+id/textView"
+        a:id="@+id/xml_head"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
-        a:text="@string/xml_head"
+        a:text="@string/xml_head_visual"
         a:layout_marginTop="15dp"
         a:layout_marginHorizontal="15dp"
         a:layout_marginBottom="0dp"
         a:fontFamily="@font/roboto"
         a:textSize="15sp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <FrameLayout
+        a:id="@+id/frame_layout"
         a:layout_width="match_parent"
         a:layout_height="0dp"
-        a:layout_margin="15dp"
         a:layout_weight="1"
-        a:fontFamily="@font/roboto"
-        a:textSize="15sp" />
+        >
+        <ListView
+            a:id="@+id/listview_student"
+            a:layout_width="match_parent"
+            a:layout_height="match_parent"
+            a:layout_margin="15dp"
+            a:fontFamily="@font/roboto"
+            a:textSize="15sp"
+            a:background="@android:color/transparent"
+            a:divider="#CCCCCC"
+            a:dividerHeight="1dp"
+            a:visibility="visible"
+            />
+        <EditText
+            a:id="@+id/editTextMultiLineXml"
+            a:layout_width="match_parent"
+            a:layout_height="match_parent"
+            a:visibility="invisible"
+            >
+
+        </EditText>
+    </FrameLayout>
+
 
     <LinearLayout
         a:layout_width="match_parent"
@@ -42,17 +63,6 @@
             a:fontFamily="@font/roboto"
             a:text="@string/save_file"
             a:textSize="15sp" />
-        <Button
-            a:id="@+id/edit_param_button"
-            a:layout_width="0dp"
-            a:layout_weight="1"
-            a:layout_height="wrap_content"
-            a:layout_marginEnd="15dp"
-            a:text="@string/change_parameter"
-            a:fontFamily="@font/roboto"
-            a:textSize="15sp"
-
-            />
 
         <Button
             a:id="@+id/add_param_button"

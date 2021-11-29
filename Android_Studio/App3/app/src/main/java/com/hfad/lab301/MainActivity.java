@@ -61,9 +61,7 @@ public class MainActivity extends AppCompatActivity {
         add_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                //Toast.makeText(MainActivity.this, "Circle Button Clicked",Toast.LENGTH_SHORT).show();
                 Intent addIntent = new Intent("android.intent.action.add_student_activity");
-                //startActivity(addIntent);
                 startActivityForResult(addIntent,1);
             }
         });

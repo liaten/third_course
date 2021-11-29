@@ -9,7 +9,7 @@
     >
 
     <TextView
-        a:id="@+id/textView"
+        a:id="@+id/textViewTxt"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
         a:text="@string/csv_head"
@@ -20,7 +20,7 @@
         a:textSize="15sp"/>
 
     <EditText
-        a:id="@+id/editTextTextMultiLineCsv"
+        a:id="@+id/editTextCsv"
         a:layout_width="match_parent"
         a:layout_height="0dp"
         a:ems="10"

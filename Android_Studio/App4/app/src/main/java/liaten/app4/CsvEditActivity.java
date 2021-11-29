@@ -19,7 +19,7 @@ public class CsvEditActivity extends Activity {
         setContentView(R.layout.csv_edit_activity);
 
         // выгрузить текст из файла
-        EditText et = findViewById(R.id.editTextTextMultiLineCsv);
+        EditText et = findViewById(R.id.editTextCsv);
         FileInputStream f;
         try{
             f = openFileInput("1.csv");
@@ -34,14 +34,14 @@ public class CsvEditActivity extends Activity {
         }
 
         // добавить текст в файл
-        Button push_txt = findViewById(R.id.push_button);
-        push_txt.setOnClickListener(csv_export_listener);
+        Button push_csv = findViewById(R.id.push_button);
+        push_csv.setOnClickListener(csv_export_listener);
     }
     private final View.OnClickListener csv_export_listener = view -> {
         FileOutputStream f;
         try
         {
-            EditText et = findViewById(R.id.editTextTextMultiLine);
+            EditText et = findViewById(R.id.editTextCsv);
             String text = et.getText().toString();
             f = openFileOutput("1.csv", MODE_PRIVATE);
             f.write(text.getBytes());

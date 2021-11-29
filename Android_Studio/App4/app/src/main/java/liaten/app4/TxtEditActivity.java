@@ -1,7 +1,6 @@
 package liaten.app4;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +18,7 @@ public class TxtEditActivity extends Activity {
         setContentView(R.layout.txt_edit_activity);
 
         // выгрузить текст из файла
-        EditText et = (EditText) findViewById(R.id.editTextTextMultiLineTxt);
+        EditText et = (EditText) findViewById(R.id.editTextTxt);
         FileInputStream f = null;
         try{
             f = openFileInput("1.txt");
@@ -45,7 +44,7 @@ public class TxtEditActivity extends Activity {
             FileOutputStream f = null;
             try
             {
-                EditText et = (EditText) findViewById(R.id.editTextTextMultiLine);
+                EditText et = (EditText) findViewById(R.id.editTextTxt);
                 String text = et.getText().toString();
                 f = openFileOutput("1.txt", MODE_PRIVATE);
                 f.write(text.getBytes());

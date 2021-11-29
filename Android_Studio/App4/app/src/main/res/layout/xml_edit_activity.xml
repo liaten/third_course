@@ -41,9 +41,10 @@
             a:id="@+id/editTextMultiLineXml"
             a:layout_width="match_parent"
             a:layout_height="match_parent"
+            a:layout_gravity="top|start"
+            a:gravity="top|start"
             a:visibility="invisible"
             >
-
         </EditText>
     </FrameLayout>
 

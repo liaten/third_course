@@ -44,6 +44,9 @@
             a:layout_gravity="top|start"
             a:gravity="top|start"
             a:visibility="invisible"
+            a:fontFamily="@font/roboto"
+            a:textSize="15sp"
+            a:inputType="textFilter|textMultiLine"
             >
         </EditText>
     </FrameLayout>
@@ -65,6 +68,16 @@
             a:text="@string/save_file"
             a:textSize="15sp" />
 
+        <Button
+            a:id="@+id/update_button"
+            a:text="@string/update_from_file"
+            a:layout_width="0dp"
+            a:layout_weight="1"
+            a:layout_marginEnd="15dp"
+            a:layout_height="wrap_content"
+            a:fontFamily="@font/roboto"
+            a:textSize="15sp"
+            />
         <Button
             a:id="@+id/add_param_button"
             a:layout_width="0dp"

@@ -11,9 +11,9 @@
     <string name="xml_head_visual">Это - визуальное представление формата .xml</string>
     <string name="xml_head_text">Это - текстовое представление формата .xml</string>
     <string name="json_head">Это - визуальное представление формата .json</string>
-    <string name="save_file">Сохранить</string>
+    <string name="save_file">Сохр. в файл</string>
     <string name="enter_text">Введите текст</string>
-    <string name="add_parameter">Добавить</string>
+    <string name="add_parameter">Доб. студента</string>
     <string name="add_student_head">Добавление параметра \"Студент\"</string>
     <string name="change_student_head">Изменение параметра \"Студент\"</string>
     <string name="full_name">ФИО</string>
@@ -24,4 +24,5 @@
     <string name="enter_lang">Введите языки программиорования</string>
     <string name="IDE_enter">Введите среды разработки</string>
     <string name="save">Сохранить</string>
+    <string name="update_from_file">Обн. из файла</string>
 </resources>

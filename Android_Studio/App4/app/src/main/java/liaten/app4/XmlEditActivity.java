@@ -14,8 +14,14 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,29 +91,35 @@ public class XmlEditActivity extends Activity {
         add_button.setOnClickListener(add_listener);
         StudentETXml = findViewById(R.id.editTextMultiLineXml);
         StudentLV = findViewById(R.id.listview_student);
+
         Student Vlad = new Student("Пестерев Владислав Олегович","Мужской","C#, Kotlin, Java","Android Studio, Visual Studio");
-        Student Alex = new Student("Ватаманов Александр Александрович","Мужской","Java, C#, Delphi","Visual Studio");
-        Student Artem = new Student("Гарматко Артем Сергеевич","Мужский","C#, Java","Visual Studio");
-        Student Andrey = new Student("Черняев Андрей Григорьевич","Мужской","Java","IntelliJ Idea");
+        Student Alex = new Student("Ватаманов Александр Александрович","Мужской","Java, C#, Delphi, SQL","Visual Studio");
+        Student Artem = new Student("Гарматко Артем Сергеевич","Мужской","C#, Java, Delphi","Visual Studio");
+        Student Andrey_CH = new Student("Черняев Андрей Григорьевич","Мужской","Java, SQL","IntelliJ Idea");
+        Student Igor = new Student("Гончаров Игорь Валерьевич","Мужской","Java, SQL, C#","Android Studio");
+        Student Andrey_G = new Student("Жариков Андрей Александрович","Мужской","Delphi","Embarcadero");
         student_list.add(Vlad);
         student_list.add(Alex);
         student_list.add(Artem);
-        student_list.add(Andrey);
-        String to_edit_text = "<students>";
+        student_list.add(Andrey_CH);
+        student_list.add(Igor);
+        student_list.add(Andrey_G);
+
+        StringBuilder to_edit_text = new StringBuilder("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<students>");
         String student;
         for (int i = 0; i < student_list.size(); i++)
         {
-            student="\n    <student>\n";
-            student+="        <full_name>";
+            student="\n\t\t<student>\n";
+            student+="\t\t\t\t<full_name>";
             student+=student_list.get(i).Get_Full_Name();
             student+="</full_name>\n";
-            student+="        <ide>";
+            student+="\t\t\t\t<ide>";
             student+=student_list.get(i).Get_IDE();
             student+="</ide>\n";
-            student+="        <gender>";
+            student+="\t\t\t\t<gender>";
             student+=student_list.get(i).Get_Gender();
             student+="</gender>\n";
-            student+="        <pl>";
+            student+="\t\t\t\t<pl>";
             student+=student_list.get(i).Get_Programming_Languages();
             student+="</pl>\n";
             list.add
@@ -117,11 +129,11 @@ public class XmlEditActivity extends Activity {
                             " | " + student_list.get(i).Get_Gender() +
                             " | " + student_list.get(i).Get_Programming_Languages()
                     );
-            student+="    </student>";
-            to_edit_text+=student;
+            student+="\t\t</student>";
+            to_edit_text.append(student);
         }
-        to_edit_text+="\n</students>";
-        StudentETXml.setText(to_edit_text);
+        to_edit_text.append("\n</students>");
+        StudentETXml.setText(to_edit_text.toString());
 
         adapter = new ArrayAdapter(XmlEditActivity.this, android.R.layout.simple_list_item_1,list);
         StudentLV.setAdapter(adapter);
@@ -139,21 +151,70 @@ public class XmlEditActivity extends Activity {
             editIntent.putExtra("id",idd);
             startActivityForResult(editIntent,2);
         });
-
+        Button save_button = findViewById(R.id.push_button);
+        save_button.setOnClickListener(save_xml_listener);
+        Button update_button = findViewById(R.id.update_button);
+        update_button.setOnClickListener(update_from_xml_listener);
     }
+
+    private final View.OnClickListener update_from_xml_listener = view -> {
+        StudentETXml = findViewById(R.id.editTextMultiLineXml);
+        FileInputStream fis;
+        try
+        {
+            fis = openFileInput("1.xml");
+            byte[] bytes = new byte[fis.available()];
+            fis.read(bytes);
+            String text = new String(bytes);
+            StudentETXml.setText(text);
+            Toast.makeText(this, "Обновлено", Toast.LENGTH_SHORT).show();
+        }
+        catch (IOException ex)
+        {
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private final View.OnClickListener save_xml_listener = view -> {
+        StudentETXml = findViewById(R.id.editTextMultiLineXml);
+        FileOutputStream fos;
+        File path = new File(getFilesDir(),"xml");
+        if(!path.exists()){
+            path.mkdirs();
+        }
+        File my_path = new File(path, "my_file.xml");
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(my_path.getName()))){
+            writer.write(StudentETXml.getText().toString());
+            Toast.makeText(XmlEditActivity.this, "Всё ок", Toast.LENGTH_SHORT).show();
+        }
+        catch (IOException ex){
+            Toast.makeText(XmlEditActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        try
+        {
+            String text = StudentETXml.getText().toString();
+            fos = openFileOutput("1.xml", MODE_PRIVATE);
+            fos.write(text.getBytes());
+            Toast.makeText(XmlEditActivity.this,"Файл сохранен", Toast.LENGTH_SHORT).show();
+        }
+        catch (IOException ex)
+        {
+            Toast.makeText(XmlEditActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
 
     private final View.OnClickListener change_on_head_click_listener = view -> {
         head_text_view = findViewById(R.id.xml_head);
         StudentETXml = findViewById(R.id.editTextMultiLineXml);
         StudentLV = findViewById(R.id.listview_student);
-        if(IsText==false){
+        if(!IsText){
             // text is now visible
             head_text_view.setText(getString(R.string.xml_head_text));
             StudentLV.setVisibility(View.INVISIBLE);
             StudentETXml.setVisibility(View.VISIBLE);
             IsText = true;
         }
-        else if(IsText){
+        else {
             // text is now invisible
             head_text_view.setText(getString(R.string.xml_head_visual));
             StudentLV.setVisibility(View.VISIBLE);
@@ -167,22 +228,6 @@ public class XmlEditActivity extends Activity {
         startActivityForResult(addIntent,1);
     };
 
-    private final View.OnClickListener xml_export_listener = view -> {
-        FileOutputStream f;
-        try
-        {
-            EditText et = findViewById(R.id.editTextTxt);
-            String text = et.getText().toString();
-            f = openFileOutput("1.xml", MODE_PRIVATE);
-            f.write(text.getBytes());
-            Toast.makeText(XmlEditActivity.this,"Файл сохранен", Toast.LENGTH_SHORT).show();
-        }
-        catch (IOException ex)
-        {
-            Toast.makeText(XmlEditActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    };
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -194,31 +239,32 @@ public class XmlEditActivity extends Activity {
                     PS = data.getParcelableExtra("student");
                     student_list.add(new Student(PS.Get_Full_Name(),PS.Get_Gender(),PS.Get_Programming_Languages(),PS.Get_IDE()));
                     int last_student_place = student_list.size()-1;
-                    list.add(
-                            student_list.get(last_student_place).Get_Full_Name() +
+                    list.add
+                            (
+                                    student_list.get(last_student_place).Get_Full_Name() +
                                     "\n" + student_list.get(last_student_place).Get_IDE() +
                                     " | " + student_list.get(last_student_place).Get_Gender() +
                                     " | " + student_list.get(last_student_place).Get_Programming_Languages()
-                    );
+                            );
                     adapter = new ArrayAdapter(XmlEditActivity.this, android.R.layout.simple_list_item_1,list);
                     StudentLV.setAdapter(adapter);
                     StudentETXml = findViewById(R.id.editTextMultiLineXml);
                     String from_edit_text = StudentETXml.getText().toString();
                     from_edit_text = from_edit_text.substring(0,from_edit_text.length()-12);
-                    String student = "\n    <student>\n";
-                    student+="        <full_name>";
+                    String student = "\n\t\t<student>\n";
+                    student+="\t\t\t\t<full_name>";
                     student+=student_list.get(last_student_place).Get_Full_Name();
                     student+="</full_name>\n";
-                    student+="        <ide>";
+                    student+="\t\t\t\t<ide>";
                     student+=student_list.get(last_student_place).Get_IDE();
                     student+="</ide>\n";
-                    student+="        <gender>";
+                    student+="\t\t\t\t<gender>";
                     student+=student_list.get(last_student_place).Get_Gender();
                     student+="</gender>\n";
-                    student+="        <pl>";
+                    student+="\t\t\t\t<pl>";
                     student+=student_list.get(last_student_place).Get_Programming_Languages();
                     student+="</pl>\n";
-                    student+="    </student>";
+                    student+="\t\t</student>";
                     from_edit_text+=student;
                     from_edit_text+="\n</students>";
                     StudentETXml.setText(from_edit_text);
@@ -232,25 +278,25 @@ public class XmlEditActivity extends Activity {
                 if (data != null) {
                     PS = data.getParcelableExtra("student");
                     int id = data.getIntExtra("id",0);
-                    student_list.get((int) id).Set_Full_Name(PS.Get_Full_Name());
-                    student_list.get((int) id).Set_Gender(PS.Get_Gender());
-                    student_list.get((int) id).Set_IDE(PS.Get_IDE());
-                    student_list.get((int) id).Set_Programming_Languages(PS.Get_Programming_Languages());
+                    student_list.get(id).Set_Full_Name(PS.Get_Full_Name());
+                    student_list.get(id).Set_Gender(PS.Get_Gender());
+                    student_list.get(id).Set_IDE(PS.Get_IDE());
+                    student_list.get(id).Set_Programming_Languages(PS.Get_Programming_Languages());
                     list.clear();
-                    String to_edit_text = "<students>";
+                    StringBuilder to_edit_text = new StringBuilder("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<students>");
                     String student;
                     for(int i = 0; i< student_list.size(); i++){
-                        student="\n    <student>\n";
-                        student+="        <full_name>";
+                        student="\n\t\t<student>\n";
+                        student+="\t\t\t\t<full_name>";
                         student+=student_list.get(i).Get_Full_Name();
                         student+="</full_name>\n";
-                        student+="        <ide>";
+                        student+="\t\t\t\t<ide>";
                         student+=student_list.get(i).Get_IDE();
                         student+="</ide>\n";
-                        student+="        <gender>";
+                        student+="\t\t\t\t<gender>";
                         student+=student_list.get(i).Get_Gender();
                         student+="</gender>\n";
-                        student+="        <pl>";
+                        student+="\t\t\t\t<pl>";
                         student+=student_list.get(i).Get_Programming_Languages();
                         student+="</pl>\n";
                         list.add
@@ -260,17 +306,15 @@ public class XmlEditActivity extends Activity {
                                     " | " + student_list.get(i).Get_Gender() +
                                     " | " + student_list.get(i).Get_Programming_Languages()
                                 );
-                        student+="    </student>";
-                        to_edit_text+=student;
+                        student+="\t\t</student>";
+                        to_edit_text.append(student);
                     }
-                    to_edit_text+="\n</students>";
-                    StudentETXml.setText(to_edit_text);
+                    to_edit_text.append("\n</students>");
+                    StudentETXml.setText(to_edit_text.toString());
                     adapter = new ArrayAdapter(XmlEditActivity.this, android.R.layout.simple_list_item_1,list);
                     StudentLV.setAdapter(adapter);
                 }
             }
         }
     }
-
 }
-

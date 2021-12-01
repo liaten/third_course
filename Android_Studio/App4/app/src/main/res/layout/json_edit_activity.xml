@@ -9,38 +9,82 @@
     >
 
     <TextView
-        a:id="@+id/textViewTxt"
+        a:id="@+id/json_head"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
-        a:text="@string/json_head"
+        a:text="@string/json_head_visual"
         a:layout_marginTop="15dp"
         a:layout_marginHorizontal="15dp"
         a:layout_marginBottom="0dp"
         a:fontFamily="@font/roboto"
         a:textSize="15sp"/>
 
-    <EditText
-        a:id="@+id/editTextTxt"
+    <FrameLayout
+        a:id="@+id/frame_layout"
         a:layout_width="match_parent"
         a:layout_height="0dp"
-        a:ems="10"
-        a:gravity="start|top"
-        a:inputType="textMultiLine"
         a:layout_weight="1"
-        a:layout_margin="15dp"
-        a:hint="@string/enter_text"
-        a:fontFamily="@font/roboto"
-        a:textSize="15sp"
-        a:background="@android:color/transparent"
-        />
+        >
+        <ListView
+            a:id="@+id/listview_student"
+            a:layout_width="match_parent"
+            a:layout_height="match_parent"
+            a:layout_margin="15dp"
+            a:fontFamily="@font/roboto"
+            a:textSize="15sp"
+            a:background="@android:color/transparent"
+            a:divider="#CCCCCC"
+            a:dividerHeight="1dp"
+            a:visibility="visible"
+            />
+        <EditText
+            a:id="@+id/editTextMultiLineJson"
+            a:layout_width="match_parent"
+            a:layout_height="match_parent"
+            a:layout_gravity="top|start"
+            a:gravity="top|start"
+            a:visibility="invisible"
+            a:fontFamily="@font/roboto"
+            a:textSize="15sp"
+            a:inputType="textFilter|textMultiLine"
+            >
+        </EditText>
+    </FrameLayout>
 
-    <Button
-        a:id="@+id/push_button"
+    <LinearLayout
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
-        a:text="@string/save_file"
-        a:layout_marginHorizontal="15dp"
-        a:layout_marginBottom="15dp"
-        a:fontFamily="@font/roboto"
-        a:textSize="15sp"/>
+        a:orientation="horizontal">
+
+        <Button
+            a:id="@+id/push_button"
+            a:layout_width="0dp"
+            a:layout_weight="1"
+            a:layout_height="wrap_content"
+            a:layout_marginHorizontal="15dp"
+            a:layout_marginBottom="15dp"
+            a:fontFamily="@font/roboto"
+            a:text="@string/save_file"
+            a:textSize="15sp" />
+
+        <Button
+            a:id="@+id/update_button"
+            a:text="@string/update_from_file"
+            a:layout_width="0dp"
+            a:layout_weight="1"
+            a:layout_marginEnd="15dp"
+            a:layout_height="wrap_content"
+            a:fontFamily="@font/roboto"
+            a:textSize="15sp"
+            />
+        <Button
+            a:id="@+id/add_param_button"
+            a:layout_width="0dp"
+            a:layout_height="wrap_content"
+            a:layout_marginEnd="15dp"
+            a:layout_weight="1"
+            a:fontFamily="@font/roboto"
+            a:text="@string/add_parameter"
+            a:textSize="15sp" />
+    </LinearLayout>
 </LinearLayout>

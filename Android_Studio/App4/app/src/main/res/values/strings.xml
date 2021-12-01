@@ -10,7 +10,8 @@
     <string name="csv_head">Это - текстовый документ формата .csv</string>
     <string name="xml_head_visual">Это - визуальное представление формата .xml</string>
     <string name="xml_head_text">Это - текстовое представление формата .xml</string>
-    <string name="json_head">Это - визуальное представление формата .json</string>
+    <string name="json_head_visual">Это - визуальное представление формата .json</string>
+    <string name="json_head_text">Это - текстовое представление формата .json</string>
     <string name="save_file">Сохр. в файл</string>
     <string name="enter_text">Введите текст</string>
     <string name="add_parameter">Доб. студента</string>

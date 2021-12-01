@@ -14,14 +14,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -178,18 +176,6 @@ public class XmlEditActivity extends Activity {
     private final View.OnClickListener save_xml_listener = view -> {
         StudentETXml = findViewById(R.id.editTextMultiLineXml);
         FileOutputStream fos;
-        File path = new File(getFilesDir(),"xml");
-        if(!path.exists()){
-            path.mkdirs();
-        }
-        File my_path = new File(path, "my_file.xml");
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(my_path.getName()))){
-            writer.write(StudentETXml.getText().toString());
-            Toast.makeText(XmlEditActivity.this, "Всё ок", Toast.LENGTH_SHORT).show();
-        }
-        catch (IOException ex){
-            Toast.makeText(XmlEditActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-        }
         try
         {
             String text = StudentETXml.getText().toString();

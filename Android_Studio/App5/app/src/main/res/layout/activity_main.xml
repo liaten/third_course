@@ -4,6 +4,7 @@
     a:layout_width="match_parent"
     a:layout_height="match_parent"
     a:orientation="vertical"
+    a:backgroundTint="#d0fabc"
     >
     <TextView
         a:layout_width="wrap_content"
@@ -11,43 +12,35 @@
         a:gravity="center"
         a:layout_gravity="center_horizontal"
         a:text="@string/main_head"
-        a:textSize="24sp"
+        a:textSize="34sp"
+        a:textColor="#0c2d43"
+        a:layout_margin="10dp"
+        a:fontFamily="@font/roboto_regular"
         />
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
+        a:id="@+id/company_recycler_view"
         a:layout_width="match_parent"
-        a:layout_height="wrap_content"
-
+        a:layout_height="0dp"
+        a:layout_weight="1"
+        a:theme="@style/ListFont"
+        a:layout_margin="10dp"
         />
     <LinearLayout
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
         a:orientation="horizontal"
-        a:padding="10dp"
+        a:gravity="center|bottom"
+        a:layout_margin="10dp"
         >
         <Button
             a:id="@+id/add_button"
-            a:layout_width="0dp"
+            a:layout_width="wrap_content"
             a:layout_height="wrap_content"
-            a:layout_weight="1"
             a:text="@string/add"
-            a:textSize="13sp"
-            style="?android:attr/buttonBarButtonStyle" />
-        <Button
-            a:id="@+id/change_button"
-            a:layout_width="0dp"
-            a:layout_height="wrap_content"
-            a:layout_weight="1"
-            a:text="@string/change"
-            a:layout_marginHorizontal="10dp"
-            a:textSize="13sp"
-            style="?android:attr/buttonBarButtonStyle" />
-        <Button
-            a:id="@+id/delete_button"
-            a:layout_width="0dp"
-            a:layout_height="wrap_content"
-            a:layout_weight="1"
-            a:text="@string/delete"
-            a:textSize="13sp"
-            style="?android:attr/buttonBarButtonStyle" />
+            a:textSize="24sp"
+            a:backgroundTint="#18556d"
+            a:fontFamily="@font/roboto_regular"
+            />
+
     </LinearLayout>
 </LinearLayout>

@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_add.xml" value="0.36666666666666664" />
-        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_change.xml" value="0.36666666666666664" />
-        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_delete.xml" value="0.36666666666666664" />
-        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_add.xml" value="0.33" />
+        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_change.xml" value="0.33" />
+        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_delete.xml" value="0.33" />
+        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/list.xml" value="0.5" />
+        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22135416666666666" />
       </map>
     </option>
   </component>

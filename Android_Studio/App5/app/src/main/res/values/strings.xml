@@ -1,12 +1,13 @@
 <resources>
-    <string name="app_name">App5</string>
-    <string name="add_head">Добавить:</string>
-    <string name="company">Компанию</string>
-    <string name="founder">Основателя</string>
+    <string name="app_name">Компании и их продукты</string>
+    <string name="add_head">Добавление</string>
+    <string name="company">Компания</string>
+    <string name="founder">Основатель</string>
     <string name="product">Продукт</string>
     <string name="enter_text">Введите текстовое описание</string>
     <string name="add">Добавить</string>
     <string name="change_head">Изменить:</string>
+    <string name="delete_head">Удалить:</string>
     <string name="delete">Удалить</string>
     <string name="main_head">Компании и их продукты</string>
     <string name="change">Изменить</string>

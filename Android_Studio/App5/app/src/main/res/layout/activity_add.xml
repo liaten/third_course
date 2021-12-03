@@ -4,6 +4,7 @@
     a:layout_width="match_parent"
     a:layout_height="match_parent"
     a:orientation="vertical"
+    a:backgroundTint="#d0fabc"
     >
     <TextView
         a:layout_width="wrap_content"
@@ -12,56 +13,57 @@
         a:layout_gravity="center_horizontal"
         a:text="@string/add_head"
         a:textSize="34sp"
+        a:textColor="#0c2d43"
+        a:layout_margin="10dp"
+        a:fontFamily="@font/roboto_regular"
         />
-
-    <RadioGroup
-        a:layout_width="match_parent"
-        a:layout_height="wrap_content">
-        <RadioButton
-            a:id="@+id/company_switch"
-            a:layout_width="wrap_content"
-            a:layout_height="wrap_content"
-            a:text="@string/company"
-            a:textSize="24sp"
-
-            />
-        <RadioButton
-            a:id="@+id/founder_switch"
-            a:layout_width="wrap_content"
-            a:layout_height="wrap_content"
-            a:text="@string/founder"
-            a:textSize="24sp"
-
-            />
-        <RadioButton
-            a:id="@+id/product_switch"
-            a:layout_width="wrap_content"
-            a:layout_height="wrap_content"
-            a:text="@string/product"
-            a:textSize="24sp"
-
-            />
-    </RadioGroup>
-    <EditText
+    <LinearLayout
         a:layout_width="match_parent"
         a:layout_height="0dp"
         a:layout_weight="1"
-        a:gravity="top|start"
-        a:hint="@string/enter_text"
-        a:importantForAutofill="no"
-        a:inputType="textPersonName" />
+        a:orientation="vertical"
+        >
+        <EditText
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:hint="@string/company"
+            a:layout_margin="10dp"
+            a:fontFamily="@font/roboto_regular"
+            a:textSize="24sp"
+            />
+        <EditText
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:hint="@string/founder"
+            a:layout_margin="10dp"
+            a:fontFamily="@font/roboto_regular"
+            a:textSize="24sp"
+            />
+        <EditText
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:hint="@string/product"
+            a:layout_margin="10dp"
+            a:fontFamily="@font/roboto_regular"
+            a:textSize="24sp"
+            />
+
+    </LinearLayout>
     <LinearLayout
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
         a:orientation="horizontal"
-        a:gravity="center"
+        a:gravity="center|bottom"
+        a:layout_margin="10dp"
         >
         <Button
             a:id="@+id/add_button"
             a:layout_width="wrap_content"
             a:layout_height="wrap_content"
             a:text="@string/add"
-            a:textSize="13sp"
+            a:textSize="24sp"
+            a:backgroundTint="#18556d"
+            a:fontFamily="@font/roboto_regular"
             />
 
     </LinearLayout>

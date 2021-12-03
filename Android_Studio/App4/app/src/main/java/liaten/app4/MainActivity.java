@@ -18,11 +18,8 @@ public class MainActivity extends AppCompatActivity {
         open_button.setOnClickListener(open_button_listener);
 
     }
-    private View.OnClickListener open_button_listener = new View.OnClickListener(){
-        @Override
-        public void onClick(View view) {
-            Intent addIntent = new Intent("android.intent.action.OpenActivity");
-            startActivity(addIntent);
-        }
+    private View.OnClickListener open_button_listener = view -> {
+        Intent addIntent = new Intent("android.intent.action.OpenActivity");
+        startActivity(addIntent);
     };
 }

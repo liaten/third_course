@@ -2,6 +2,52 @@
 <LinearLayout
     xmlns:a="http://schemas.android.com/apk/res/android"
     a:layout_width="match_parent"
-    a:layout_height="match_parent">
+    a:layout_height="match_parent"
+    a:orientation="vertical"
+    >
+    <TextView
+        a:layout_width="wrap_content"
+        a:layout_height="wrap_content"
+        a:gravity="center"
+        a:layout_gravity="center_horizontal"
+        a:text="@string/main_head"
+        a:textSize="24sp"
+        />
+    <ListView
+        a:layout_width="match_parent"
+        a:layout_height="wrap_content"
 
+        />
+    <LinearLayout
+        a:layout_width="match_parent"
+        a:layout_height="wrap_content"
+        a:orientation="horizontal"
+        a:padding="10dp"
+        >
+        <Button
+            a:id="@+id/add_button"
+            a:layout_width="0dp"
+            a:layout_height="wrap_content"
+            a:layout_weight="1"
+            a:text="@string/add"
+            a:textSize="13sp"
+            style="?android:attr/buttonBarButtonStyle" />
+        <Button
+            a:id="@+id/change_button"
+            a:layout_width="0dp"
+            a:layout_height="wrap_content"
+            a:layout_weight="1"
+            a:text="@string/change"
+            a:layout_marginHorizontal="10dp"
+            a:textSize="13sp"
+            style="?android:attr/buttonBarButtonStyle" />
+        <Button
+            a:id="@+id/delete_button"
+            a:layout_width="0dp"
+            a:layout_height="wrap_content"
+            a:layout_weight="1"
+            a:text="@string/delete"
+            a:textSize="13sp"
+            style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
 </LinearLayout>

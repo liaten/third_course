@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_add.xml" value="0.36666666666666664" />
+        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_change.xml" value="0.36666666666666664" />
+        <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_delete.xml" value="0.36666666666666664" />
         <entry key="..\:/Desktop/third_course/Android_Studio/App5/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
       </map>
     </option>

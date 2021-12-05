@@ -8,6 +8,7 @@
     a:backgroundTint="#d0fabc"
     >
     <TextView
+        a:id="@+id/title_head"
         a:layout_width="wrap_content"
         a:layout_height="wrap_content"
         a:gravity="center"
@@ -18,12 +19,19 @@
         a:layout_margin="10dp"
         a:fontFamily="@font/roboto_regular"
         />
-    <androidx.recyclerview.widget.RecyclerView
-        a:id="@+id/company_recycler_view"
+    <ListView
+        a:id="@+id/listview_company"
         a:layout_width="match_parent"
         a:layout_height="0dp"
         a:layout_weight="1"
-        a:layout_margin="10dp"
+        a:layout_marginHorizontal="10dp"
+        a:fontFamily="@font/roboto_regular"
+        a:textSize="15sp"
+        a:textColor="#0c2d43"
+        a:background="@android:color/transparent"
+        a:divider="#CCCCCC"
+        a:dividerHeight="1dp"
+        a:visibility="visible"
         />
     <LinearLayout
         a:layout_width="match_parent"

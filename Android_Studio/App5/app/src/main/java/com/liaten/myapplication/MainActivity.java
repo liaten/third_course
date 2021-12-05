@@ -1,5 +1,6 @@
 package com.liaten.myapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,15 +38,22 @@ public class MainActivity extends AppCompatActivity {
         product = new ArrayList<>();
         StoreDataInArrays();
         add_button.setOnClickListener(add_button_listener);
+        customAdapter = new CustomAdapter(MainActivity.this,this, id, company, founder, product);
+        company_recycler_view.setAdapter(customAdapter);
+        company_recycler_view.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
     private View.OnClickListener add_button_listener = view -> {
         Intent intent = new Intent(MainActivity.this, AddActivity.class);
         startActivity(intent);
-
-        customAdapter = new CustomAdapter(MainActivity.this, id, company, founder, product);
-        company_recycler_view.setAdapter(customAdapter);
-        company_recycler_view.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode == 1){
+            recreate();
+        }
+    }
 
     void StoreDataInArrays(){
         Cursor cursor = MyDB.ReadAllData();

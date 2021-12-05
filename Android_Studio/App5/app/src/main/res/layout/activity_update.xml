@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:a="http://schemas.android.com/apk/res/android"
+    a:layout_width="match_parent"
+    a:layout_height="match_parent"
+    a:orientation="vertical"
+    a:backgroundTint="#d0fabc"
+    >
+    <TextView
+        a:layout_width="wrap_content"
+        a:layout_height="wrap_content"
+        a:gravity="center"
+        a:layout_gravity="center_horizontal"
+        a:text="@string/change_head"
+        a:textSize="34sp"
+        a:textColor="#0c2d43"
+        a:layout_margin="10dp"
+        a:fontFamily="@font/roboto_regular"
+        />
+    <ScrollView
+        a:layout_width="match_parent"
+        a:layout_height="0dp"
+        a:layout_weight="1"
+        >
+
+        <LinearLayout
+            a:layout_width="match_parent"
+            a:layout_height="match_parent"
+            a:orientation="vertical"
+            >
+            <EditText
+                a:id="@+id/company_edit_text_update"
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:hint="@string/company"
+                a:layout_margin="10dp"
+                a:fontFamily="@font/roboto_regular"
+                a:textSize="24sp"
+                a:importantForAutofill="no"
+                a:inputType="textMultiLine"
+
+                />
+            <EditText
+                a:id="@+id/founder_edit_text_update"
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:hint="@string/founder"
+                a:layout_margin="10dp"
+                a:fontFamily="@font/roboto_regular"
+                a:textSize="24sp"
+                a:importantForAutofill="no"
+                a:inputType="textMultiLine"
+                />
+            <EditText
+                a:id="@+id/product_edit_text_update"
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:hint="@string/product"
+                a:layout_margin="10dp"
+                a:fontFamily="@font/roboto_regular"
+                a:textSize="24sp"
+                a:importantForAutofill="no"
+                a:inputType="textMultiLine"
+
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        a:layout_width="match_parent"
+        a:layout_height="wrap_content"
+        a:orientation="horizontal"
+        a:gravity="center|bottom"
+        a:layout_margin="10dp"
+        >
+        <Button
+            a:id="@+id/update_button"
+            a:layout_width="wrap_content"
+            a:layout_height="wrap_content"
+            a:text="@string/update"
+            a:textSize="24sp"
+            a:backgroundTint="#18556d"
+            a:fontFamily="@font/roboto_regular"
+            />
+
+    </LinearLayout>
+</LinearLayout>

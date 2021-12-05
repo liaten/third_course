@@ -22,7 +22,6 @@
         a:layout_width="match_parent"
         a:layout_height="0dp"
         a:layout_weight="1"
-        a:theme="@style/ListFont"
         a:layout_margin="10dp"
         />
     <LinearLayout

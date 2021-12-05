@@ -1,8 +1,11 @@
 package com.liaten.myapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -32,12 +35,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         COLUMN_FOUNDER + " TEXT, " +
                         COLUMN_PRODUCT + " TEXT);";
         db.execSQL(query);
+        Toast.makeText(context,"Database created", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
-        db.execSQL(query);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+    void AddCompany(String company, String founder, String product){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_COMPANY, company);
+        cv.put(COLUMN_FOUNDER, founder);
+        cv.put(COLUMN_PRODUCT, product);
+        long result = db.insert(TABLE_NAME, null, cv);
+        if(result == -1){
+            Toast.makeText(context,"Addition fail", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context,"Successful addition", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    Cursor ReadAllData(){
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query,null);
+        }
+        return cursor;
     }
 }

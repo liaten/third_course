@@ -17,38 +17,57 @@
         a:layout_margin="10dp"
         a:fontFamily="@font/roboto_regular"
         />
-    <LinearLayout
+    <ScrollView
         a:layout_width="match_parent"
         a:layout_height="0dp"
         a:layout_weight="1"
-        a:orientation="vertical"
         >
-        <EditText
-            a:layout_width="match_parent"
-            a:layout_height="wrap_content"
-            a:hint="@string/company"
-            a:layout_margin="10dp"
-            a:fontFamily="@font/roboto_regular"
-            a:textSize="24sp"
-            />
-        <EditText
-            a:layout_width="match_parent"
-            a:layout_height="wrap_content"
-            a:hint="@string/founder"
-            a:layout_margin="10dp"
-            a:fontFamily="@font/roboto_regular"
-            a:textSize="24sp"
-            />
-        <EditText
-            a:layout_width="match_parent"
-            a:layout_height="wrap_content"
-            a:hint="@string/product"
-            a:layout_margin="10dp"
-            a:fontFamily="@font/roboto_regular"
-            a:textSize="24sp"
-            />
 
-    </LinearLayout>
+        <LinearLayout
+            a:layout_width="match_parent"
+            a:layout_height="match_parent"
+            a:orientation="vertical"
+            >
+            <EditText
+                a:id="@+id/company_edit_text"
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:hint="@string/company"
+                a:layout_margin="10dp"
+                a:fontFamily="@font/roboto_regular"
+                a:textSize="24sp"
+                a:importantForAutofill="no"
+                a:inputType="textMultiLine"
+
+                />
+            <EditText
+                a:id="@+id/founder_edit_text"
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:hint="@string/founder"
+                a:layout_margin="10dp"
+                a:fontFamily="@font/roboto_regular"
+                a:textSize="24sp"
+                a:importantForAutofill="no"
+                a:inputType="textMultiLine"
+                />
+            <EditText
+                a:id="@+id/product_edit_text"
+                a:layout_width="match_parent"
+                a:layout_height="wrap_content"
+                a:hint="@string/product"
+                a:layout_margin="10dp"
+                a:fontFamily="@font/roboto_regular"
+                a:textSize="24sp"
+                a:importantForAutofill="no"
+                a:inputType="textMultiLine"
+
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
     <LinearLayout
         a:layout_width="match_parent"
         a:layout_height="wrap_content"

@@ -6,8 +6,8 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.liaten.myapplication"
-        minSdk 21
+        applicationId "liaten.app5"
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"

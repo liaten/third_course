@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Lab5,CRUD</string>
     <string name="info">Данные о компаниях</string>
+    <string name="search_results">Результаты поиска</string>
     <string name="products">Продукт</string>
     <string name="corp_name">Компания</string>
     <string name="corp_products">Продукты</string>

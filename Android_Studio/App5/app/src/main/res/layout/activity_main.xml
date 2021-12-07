@@ -6,20 +6,35 @@
     a:layout_height="match_parent"
     tools:context=".MainActivity"
     a:orientation="vertical"
-
     >
 
-    <TextView
-        a:id="@+id/header_main"
+    <LinearLayout
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
-        a:gravity="center"
-        a:text="@string/info"
-        a:textAlignment="center"
-        a:textSize="30sp"
-        a:fontFamily="@font/roboto"
-        a:layout_margin="10dp"
-        />
+        a:orientation="vertical"
+        >
+
+        <TextView
+            a:id="@+id/header_main"
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:gravity="center"
+            a:text="@string/info"
+            a:textAlignment="center"
+            a:textSize="30sp"
+            a:fontFamily="@font/roboto"
+            a:layout_margin="10dp"
+            />
+        <SearchView
+            a:id="@+id/search_bar"
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:visibility="gone"
+            a:queryHint="Искомое значение"
+            />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         a:id="@+id/RecyclerView"
         a:layout_width="match_parent"

@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,9 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Button add_button;
-
     DatabaseHelper db;
     ArrayList<String> corpID, corpName, corpFounders, corpProducts;
+    TextView main_header_tv;
+    SearchView search_bar;
+    boolean IsSearchViewable = false;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -47,7 +50,25 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts));
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        main_header_tv = findViewById(R.id.header_main);
+        search_bar = findViewById(R.id.search_bar);
+        main_header_tv.setOnClickListener(onHeadClickListener);
     }
+
+    public View.OnClickListener onHeadClickListener = view -> {
+        search_bar = findViewById(R.id.search_bar);
+        main_header_tv = findViewById(R.id.header_main);
+        if(!IsSearchViewable){
+            main_header_tv.setText(R.string.search_results);
+            search_bar.setVisibility(View.VISIBLE);
+            IsSearchViewable = true;
+        }
+        else {
+            main_header_tv.setText(R.string.info);
+            search_bar.setVisibility(View.GONE);
+            IsSearchViewable = false;
+        }
+    };
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {

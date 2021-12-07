@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -19,11 +21,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Button add_button;
+    Button add_button, search_button;
     DatabaseHelper db;
     ArrayList<String> corpID, corpName, corpFounders, corpProducts;
     TextView main_header_tv;
-    SearchView search_bar;
+    LinearLayout search_layout;
+    EditText search_bar;
     boolean IsSearchViewable = false;
 
     @Override
@@ -51,21 +54,36 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts));
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         main_header_tv = findViewById(R.id.header_main);
-        search_bar = findViewById(R.id.search_bar);
         main_header_tv.setOnClickListener(onHeadClickListener);
+        search_button = findViewById(R.id.search_button);
+        search_button.setOnClickListener(onSearchButtonClickListener);
+
     }
 
-    public View.OnClickListener onHeadClickListener = view -> {
+    public View.OnClickListener onSearchButtonClickListener = view -> {
         search_bar = findViewById(R.id.search_bar);
+        recyclerView = findViewById(R.id.RecyclerView);
+        String data = search_bar.getText().toString().trim();
+        CursorSearchData(data);
+        recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts));
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+    };
+
+    public View.OnClickListener onHeadClickListener = view -> {
+        search_layout = findViewById(R.id.search_layout);
         main_header_tv = findViewById(R.id.header_main);
         if(!IsSearchViewable){
             main_header_tv.setText(R.string.search_results);
-            search_bar.setVisibility(View.VISIBLE);
+            search_layout.setVisibility(View.VISIBLE);
             IsSearchViewable = true;
         }
         else {
             main_header_tv.setText(R.string.info);
-            search_bar.setVisibility(View.GONE);
+            search_layout.setVisibility(View.GONE);
+            recyclerView = findViewById(R.id.RecyclerView);
+            CursorData();
+            recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts));
+            recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             IsSearchViewable = false;
         }
     };
@@ -87,6 +105,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void CursorData(){
         Cursor cursor = db.readAllData();
+
+        corpID.clear();
+        corpName.clear();
+        corpFounders.clear();
+        corpProducts.clear();
+
+        if (cursor.getCount() != 0){
+            while (cursor.moveToNext()) {
+                corpID.add(cursor.getString(0));
+                corpName.add(cursor.getString(1));
+                corpFounders.add(cursor.getString(2));
+                corpProducts.add(cursor.getString(3));
+            }
+        }
+    }
+
+    public void CursorSearchData(String data){
+        Cursor cursor = db.searchData(data);
+
+        corpID.clear();
+        corpName.clear();
+        corpFounders.clear();
+        corpProducts.clear();
 
         if (cursor.getCount() != 0){
             while (cursor.moveToNext()) {

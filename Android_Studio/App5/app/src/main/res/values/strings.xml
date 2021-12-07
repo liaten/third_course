@@ -19,4 +19,6 @@
     <string name="test_corp_products">corpProducts</string>
     <string name="company_add_head">Добавление компании</string>
     <string name="company_change_head">Изменение данных о компании</string>
+    <string name="search_edit_text">Текст запроса</string>
+    <string name="search">Поиск</string>
 </resources>

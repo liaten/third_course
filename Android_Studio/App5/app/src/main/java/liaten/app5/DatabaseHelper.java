@@ -108,6 +108,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    Cursor searchData(String data){
+        String query = "SELECT * FROM " + TABLE_NAME
+                + " WHERE ("
+                + COLUMN_NAME_CORP + " LIKE '%" + data + "%'"
+                + " OR " + COLUMN_FOUNDERS + " LIKE '%" + data + "%'"
+                + " OR " + COLUMN_PRODUCTS + " LIKE '%" + data + "%')";
+                ;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
     public void updateData(String id, String name, String founders, String products) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

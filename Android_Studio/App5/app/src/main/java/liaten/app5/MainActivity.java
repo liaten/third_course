@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Button add_button, search_button;
     DatabaseHelper db;
-    ArrayList<String> corpID, corpName, corpFounders, corpProducts;
+    ArrayList<String> corpID, corpName, corpFounders, corpProducts, corpPrice, corpCategory;
     TextView main_header_tv;
     LinearLayout search_layout;
     EditText search_bar;
@@ -47,11 +47,13 @@ public class MainActivity extends AppCompatActivity {
         corpName = new ArrayList<>();
         corpFounders = new ArrayList<>();
         corpProducts = new ArrayList<>();
+        corpPrice = new ArrayList<>();
+        corpCategory = new ArrayList<>();
 
         db = new DatabaseHelper(MainActivity.this);
         CursorData();
 
-        recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts));
+        recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts, corpPrice, corpCategory));
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         main_header_tv = findViewById(R.id.header_main);
         main_header_tv.setOnClickListener(onHeadClickListener);
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.RecyclerView);
         String data = search_bar.getText().toString().trim();
         CursorSearchData(data);
-        recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts));
+        recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts, corpPrice, corpCategory));
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     };
 
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             search_layout.setVisibility(View.GONE);
             recyclerView = findViewById(R.id.RecyclerView);
             CursorData();
-            recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts));
+            recyclerView.setAdapter(new CorpAdapter((Context) this, corpID, corpName, corpFounders, corpProducts, corpPrice, corpCategory));
             recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             IsSearchViewable = false;
         }
@@ -110,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
         corpName.clear();
         corpFounders.clear();
         corpProducts.clear();
+        corpPrice.clear();
+        corpCategory.clear();
 
         if (cursor.getCount() != 0){
             while (cursor.moveToNext()) {
@@ -117,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
                 corpName.add(cursor.getString(1));
                 corpFounders.add(cursor.getString(2));
                 corpProducts.add(cursor.getString(3));
+                corpPrice.add(cursor.getString(4));
+                corpCategory.add(cursor.getString(5));
             }
         }
     }
@@ -128,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
         corpName.clear();
         corpFounders.clear();
         corpProducts.clear();
+        corpPrice.clear();
+        corpCategory.clear();
 
         if (cursor.getCount() != 0){
             while (cursor.moveToNext()) {
@@ -135,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
                 corpName.add(cursor.getString(1));
                 corpFounders.add(cursor.getString(2));
                 corpProducts.add(cursor.getString(3));
+                corpPrice.add(cursor.getString(4));
+                corpCategory.add(cursor.getString(5));
             }
         }
     }

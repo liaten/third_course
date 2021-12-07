@@ -19,6 +19,8 @@ public class SecondActivity extends AppCompatActivity {
     EditText etCorporation;
     EditText etFounder;
     EditText etProduct;
+    EditText etPrice;
+    EditText etCategory;
     private static final short MIN_COUNT = 3;
 
     @Override
@@ -29,6 +31,8 @@ public class SecondActivity extends AppCompatActivity {
         etCorporation = findViewById(R.id.editTextFIO);
         etFounder = findViewById(R.id.editTextPl);
         etProduct = findViewById(R.id.editTextIDE);
+        etPrice = findViewById(R.id.editTextIDE);
+        etCategory = findViewById(R.id.editTextIDE);
 
         // Запрет на ввод цифр
         for (EditText et : new EditText[]{etCorporation, etProduct})
@@ -68,21 +72,33 @@ public class SecondActivity extends AppCompatActivity {
         else return etProduct.getText().toString();
     }
 
+    public String getPrice() {
+        if (etPrice.getText().toString().trim().length() == 0) return "";
+        else return etPrice.getText().toString();
+    }
+
+    public String getCategory() {
+        if (etCategory.getText().toString().trim().length() == 0) return "";
+        else return etCategory.getText().toString();
+    }
+
     public void onClickClear(View view) {
         etCorporation.setText("");
         etFounder.setText("");
         etProduct.setText("");
+        etPrice.setText("");
+        etCategory.setText("");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void onClickAddButton(View view) {
-        List<String> list = Arrays.asList(getCorporation(), getFounder(), getProduct());
+        List<String> list = Arrays.asList(getCorporation(), getFounder(), getProduct(), getPrice(), getCategory());
 
         if (list.stream().filter((p) -> !p.isEmpty()).count() < MIN_COUNT)
             Toast.makeText(getApplicationContext(), "Не хватает данных для добавления.", Toast.LENGTH_SHORT).show();
         else {
             DatabaseHelper db = new DatabaseHelper(SecondActivity.this);
-            db.addCorp(list.get(0), list.get(1), list.get(2));
+            db.addCorp(list.get(0), list.get(1), list.get(2), list.get(3), list.get(4));
             finish();
         }
     }

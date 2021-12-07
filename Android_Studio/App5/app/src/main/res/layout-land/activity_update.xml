@@ -85,18 +85,6 @@
             />
 
         <Button
-            a:id="@+id/clear_button"
-            a:textSize="20sp"
-            a:gravity="center"
-            a:layout_width="wrap_content"
-            a:layout_height="wrap_content"
-            a:onClick="onClickClear"
-            a:text="@string/clear"
-            a:layout_margin="10dp"
-            a:layout_gravity="center_horizontal"
-            />
-
-        <Button
             a:id="@+id/update_button"
             a:layout_width="wrap_content"
             a:layout_height="wrap_content"
@@ -104,6 +92,19 @@
             a:text="@string/update"
             a:textSize="20sp"
             a:layout_gravity="center_horizontal"
+            a:layout_marginHorizontal="10dp"
+            />
+
+        <Button
+            a:id="@+id/clear_button"
+            a:textSize="20sp"
+            a:gravity="center"
+            a:layout_width="wrap_content"
+            a:layout_height="wrap_content"
+            a:onClick="onClickClear"
+            a:text="@string/clear"
+            a:layout_gravity="center_horizontal"
+            a:layout_margin="10dp"
             />
 
         <Button
@@ -115,7 +116,7 @@
             a:text="@string/delete"
             a:textSize="20sp"
             a:layout_gravity="center_horizontal"
-            a:layout_marginTop="10dp"
+            a:layout_marginBottom="10dp"
             />
     </LinearLayout>
 

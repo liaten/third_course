@@ -14,10 +14,10 @@ import android.widget.Toast;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    EditText etCorpName, etCorpFounders, etCorpProducts;
+    EditText etCorpName, etCorpFounders, etCorpProducts, etCorpPrice, etCorpCategory;
     Button clearButton, updateButton, deleteButton;
 
-    String id, name, founders, products;
+    String id, name, founders, products, price, category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,9 @@ public class UpdateActivity extends AppCompatActivity {
         etCorpName = findViewById(R.id.editTextCorpName);
         etCorpFounders = findViewById(R.id.editTextCorpFounders);
         etCorpProducts = findViewById(R.id.editTextCorpProducts);
+        etCorpPrice = findViewById(R.id.editTextCorpPrice);
+        etCorpCategory = findViewById(R.id.editTextCorpCategory);
+
         clearButton = findViewById(R.id.clear_button);
         updateButton = findViewById(R.id.update_button);
         deleteButton = findViewById(R.id.delete_button);
@@ -50,7 +53,10 @@ public class UpdateActivity extends AppCompatActivity {
             name = etCorpName.getText().toString().trim();
             founders = etCorpFounders.getText().toString().trim();
             products = etCorpProducts.getText().toString().trim();
-            myDB.updateData(id, name, founders, products);
+            price = etCorpPrice.getText().toString().trim();
+            category = etCorpCategory.getText().toString().trim();
+
+            myDB.updateData(id, name, founders, products, price, category);
             finish();
         });
 
@@ -67,12 +73,21 @@ public class UpdateActivity extends AppCompatActivity {
             name = getIntent().getStringExtra("corp_name");
             founders = getIntent().getStringExtra("corp_founders");
             products = getIntent().getStringExtra("corp_products");
+            price = getIntent().getStringExtra("corp_products");
+            category = getIntent().getStringExtra("corp_products");
 
             //Setting Intent Data
             etCorpName.setText(name);
             etCorpFounders.setText(founders);
             etCorpProducts.setText(products);
-            Log.d("stev", name+" "+founders+" "+products);
+            etCorpProducts.setText(price);
+            etCorpProducts.setText(category);
+
+            Log.d("stev", name
+                    + " " + founders
+                    + " " + products
+                    + " " + price
+                    + " " + category);
         }else{
             Toast.makeText(this, "Нет данных.", Toast.LENGTH_SHORT).show();
         }
@@ -97,5 +112,7 @@ public class UpdateActivity extends AppCompatActivity {
         etCorpName.setText("");
         etCorpFounders.setText("");
         etCorpProducts.setText("");
+        etCorpPrice.setText("");
+        etCorpCategory.setText("");
     }
 }

@@ -59,6 +59,7 @@
         a:layout_height="0dp"
         a:layout_weight="1"
         a:layout_marginHorizontal="10dp"
+        
         />
     <Button
         a:id="@+id/add_button"

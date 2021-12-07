@@ -68,16 +68,36 @@
         a:layout_marginHorizontal="10dp"
         />
 
-    <Button
-        a:id="@+id/clear_button"
-        a:textSize="20sp"
-        a:gravity="center"
-        a:layout_width="wrap_content"
+    <EditText
+        a:id="@+id/editTextCorpPrice"
+        a:layout_width="match_parent"
         a:layout_height="wrap_content"
-        a:onClick="onClickClear"
-        a:text="@string/clear"
+        a:background="@drawable/edittext"
+        a:gravity="center"
+        a:hint="@string/price"
+        a:importantForAutofill="no"
+        a:inputType="none"
+        a:minHeight="48dp"
+        a:padding="5dp"
+        a:text=""
+        a:textSize="24sp"
         a:layout_margin="10dp"
-        a:layout_gravity="center_horizontal"
+        />
+
+    <EditText
+        a:id="@+id/editTextCorpCategory"
+        a:layout_width="match_parent"
+        a:layout_height="wrap_content"
+        a:background="@drawable/edittext"
+        a:gravity="center"
+        a:hint="@string/category"
+        a:importantForAutofill="no"
+        a:inputType="none"
+        a:minHeight="48dp"
+        a:padding="5dp"
+        a:text=""
+        a:textSize="24sp"
+        a:layout_marginHorizontal="10dp"
         />
 
     <Button
@@ -87,6 +107,19 @@
         a:gravity="center"
         a:text="@string/update"
         a:textSize="20sp"
+        a:layout_gravity="center_horizontal"
+        a:layout_margin="10dp"
+        />
+
+    <Button
+        a:id="@+id/clear_button"
+        a:textSize="20sp"
+        a:gravity="center"
+        a:layout_width="wrap_content"
+        a:layout_height="wrap_content"
+        a:onClick="onClickClear"
+        a:text="@string/clear"
+
         a:layout_gravity="center_horizontal"
         />
 

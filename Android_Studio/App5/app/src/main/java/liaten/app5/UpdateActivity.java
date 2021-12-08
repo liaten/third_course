@@ -73,15 +73,15 @@ public class UpdateActivity extends AppCompatActivity {
             name = getIntent().getStringExtra("corp_name");
             founders = getIntent().getStringExtra("corp_founders");
             products = getIntent().getStringExtra("corp_products");
-            price = getIntent().getStringExtra("corp_products");
-            category = getIntent().getStringExtra("corp_products");
+            price = getIntent().getStringExtra("corp_price");
+            category = getIntent().getStringExtra("corp_category");
 
             //Setting Intent Data
             etCorpName.setText(name);
             etCorpFounders.setText(founders);
             etCorpProducts.setText(products);
-            etCorpProducts.setText(price);
-            etCorpProducts.setText(category);
+            etCorpPrice.setText(price);
+            etCorpCategory.setText(category);
 
             Log.d("stev", name
                     + " " + founders
@@ -95,7 +95,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     void confirmDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Удалить " + name + " ?");
+        builder.setTitle("Удалить " + products + " ?");
         builder.setMessage("Вы уверены?");
         builder.setPositiveButton("Да", (dialogInterface, i) -> {
             DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this);
@@ -103,7 +103,6 @@ public class UpdateActivity extends AppCompatActivity {
             finish();
         });
         builder.setNegativeButton("Не совсем", (dialogInterface, i) -> {
-
         });
         builder.create().show();
     }

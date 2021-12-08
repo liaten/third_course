@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class SecondActivity extends AppCompatActivity {
+public class AddActivity extends AppCompatActivity {
 
 
     EditText etCorporation;
@@ -28,11 +28,11 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        etCorporation = findViewById(R.id.editTextFIO);
-        etFounder = findViewById(R.id.editTextPl);
-        etProduct = findViewById(R.id.editTextIDE);
-        etPrice = findViewById(R.id.editTextIDE);
-        etCategory = findViewById(R.id.editTextIDE);
+        etCorporation = findViewById(R.id.editTextCorpCompany);
+        etFounder = findViewById(R.id.editTextCorpFounder);
+        etProduct = findViewById(R.id.editTextCorpProduct);
+        etPrice = findViewById(R.id.editTextCorpPrice);
+        etCategory = findViewById(R.id.editTextCorpCategory);
 
         // Запрет на ввод цифр
         for (EditText et : new EditText[]{etCorporation, etProduct})
@@ -97,7 +97,7 @@ public class SecondActivity extends AppCompatActivity {
         if (list.stream().filter((p) -> !p.isEmpty()).count() < MIN_COUNT)
             Toast.makeText(getApplicationContext(), "Не хватает данных для добавления.", Toast.LENGTH_SHORT).show();
         else {
-            DatabaseHelper db = new DatabaseHelper(SecondActivity.this);
+            DatabaseHelper db = new DatabaseHelper(AddActivity.this);
             db.addCorp(list.get(0), list.get(1), list.get(2), list.get(3), list.get(4));
             finish();
         }

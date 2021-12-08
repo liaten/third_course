@@ -4,7 +4,7 @@
     xmlns:t="http://schemas.android.com/tools"
     a:layout_width="match_parent"
     a:layout_height="match_parent"
-    t:context=".SecondActivity"
+    t:context=".AddActivity"
     a:orientation="vertical"
     >
     <TextView
@@ -20,7 +20,7 @@
         />
 
     <EditText
-        a:id="@+id/editTextFIO"
+        a:id="@+id/editTextCorpCompany"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
         a:layout_marginHorizontal="10dp"
@@ -36,7 +36,7 @@
         a:importantForAutofill="no" />
 
     <EditText
-        a:id="@+id/editTextPl"
+        a:id="@+id/editTextCorpFounder"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
         a:layout_margin="10dp"
@@ -52,7 +52,7 @@
         a:importantForAutofill="no" />
 
     <EditText
-        a:id="@+id/editTextIDE"
+        a:id="@+id/editTextCorpProduct"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
         a:layout_marginHorizontal="10dp"

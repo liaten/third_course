@@ -64,6 +64,38 @@
             a:textSize="24sp"
             a:layout_marginHorizontal="10dp"
             />
+
+        <EditText
+            a:id="@+id/editTextCorpPrice"
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:background="@drawable/edittext"
+            a:gravity="center"
+            a:hint="@string/price"
+            a:importantForAutofill="no"
+            a:inputType="none"
+            a:minHeight="48dp"
+            a:padding="5dp"
+            a:text=""
+            a:textSize="24sp"
+            a:layout_margin="10dp"
+            />
+
+        <EditText
+            a:id="@+id/editTextCorpCategory"
+            a:layout_width="match_parent"
+            a:layout_height="wrap_content"
+            a:background="@drawable/edittext"
+            a:gravity="center"
+            a:hint="@string/category"
+            a:importantForAutofill="no"
+            a:inputType="none"
+            a:minHeight="48dp"
+            a:padding="5dp"
+            a:text=""
+            a:textSize="24sp"
+            a:layout_marginHorizontal="10dp"
+            />
     </LinearLayout>
 
     <LinearLayout

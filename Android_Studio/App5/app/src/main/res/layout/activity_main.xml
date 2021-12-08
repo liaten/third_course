@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:a="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     a:layout_width="match_parent"
     a:layout_height="match_parent"
-    tools:context=".MainActivity"
     a:orientation="vertical"
     >
 
@@ -54,24 +52,59 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        a:id="@+id/RecyclerView"
+        a:id="@+id/recycler_view"
         a:layout_width="match_parent"
         a:layout_height="0dp"
         a:layout_weight="1"
         a:layout_marginHorizontal="10dp"
         
         />
-    <Button
-        a:id="@+id/add_button"
-        a:layout_width="wrap_content"
+    <HorizontalScrollView
+        a:layout_width="match_parent"
         a:layout_height="wrap_content"
-        a:onClick="onClickAddButtonMain"
-        a:clickable="true"
-        a:focusable="true"
-        a:text="@string/add"
-        a:fontFamily="@font/roboto"
-        a:layout_gravity="center_horizontal"
-        a:layout_marginVertical="10dp"
-        />
+        a:orientation="horizontal"
+        >
+        <LinearLayout
+            a:layout_width="wrap_content"
+            a:layout_height="wrap_content"
+            a:orientation="horizontal"
+            >
+
+            <Button
+                a:id="@+id/add_button"
+                a:layout_width="wrap_content"
+                a:layout_height="wrap_content"
+                a:onClick="onClickAddButtonMain"
+                a:clickable="true"
+                a:focusable="true"
+                a:text="@string/add"
+                a:fontFamily="@font/roboto"
+                a:layout_margin="10dp"
+                />
+
+            <Button
+                a:id="@+id/sort_button"
+                a:layout_width="wrap_content"
+                a:layout_height="wrap_content"
+                a:clickable="true"
+                a:focusable="true"
+                a:text="@string/sort"
+                a:fontFamily="@font/roboto"
+                a:layout_margin="10dp"
+                />
+
+            <Button
+                a:id="@+id/price_button"
+                a:layout_width="wrap_content"
+                a:layout_height="wrap_content"
+                a:clickable="true"
+                a:focusable="true"
+                a:text="@string/price"
+                a:fontFamily="@font/roboto"
+                a:layout_margin="10dp"
+                />
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
 </LinearLayout>

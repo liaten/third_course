@@ -25,4 +25,12 @@
     <string name="test_corp_category">corpCategory</string>
     <string name="price">Себестоимость</string>
     <string name="category">Категория</string>
+    <string name="sort">Сортировать</string>
+    <string name="group">Группировать</string>
+    <string name="price_short">Стоим.</string>
+    <string name="back">Назад</string>
+    <string name="sort_question">По какой категории сортировка?</string>
+    <string name="apply">Подтвердить</string>
+    <string name="full_price_info">Общая стоимость продуктов в таблице:</string>
+    <string name="avg_price_info">Средняя стоимость продуктов в таблице:</string>
 </resources>

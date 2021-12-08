@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "CREATE TABLE " + TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_NAME_CORP + " TEXT, " + COLUMN_FOUNDERS + " TEXT, " + COLUMN_PRODUCTS + " TEXT, " +
-                        COLUMN_PRICE + " TEXT, " + COLUMN_CATEGORY +" TEXT);"
+                        COLUMN_PRICE + " INTEGER, " + COLUMN_CATEGORY +" TEXT);"
         );
 
         // Заполнение таблицы первичными значениями
@@ -260,6 +260,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + " OR " + COLUMN_FOUNDERS + " LIKE '%" + data + "%'"
                 + " OR " + COLUMN_PRODUCTS + " LIKE '%" + data + "%')";
                 ;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor sortData(String column){
+        if (column.equals("product")){
+            column = COLUMN_PRODUCTS;
+        }
+        else if(column.equals("category")){
+            column = COLUMN_CATEGORY;
+        }
+        String query = "SELECT * FROM " + TABLE_NAME +
+                " ORDER BY " + column;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor getSumOfProducts(){
+        String query = "SELECT " +
+                "SUM("+COLUMN_PRICE+")" + " FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor getAvgOfProducts(){
+        String query = "SELECT " +
+                "AVG("+COLUMN_PRICE+")" + " FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;

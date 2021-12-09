@@ -31,6 +31,6 @@
     <string name="back">Назад</string>
     <string name="sort_question">По какой категории сортировка?</string>
     <string name="apply">Подтвердить</string>
-    <string name="full_price_info">Общая стоимость продуктов в таблице:</string>
-    <string name="avg_price_info">Средняя стоимость продуктов в таблице:</string>
+    <string name="full_price_info">Общая стоимость продуктов в таблице: </string>
+    <string name="avg_price_info">Средняя стоимость продуктов в таблице: </string>
 </resources>

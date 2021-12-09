@@ -70,7 +70,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public  View.OnClickListener onPriceButtonClickListener = view -> {
-        //
+        double AvgPrice = CursorGetAvgPrice();
+        double SumPrice = CursorGetSumPrice();
+        Intent intent = new Intent(this, PriceActivity.class);
+        intent.putExtra("avg",AvgPrice);
+        intent.putExtra("sum",SumPrice);
+        startActivityForResult(intent, 1);
     };
 
     public  View.OnClickListener onSortButtonClickListener = view -> {
@@ -204,6 +209,28 @@ public class MainActivity extends AppCompatActivity {
                 corpCategory.add(cursor.getString(5));
             }
         }
+    }
+
+    public double CursorGetAvgPrice(){
+        Cursor cursor = db.getAvgOfProducts();
+        double AvgPrice = 0;
+        if (cursor.getCount() != 0){
+            while (cursor.moveToNext()) {
+                AvgPrice = Double.parseDouble(cursor.getString(0));
+            }
+        }
+        return AvgPrice;
+    }
+
+    public double CursorGetSumPrice(){
+        Cursor cursor = db.getSumOfProducts();
+        double SumPrice = 0;
+        if (cursor.getCount() != 0){
+            while (cursor.moveToNext()) {
+                SumPrice = Double.parseDouble(cursor.getString(0));
+            }
+        }
+        return SumPrice;
     }
 
     public void onClickAddButtonMain(View view) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="liaten.app5">
 
     <application
@@ -9,9 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cool">
+
         <activity
             android:name=".UpdateActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            />
+
+        <activity
+            android:name=".PriceActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -21,10 +32,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".AddActivity"
             android:label="Add Corp"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity"
+            />
 
         <meta-data
             android:name="preloaded_fonts"

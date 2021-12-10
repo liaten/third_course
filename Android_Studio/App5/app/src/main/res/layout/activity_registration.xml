@@ -8,11 +8,11 @@
     a:orientation="vertical"
     >
     <TextView
-        a:id="@+id/edit_head"
+        a:id="@+id/register_head"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
         a:gravity="center"
-        a:text="@string/company_add_head"
+        a:text="@string/register_head"
         a:textAlignment="center"
         a:textSize="34sp"
         a:fontFamily="@font/roboto"
@@ -20,93 +20,63 @@
         />
 
     <EditText
-        a:id="@+id/editTextCorpCompany"
+        a:id="@+id/login_edit_text"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
         a:layout_marginHorizontal="10dp"
         a:background="@drawable/edittext"
         a:gravity="center"
-        a:hint="@string/corporations"
+        a:hint="@string/login_hint"
         a:inputType="none"
         a:minHeight="48dp"
         a:padding="5dp"
         a:text=""
         a:textSize="24sp"
         a:fontFamily="@font/roboto"
-        a:importantForAutofill="no" />
-
-    <EditText
-        a:id="@+id/editTextCorpFounder"
-        a:layout_width="match_parent"
-        a:layout_height="wrap_content"
-        a:layout_margin="10dp"
-        a:background="@drawable/edittext"
-        a:gravity="center"
-        a:hint="@string/founders"
-        a:inputType="textPersonName"
-        a:minHeight="48dp"
-        a:padding="5dp"
-        a:text=""
-        a:textSize="24sp"
-        a:fontFamily="@font/roboto"
-        a:importantForAutofill="no" />
-
-    <EditText
-        a:id="@+id/editTextCorpProduct"
-        a:layout_width="match_parent"
-        a:layout_height="wrap_content"
-        a:layout_marginHorizontal="10dp"
-        a:background="@drawable/edittext"
-        a:gravity="center"
-        a:hint="@string/products"
         a:importantForAutofill="no"
-        a:inputType="none"
-        a:minHeight="48dp"
-        a:padding="5dp"
-        a:text=""
-        a:textSize="24sp"
-        a:fontFamily="@font/roboto"
         />
 
     <EditText
-        a:id="@+id/editTextCorpPrice"
+        a:id="@+id/email_edit_text"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
+        a:layout_marginHorizontal="10dp"
         a:background="@drawable/edittext"
         a:gravity="center"
-        a:hint="@string/price"
-        a:importantForAutofill="no"
-        a:inputType="none"
+        a:hint="@string/email_hint"
+        a:inputType="textEmailAddress"
         a:minHeight="48dp"
         a:padding="5dp"
         a:text=""
         a:textSize="24sp"
+        a:fontFamily="@font/roboto"
+        a:importantForAutofill="no"
         a:layout_margin="10dp"
         />
 
     <EditText
-        a:id="@+id/editTextCorpCategory"
+        a:id="@+id/password_edit_text"
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
+        a:layout_marginHorizontal="10dp"
         a:background="@drawable/edittext"
         a:gravity="center"
-        a:hint="@string/category"
-        a:importantForAutofill="no"
-        a:inputType="none"
+        a:hint="@string/password_hint"
+        a:inputType="textPassword"
         a:minHeight="48dp"
         a:padding="5dp"
         a:text=""
         a:textSize="24sp"
-        a:layout_marginHorizontal="10dp"
+        a:fontFamily="@font/roboto"
+        a:importantForAutofill="no"
         />
 
     <Button
-        a:id="@+id/buttonClean2"
+        a:id="@+id/register_button"
         a:layout_width="wrap_content"
         a:layout_height="wrap_content"
         a:gravity="center"
-        a:onClick="onClickAddButton"
-        a:text="@string/add"
+        a:text="@string/application"
         a:textSize="20sp"
         a:layout_margin="10dp"
         a:layout_gravity="center_horizontal"
@@ -114,15 +84,13 @@
         />
 
     <Button
-        a:textSize="20sp"
-        a:gravity="center"
         a:id="@+id/drop_button"
+        a:textSize="20sp"
+        a:gravity="center"
         a:layout_gravity="center_horizontal"
         a:layout_width="wrap_content"
         a:layout_height="wrap_content"
-        a:onClick="onClickClear"
         a:text="@string/clear"
-        a:layout_marginHorizontal="10dp"
         a:fontFamily="@font/roboto"
         />
 

@@ -129,7 +129,7 @@
         <Button
             a:textSize="20sp"
             a:gravity="center"
-            a:id="@+id/buttonClean"
+            a:id="@+id/drop_button"
             a:layout_gravity="center_horizontal"
             a:layout_width="wrap_content"
             a:layout_height="wrap_content"

@@ -60,7 +60,10 @@ public class CorpAdapter extends RecyclerView.Adapter<CorpAdapter.ViewHolder> {
     }
 
     @Override
-    public int getItemCount() { return corpID.size(); }
+    public int getItemCount()
+    {
+        return corpID.size();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

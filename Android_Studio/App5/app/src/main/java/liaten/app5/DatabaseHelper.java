@@ -13,20 +13,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Corporations.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME_CORP = "CorpTable";
-    private static final String COLUMN_ID_CORP = "id";
-    private static final String COLUMN_NAME_CORP = "corp_name";
-    private static final String COLUMN_FOUNDERS_CORP = "corp_founders";
-    private static final String COLUMN_PRODUCTS_CORP = "corp_products";
-    private static final String COLUMN_PRICE_CORP = "corp_price";
-    private static final String COLUMN_CATEGORY_CORP = "corp_category";
+    private static final String TABLE_NAME_CORP = "Corporations";
+    private static final String COLUMN_ID_CORP = "CId";
+    private static final String COLUMN_NAME_CORP = "CName";
+    private static final String COLUMN_FOUNDERS_CORP = "CFounders";
+    private static final String COLUMN_PRODUCTS_CORP = "CProducts";
+    private static final String COLUMN_PRICE_CORP = "CPrice";
+    private static final String COLUMN_CATEGORY_CORP = "CCategory";
 
-    private static final String TABLE_NAME_USER = "UserTable";
-    private static final String COLUMN_ID_USER = "id";
-    private static final String COLUMN_LOGIN_USER = "login_user";
-    private static final String COLUMN_PASSWORD_USER = "password_user";
-    private static final String COLUMN_MAIL_USER = "password_user";
-
+    private static final String TABLE_NAME_USER = "User";
+    private static final String COLUMN_ID_USER = "UId";
+    private static final String COLUMN_LOGIN_USER = "ULogin";
+    private static final String COLUMN_PASSWORD_USER = "UPassword";
+    private static final String COLUMN_MAIL_USER = "UMail";
 
     DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,12 +35,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        // Создание таблицы
+        // Создание таблицы "CorpTable"
 
         db.execSQL(
                 "CREATE TABLE " + TABLE_NAME_CORP + " (" + COLUMN_ID_CORP + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_NAME_CORP + " TEXT, " + COLUMN_FOUNDERS_CORP + " TEXT, " + COLUMN_PRODUCTS_CORP + " TEXT, " +
                         COLUMN_PRICE_CORP + " INTEGER, " + COLUMN_CATEGORY_CORP +" TEXT);"
+        );
+
+        // Создание таблицы "UserTable"
+
+        db.execSQL(
+                "CREATE TABLE " + TABLE_NAME_USER + " (" + COLUMN_ID_USER + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        COLUMN_LOGIN_USER + " TEXT, " + COLUMN_PASSWORD_USER + " TEXT, " + COLUMN_MAIL_USER + " TEXT);"
         );
 
         // Заполнение таблицы первичными значениями

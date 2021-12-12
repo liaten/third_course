@@ -1,5 +1,6 @@
 package liaten.app5;
 
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,6 +23,8 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText login_edit_text, email_edit_text, password_edit_text;
     TextView email_error_text, login_error_text, password_error_text;
     Button confirm_button, drop_button;
+    DatabaseHelper db;
+
     private static final short MIN_COUNT = 3;
 
     @Override
@@ -39,6 +42,8 @@ public class RegistrationActivity extends AppCompatActivity {
         login_edit_text = findViewById(R.id.login_edit_text);
         password_error_text = findViewById(R.id.password_error_text);
         login_error_text = findViewById(R.id.login_error_text);
+
+        db = new DatabaseHelper(RegistrationActivity.this);
 
         confirm_button.setOnClickListener(onConfirmButtonClickListener);
         drop_button.setOnClickListener(onDropButtonClickListener);
@@ -150,6 +155,17 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
+    public String GetUserFromDB(String user){
+        Cursor cursor = db.searchUser(user);
+        String user_from_db = "";
+        if (cursor.getCount() != 0){
+            while (cursor.moveToNext()) {
+                user_from_db = cursor.getString(0);
+            }
+        }
+        return user_from_db;
+    }
+
     // Возвращает true, если email подходит
 
     private boolean ValidateEmailAddress(EditText email){
@@ -194,18 +210,23 @@ public class RegistrationActivity extends AppCompatActivity {
         }
         else {
             if(ValidateEmailAddress(email_edit_text)){
-                senEmail();
+
                 email_error_text.setTextColor(Color.parseColor("#4BD327"));
                 email_error_text.setText(R.string.email_true_message);
                 List<String> list = Arrays.asList(getLogin(), getPassword(), getEmail());
-
                 if (list.stream().filter((p) -> !p.isEmpty()).count() < MIN_COUNT)
                     Toast.makeText(getApplicationContext(), "Не хватает данных для добавления.", Toast.LENGTH_SHORT).show();
                 else {
-                    DatabaseHelper db = new DatabaseHelper(RegistrationActivity.this);
-                    db.addUser(list.get(0), list.get(1), list.get(2));
-                    Toast.makeText(RegistrationActivity.this, "Пользователь добавлен успешно", Toast.LENGTH_SHORT).show();
-                    finish();
+                    //DatabaseHelper db = new DatabaseHelper(RegistrationActivity.this);
+                    if(GetUserFromDB(list.get(0)).equals(list.get(0))){
+                        Toast.makeText(RegistrationActivity.this, "Пользователь с таким логином уже существует", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        db.addUser(list.get(0), list.get(1), list.get(2)); // 0 - логин, 1 - пароль, 2 - почта
+                        senEmail();
+                        Toast.makeText(RegistrationActivity.this, "Проверьте ваш email", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
 
             }

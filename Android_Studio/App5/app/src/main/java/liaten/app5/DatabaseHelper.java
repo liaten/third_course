@@ -270,6 +270,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    Cursor searchUser(String data){
+        String query = "SELECT " + COLUMN_LOGIN_USER + " FROM " + TABLE_NAME_USER
+                + " WHERE ("
+                + COLUMN_LOGIN_USER + " LIKE '" + data + "')";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
     Cursor readAllData(){
         String query = "SELECT * FROM " + TABLE_NAME_CORP;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -298,7 +310,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_NAME_CORP + " LIKE '%" + data + "%'"
                 + " OR " + COLUMN_FOUNDERS_CORP + " LIKE '%" + data + "%'"
                 + " OR " + COLUMN_PRODUCTS_CORP + " LIKE '%" + data + "%')";
-                ;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
@@ -307,6 +318,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+
 
     Cursor sortData(String column){
         if (column.equals("product")){

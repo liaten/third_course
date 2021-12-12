@@ -38,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Создание таблицы "CorpTable"
 
         db.execSQL(
-                "CREATE TABLE " + TABLE_NAME_CORP + " (" + COLUMN_ID_CORP + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE " + TABLE_NAME_CORP + " (" + COLUMN_ID_CORP + " INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_NAME_CORP + " TEXT, " + COLUMN_FOUNDERS_CORP + " TEXT, " + COLUMN_PRODUCTS_CORP + " TEXT, " +
                         COLUMN_PRICE_CORP + " INTEGER, " + COLUMN_CATEGORY_CORP +" TEXT);"
         );
@@ -46,8 +46,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Создание таблицы "UserTable"
 
         db.execSQL(
-                "CREATE TABLE " + TABLE_NAME_USER + " (" + COLUMN_ID_USER + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_LOGIN_USER + " TEXT, " + COLUMN_PASSWORD_USER + " TEXT, " + COLUMN_MAIL_USER + " TEXT);"
+                "CREATE TABLE " + TABLE_NAME_USER + " (" + COLUMN_ID_USER + " INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, " +
+                        COLUMN_LOGIN_USER + " TEXT UNIQUE, " + COLUMN_PASSWORD_USER + " TEXT, " + COLUMN_MAIL_USER + " TEXT UNIQUE);"
         );
 
         // Заполнение таблицы первичными значениями
@@ -257,6 +257,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     Cursor readAllData(){
         String query = "SELECT * FROM " + TABLE_NAME_CORP;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor readAllLogins(){
+        String query = "SELECT * FROM " + TABLE_NAME_USER;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;

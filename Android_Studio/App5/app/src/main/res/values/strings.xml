@@ -41,4 +41,8 @@
     <string name="register_head">Регистрация</string>
     <string name="email_hint">Email</string>
     <string name="application">Подтверждение</string>
+    <string name="login_or_email_hint">Логин / Email</string>
+    <string name="email_error_message">Неверный формат ввода почты</string>
+    <string name="email_true_message">Email введён верно</string>
+    <string name="email_hint_message">example@mail.com</string>
 </resources>

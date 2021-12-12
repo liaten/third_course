@@ -51,7 +51,21 @@
         a:textSize="24sp"
         a:fontFamily="@font/roboto"
         a:importantForAutofill="no"
-        a:layout_margin="10dp"
+        a:layout_marginTop="10dp"
+        />
+
+    <TextView
+        a:id="@+id/email_error_text"
+        a:layout_width="match_parent"
+        a:layout_height="wrap_content"
+        a:layout_marginHorizontal="10dp"
+        a:layout_marginTop="5dp"
+        a:layout_marginBottom="10dp"
+        a:fontFamily="@font/roboto"
+        a:text="@string/email_hint_message"
+        a:textSize="18sp"
+        a:visibility="visible"
+
         />
 
     <EditText
@@ -72,7 +86,7 @@
         />
 
     <Button
-        a:id="@+id/register_button"
+        a:id="@+id/confirm_button"
         a:layout_width="wrap_content"
         a:layout_height="wrap_content"
         a:gravity="center"

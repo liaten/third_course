@@ -35,7 +35,7 @@ public class AddActivity extends AppCompatActivity {
         etCategory = findViewById(R.id.editTextCorpCategory);
 
         // Запрет на ввод цифр
-        for (EditText et : new EditText[]{etCorporation, etProduct})
+        for (EditText et : new EditText[]{etCorporation, etCategory})
             et.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {

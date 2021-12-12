@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.regex.Pattern;
 
 public class UpdateActivity extends AppCompatActivity {
 
@@ -63,6 +67,27 @@ public class UpdateActivity extends AppCompatActivity {
         // обработчик кнопки удаления
 
         deleteButton.setOnClickListener(view -> confirmDialog());
+
+        // Запрет на ввод цифр
+        for (EditText et : new EditText[]{etCorpFounders, etCorpCategory})
+            et.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (Pattern.compile("[0-9]").matcher(et.getText().toString()).find()) {
+                        et.setText(et.getText().toString().substring(0,
+                                et.getText().toString().length() - 1));
+                        et.setSelection(et.getText().toString().length());
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
     }
 
     void getAndSetIntentData(){

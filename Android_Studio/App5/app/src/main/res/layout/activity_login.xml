@@ -26,7 +26,7 @@
         a:layout_marginHorizontal="10dp"
         a:background="@drawable/edittext"
         a:gravity="center"
-        a:hint="@string/login_hint"
+        a:hint="@string/login_or_email_hint"
         a:inputType="none"
         a:minHeight="48dp"
         a:padding="5dp"

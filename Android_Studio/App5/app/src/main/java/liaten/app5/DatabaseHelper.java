@@ -255,6 +255,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void addUser(String login, String email, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_LOGIN_USER, login);
+        cv.put(COLUMN_PASSWORD_USER, password);
+        cv.put(COLUMN_MAIL_USER, email);
+
+        long result = db.insert(TABLE_NAME_USER, null, cv);
+        if (result == -1){
+            Toast.makeText(context, "Ошибка.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Успешно добавлено.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     Cursor readAllData(){
         String query = "SELECT * FROM " + TABLE_NAME_CORP;
         SQLiteDatabase db = this.getReadableDatabase();

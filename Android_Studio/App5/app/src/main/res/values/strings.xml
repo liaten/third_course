@@ -45,4 +45,8 @@
     <string name="email_error_message">Неверный формат ввода почты</string>
     <string name="email_true_message">Email введён верно</string>
     <string name="email_hint_message">example@mail.com</string>
+    <string name="login_error_message"><![CDATA[>=5 латинских символов]]></string>
+    <string name="login_true_message">Логин введён верно</string>
+    <string name="password_error_message"><![CDATA[>=8 символов]]></string>
+    <string name="password_true_message">Пароль введён верно</string>
 </resources>

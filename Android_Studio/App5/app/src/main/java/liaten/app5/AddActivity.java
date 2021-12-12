@@ -21,7 +21,7 @@ public class AddActivity extends AppCompatActivity {
     EditText etProduct;
     EditText etPrice;
     EditText etCategory;
-    private static final short MIN_COUNT = 3;
+    private static final short MIN_COUNT = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +90,7 @@ public class AddActivity extends AppCompatActivity {
         etCategory.setText("");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void onClickAddButton(View view) {
+    @RequiresApi(api = Build.VERSION_CODES.N) public void onClickAddButton(View view) {
         List<String> list = Arrays.asList(getCorporation(), getFounder(), getProduct(), getPrice(), getCategory());
 
         if (list.stream().filter((p) -> !p.isEmpty()).count() < MIN_COUNT)

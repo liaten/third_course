@@ -59,7 +59,6 @@
         a:gravity="center"
         a:text="@string/login_button"
         a:textSize="20sp"
-        a:layout_marginHorizontal="10dp"
         a:layout_gravity="center_horizontal"
         a:fontFamily="@font/roboto"
         />
@@ -71,10 +70,8 @@
         a:gravity="center"
         a:text="@string/registration_button"
         a:textSize="20sp"
-        a:layout_marginHorizontal="10dp"
         a:layout_gravity="center_horizontal"
         a:fontFamily="@font/roboto"
-        a:layout_margin="10dp"
         />
 
     <Button

@@ -13,13 +13,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class RegistrationActivity extends AppCompatActivity {
 
     EditText login_edit_text, email_edit_text, password_edit_text;
-    TextView email_error_text;
+    TextView email_error_text, login_error_text, password_error_text;
     Button confirm_button, drop_button;
+    private static final short MIN_COUNT = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,9 @@ public class RegistrationActivity extends AppCompatActivity {
         confirm_button = findViewById(R.id.confirm_button);
         drop_button = findViewById(R.id.drop_button);
         email_error_text = findViewById(R.id.email_error_text);
+        login_edit_text = findViewById(R.id.login_edit_text);
+        password_error_text = findViewById(R.id.password_error_text);
+        login_error_text = findViewById(R.id.login_error_text);
 
         confirm_button.setOnClickListener(onConfirmButtonClickListener);
         drop_button.setOnClickListener(onDropButtonClickListener);
@@ -52,8 +58,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 @Override public void afterTextChanged(Editable s){}
             });
 
-        // Запрет на ввод пробелов
-        for (EditText et : new EditText[]{password_edit_text, login_edit_text})
+        // Запрет на ввод пробелов для пароля
+        for (EditText et : new EditText[]{password_edit_text})
             et.addTextChangedListener(new TextWatcher()
             {
                 @Override public void beforeTextChanged(CharSequence s, int start, int count, int after){}
@@ -63,37 +69,112 @@ public class RegistrationActivity extends AppCompatActivity {
                         et.setText(et.getText().toString().substring(0,et.getText().toString().length() - 1));
                         et.setSelection(et.getText().toString().length());
                     }
+
                 }
                 @Override public void afterTextChanged(Editable s){}
             });
+
+        // Запрет на ввод символов для логина
+        for (EditText et : new EditText[]{login_edit_text})
+            et.addTextChangedListener(new TextWatcher()
+            {
+                @Override public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+                @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (Pattern.compile("[[^a-zA-Z]]").matcher(et.getText().toString()).find())
+                    {
+                        et.setText(et.getText().toString().substring(0,et.getText().toString().length() - 1));
+                        et.setSelection(et.getText().toString().length());
+                    }
+                }
+                @Override public void afterTextChanged(Editable s){}
+            });
+
+        login_edit_text.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override public void afterTextChanged(Editable editable) {
+                if(login_edit_text.getText().toString().trim().length()==0){
+                    login_error_text.setTextColor(Color.parseColor("#FFAAAAAA"));
+                }
+                else{
+                    if(ValidateLogin(login_edit_text)){
+                        login_error_text.setTextColor(Color.parseColor("#4BD327"));
+                        login_error_text.setText(R.string.login_true_message);
+                    }
+                    else{
+                        login_error_text.setTextColor(Color.parseColor("#F44336"));
+                        login_error_text.setText(R.string.login_error_message);
+                    }
+                }
+            }
+        });
+
+        password_edit_text.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override public void afterTextChanged(Editable editable) {
+                if(password_edit_text.getText().toString().trim().length()==0){
+                    password_error_text.setTextColor(Color.parseColor("#FFAAAAAA"));
+                }
+                else{
+                    if(ValidatePassword(password_edit_text)){
+                        password_error_text.setTextColor(Color.parseColor("#4BD327"));
+                        password_error_text.setText(R.string.password_true_message);
+                    }
+                    else{
+                        password_error_text.setTextColor(Color.parseColor("#F44336"));
+                        password_error_text.setText(R.string.password_error_message);
+                    }
+                }
+            }
+        });
+
+        email_edit_text.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override public void afterTextChanged(Editable editable) {
+                if(email_edit_text.getText().toString().trim().length()==0){
+                    email_error_text.setTextColor(Color.parseColor("#FFAAAAAA"));
+                }
+                else{
+                    if(ValidateEmailAddress(email_edit_text)){
+                        email_error_text.setTextColor(Color.parseColor("#4BD327"));
+                        email_error_text.setText(R.string.email_true_message);
+                    }
+                    else{
+                        email_error_text.setTextColor(Color.parseColor("#F44336"));
+                        email_error_text.setText(R.string.email_error_message);
+                    }
+                }
+            }
+        });
     }
 
     // Возвращает true, если email подходит
 
     private boolean ValidateEmailAddress(EditText email){
         String emailInput = email.getText().toString();
-        if (!emailInput.isEmpty()
-                && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
-            return true;
-        } else {
-            return false;
-        }
-    };
+        return !emailInput.isEmpty()
+                && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches();
+    }
 
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return password != null && password.trim().length() > 7;
+    }
+
+    private boolean isLoginValid(String login) {
+        return login != null && login.trim().length() > 5;
     }
 
     private boolean ValidatePassword(EditText password){
         String passwordInput = password.getText().toString();
-        if (isPasswordValid(passwordInput)){
-            //Toast.makeText(this,"Email введён верно",Toast.LENGTH_SHORT).show();
-            return true;
-        } else {
-            //Toast.makeText(this,"Email введён неверно",Toast.LENGTH_SHORT).show();
-            return false;
-        }
-    };
+        return isPasswordValid(passwordInput);
+    }
+
+    private boolean ValidateLogin(EditText login){
+        String loginInput = login.getText().toString();
+        return isLoginValid(loginInput);
+    }
 
     public View.OnClickListener onDropButtonClickListener = view ->
     {
@@ -116,6 +197,17 @@ public class RegistrationActivity extends AppCompatActivity {
                 senEmail();
                 email_error_text.setTextColor(Color.parseColor("#4BD327"));
                 email_error_text.setText(R.string.email_true_message);
+                List<String> list = Arrays.asList(getLogin(), getPassword(), getEmail());
+
+                if (list.stream().filter((p) -> !p.isEmpty()).count() < MIN_COUNT)
+                    Toast.makeText(getApplicationContext(), "Не хватает данных для добавления.", Toast.LENGTH_SHORT).show();
+                else {
+                    DatabaseHelper db = new DatabaseHelper(RegistrationActivity.this);
+                    db.addUser(list.get(0), list.get(1), list.get(2));
+                    Toast.makeText(RegistrationActivity.this, "Пользователь добавлен успешно", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
             }
             else {
                 email_error_text.setTextColor(Color.parseColor("#F44336"));
@@ -135,6 +227,21 @@ public class RegistrationActivity extends AppCompatActivity {
                 + "\nИспользуйте только один вариант: логин или email в окне авторизации. Приятного пользования программой!";
         JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
         javaMailAPI.execute();
-    };
+    }
+
+    public String getLogin() {
+        if (login_edit_text.getText().toString().trim().length() == 0) return "";
+        else return login_edit_text.getText().toString();
+    }
+
+    public String getPassword() {
+        if (password_edit_text.getText().toString().trim().length() == 0) return "";
+        else return password_edit_text.getText().toString();
+    }
+
+    public String getEmail() {
+        if (email_edit_text.getText().toString().trim().length() == 0) return "";
+        else return email_edit_text.getText().toString();
+    }
 
 }

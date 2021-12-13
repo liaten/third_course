@@ -41,12 +41,14 @@
     <string name="register_head">Регистрация</string>
     <string name="email_hint">Email</string>
     <string name="application">Подтверждение</string>
-    <string name="login_or_email_hint">Логин / Email</string>
     <string name="email_error_message">Неверный формат ввода почты</string>
     <string name="email_true_message">Email введён верно</string>
     <string name="email_hint_message">example@mail.com</string>
     <string name="login_error_message"><![CDATA[>=5 латинских символов]]></string>
+    <string name="login_exists_message"><![CDATA[Такой логин уже существует]]></string>
     <string name="login_true_message">Логин введён верно</string>
+    <string name="login_true_and_exist_message">Логин введён верно и существует</string>
+    <string name="login_true_but_not_exist_message">Логин введён верно, но не существует</string>
     <string name="password_error_message"><![CDATA[>=8 символов]]></string>
     <string name="password_true_message">Пароль введён верно</string>
 </resources>

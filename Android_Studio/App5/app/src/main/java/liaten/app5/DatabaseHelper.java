@@ -255,7 +255,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void addUser(String login, String email, String password){
+    public void addUser(String login, String password, String email){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_LOGIN_USER, login);
@@ -272,6 +272,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     Cursor searchUser(String data){
         String query = "SELECT " + COLUMN_LOGIN_USER + " FROM " + TABLE_NAME_USER
+                + " WHERE ("
+                + COLUMN_LOGIN_USER + " LIKE '" + data + "')";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor searchPassword(String data){
+        String query = "SELECT " + COLUMN_PASSWORD_USER + " FROM " + TABLE_NAME_USER
                 + " WHERE ("
                 + COLUMN_LOGIN_USER + " LIKE '" + data + "')";
         SQLiteDatabase db = this.getReadableDatabase();

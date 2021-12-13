@@ -14,9 +14,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -98,7 +107,8 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override public void afterTextChanged(Editable editable) {
-                if(login_edit_text.getText().toString().trim().length()==0){
+                String login_changed = login_edit_text.getText().toString().trim();
+                if(login_changed.length()==0){
                     login_error_text.setTextColor(Color.parseColor("#FFAAAAAA"));
                 }
                 else{
@@ -110,6 +120,10 @@ public class RegistrationActivity extends AppCompatActivity {
                         login_error_text.setTextColor(Color.parseColor("#F44336"));
                         login_error_text.setText(R.string.login_error_message);
                     }
+                }
+                if(!login_changed.equals("") && GetUserFromDB(login_changed).equals(login_changed)){
+                    login_error_text.setTextColor(Color.parseColor("#F44336"));
+                    login_error_text.setText(R.string.login_exists_message);
                 }
             }
         });
@@ -155,7 +169,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    public String GetUserFromDB(String user){
+    private String GetUserFromDB(String user){
         Cursor cursor = db.searchUser(user);
         String user_from_db = "";
         if (cursor.getCount() != 0){
@@ -192,14 +206,14 @@ public class RegistrationActivity extends AppCompatActivity {
         return isLoginValid(loginInput);
     }
 
-    public View.OnClickListener onDropButtonClickListener = view ->
+    private final View.OnClickListener onDropButtonClickListener = view ->
     {
         login_edit_text.setText("");
         email_edit_text.setText("");
         password_edit_text.setText("");
     };
 
-    public View.OnClickListener onConfirmButtonClickListener = view ->
+    private final View.OnClickListener onConfirmButtonClickListener = view ->
     {
         if(
                 login_edit_text.getText().toString().trim().equals("") ||
@@ -217,12 +231,27 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (list.stream().filter((p) -> !p.isEmpty()).count() < MIN_COUNT)
                     Toast.makeText(getApplicationContext(), "Не хватает данных для добавления.", Toast.LENGTH_SHORT).show();
                 else {
-                    //DatabaseHelper db = new DatabaseHelper(RegistrationActivity.this);
                     if(GetUserFromDB(list.get(0)).equals(list.get(0))){
                         Toast.makeText(RegistrationActivity.this, "Пользователь с таким логином уже существует", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        db.addUser(list.get(0), list.get(1), list.get(2)); // 0 - логин, 1 - пароль, 2 - почта
+                        CryptoUtil cryptoUtil = new CryptoUtil();
+                        String secretKey = "liaten";
+                        //String hash_password = AES.encrypt(list.get(1), secretKey);
+                        String hash_password = null;
+                        try {
+                            hash_password = cryptoUtil.encrypt(secretKey, list.get(1));
+                        } catch (NoSuchAlgorithmException
+                                | InvalidKeySpecException
+                                | UnsupportedEncodingException
+                                | BadPaddingException
+                                | InvalidKeyException
+                                | InvalidAlgorithmParameterException
+                                | NoSuchPaddingException
+                                | IllegalBlockSizeException e) {
+                            e.printStackTrace();
+                        }
+                        db.addUser(list.get(0), hash_password, list.get(2)); // 0 - логин, 1 - пароль, 2 - почта
                         senEmail();
                         Toast.makeText(RegistrationActivity.this, "Проверьте ваш email", Toast.LENGTH_SHORT).show();
                         finish();
@@ -245,22 +274,22 @@ public class RegistrationActivity extends AppCompatActivity {
                 + login_edit_text.getText().toString()
                 + "\nВаш email для входа в приложение: " + email_edit_text.getText().toString()
                 + "\nВаш пароль для входа в приложение: " + password_edit_text.getText().toString()
-                + "\nИспользуйте только один вариант: логин или email в окне авторизации. Приятного пользования программой!";
+                + "\nИспользуйте только один вариант: логин в окне авторизации. Приятного пользования программой!";
         JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
         javaMailAPI.execute();
     }
 
-    public String getLogin() {
+    private String getLogin() {
         if (login_edit_text.getText().toString().trim().length() == 0) return "";
         else return login_edit_text.getText().toString();
     }
 
-    public String getPassword() {
+    private String getPassword() {
         if (password_edit_text.getText().toString().trim().length() == 0) return "";
         else return password_edit_text.getText().toString();
     }
 
-    public String getEmail() {
+    private String getEmail() {
         if (email_edit_text.getText().toString().trim().length() == 0) return "";
         else return email_edit_text.getText().toString();
     }

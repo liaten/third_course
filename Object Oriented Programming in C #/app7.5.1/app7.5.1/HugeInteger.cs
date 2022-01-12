@@ -32,6 +32,10 @@
                     length++;
                 }
             }
+            if (length == 0)
+            {
+                length = 1;
+            }
             this.its_length = length;
         }
         public void Print()
@@ -97,7 +101,7 @@
             byte l1 = hi1.its_length;
             byte l2 = hi2.its_length;
             HugeInteger diff;
-            if (l1 > l2)
+            if (hi1 > hi2)
             {
                 diff = new HugeInteger(hi1.Get());
                 for (byte i = 0; i < l1; i++)
@@ -111,7 +115,7 @@
                         diff.its_nums[i] = (byte)(diff.its_nums[i] + 10 - hi2.its_nums[i]);
                         diff.its_nums[i + 1]--;
                     }
-                    else if(i+2 < l1)
+                    else if (i + 2 < l1)
                     {
                         byte k = i;
                         k += 2;
@@ -120,7 +124,7 @@
                             if (diff.its_nums[k] > 0)
                             {
                                 diff.its_nums[k]--;
-                                for (byte j = (byte)(k-1); j > i; j--)
+                                for (byte j = (byte)(k - 1); j > i; j--)
                                 {
                                     diff.its_nums[j] = 9;
                                 }
@@ -134,7 +138,7 @@
                     }
                 }
             }
-            else
+            else if (hi2 > hi1)
             {
                 diff = new HugeInteger(hi2.Get());
                 diff.is_positive = false;
@@ -172,8 +176,110 @@
                     }
                 }
             }
+            else
+            {
+                return new HugeInteger("0");
+            }
             diff.Recount_Length();
             return diff;
+        }
+        public static bool operator >(HugeInteger hi1, HugeInteger hi2)
+        {
+            byte l1 = hi1.its_length;
+            byte l2 = hi2.its_length;
+            if (l1 > l2)
+            {
+                return true;
+            }
+            else if (l1 < l2)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = l1; i > 0; i--)
+                {
+                    if (hi1.its_nums[i] == hi2.its_nums[i])
+                    {
+                        continue;
+                    }
+                    else if (hi1.its_nums[i] > hi2.its_nums[i])
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+        public static bool operator <(HugeInteger hi1, HugeInteger hi2)
+        {
+            byte l1 = hi1.its_length;
+            byte l2 = hi2.its_length;
+            if (l1 < l2)
+            {
+                return true;
+            }
+            else if (l1 > l2)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = l1; i > 0; i--)
+                {
+                    if (hi1.its_nums[i] == hi2.its_nums[i])
+                    {
+                        continue;
+                    }
+                    else if (hi1.its_nums[i] < hi2.its_nums[i])
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return false;
+            }
+        }
+        public bool Equals(HugeInteger hi)
+        {
+            byte l = hi.its_length;
+            if (this.its_length == l)
+            {
+                for (byte i = 0; i < l; i++)
+                {
+                    if (this.its_nums[i] == hi.its_nums[i])
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool Not_Equals(HugeInteger hi)
+        {
+            if (this.Equals(hi))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

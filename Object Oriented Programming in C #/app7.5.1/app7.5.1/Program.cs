@@ -91,15 +91,15 @@ namespace app7._5._1
                                                 "\n2 - вычитание" +
                                                 "\n3 - умножение" +
                                                 "\n4 - деление\n:");
-                                            byte answer3 = 0;
-                                            answer3 = Convert.ToByte(Console.ReadLine());
-                                            if (answer3 > 4 || answer3 < 1)
+                                            byte answer2_1 = 0;
+                                            answer2_1 = Convert.ToByte(Console.ReadLine());
+                                            if (answer2_1 > 4 || answer2_1 < 1)
                                             {
                                                 Console.WriteLine("Введено значение не в пределах [1;4]");
                                             }
                                             else
                                             {
-                                                switch (answer3)
+                                                switch (answer2_1)
                                                 {
                                                     case 1:
                                                         Console.Write("Выберите первое слагаемое: ");
@@ -167,6 +167,30 @@ namespace app7._5._1
                                                 "\n4 - найти равенство нулю" +
                                                 "\n5 - Число 1 >= числа 2" +
                                                 "\n6 - Число 1 <= числа 2\n:");
+                                            byte answer2_2 = 0;
+                                            answer2_2 = Convert.ToByte(Console.ReadLine());
+                                            if (answer2_2 > 6 || answer2_2 < 1)
+                                            {
+                                                Console.WriteLine("Введено значение не в пределах [1;6]");
+                                            }
+                                            else
+                                            {
+                                                switch (answer2_2)
+                                                {
+                                                    case 1:
+                                                        break;
+                                                    case 2:
+                                                        break;
+                                                    case 3:
+                                                        break;
+                                                    case 4:
+                                                        break;
+                                                    case 5:
+                                                        break;
+                                                    case 6:
+                                                        break;
+                                                }
+                                            }
                                             break;
                                     }
                                 }

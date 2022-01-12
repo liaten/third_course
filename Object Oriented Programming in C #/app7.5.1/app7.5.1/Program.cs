@@ -154,8 +154,31 @@ namespace app7._5._1
                                                         }
                                                         break;
                                                     case 3:
-                                                        Console.WriteLine("Данная функция пока что не реализована");
-                                                        break;
+                                                        Console.Write("Выберите множитель 1: ");
+                                                        byte factor1 = 0;
+                                                        factor1 = Convert.ToByte(Console.ReadLine());
+                                                        if (factor1 > list.Count())
+                                                        {
+                                                            Console.WriteLine("Такого числа нет в списке");
+                                                        }
+                                                        else
+                                                        {
+                                                            Console.WriteLine($"Выбрано число №{factor1} = {list[factor1 - 1].Get()}");
+                                                            Console.Write("Выберите множитель 2: ");
+                                                            byte factor2 = 0;
+                                                            factor2 = Convert.ToByte(Console.ReadLine());
+                                                            if (factor2 > list.Count())
+                                                            {
+                                                                Console.WriteLine("Такого числа нет в списке");
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine($"Выбрано число №{factor2} = {list[factor2 - 1].Get()}");
+                                                                HugeInteger mul = list[factor1 - 1] * list[factor2 - 1];
+                                                                Console.WriteLine($"Результат произведения = {mul.Get()}");
+                                                            }
+                                                        }
+                                                            break;
                                                     case 4:
                                                         Console.WriteLine("Данная функция пока что не реализована");
                                                         break;

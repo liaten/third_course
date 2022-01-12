@@ -183,6 +183,78 @@
             diff.Recount_Length();
             return diff;
         }
+        public static HugeInteger operator *(HugeInteger hi1, HugeInteger hi2)
+        {
+            if (hi1.isZero() || hi2.isZero())
+            {
+                return new HugeInteger("0");
+            }
+            else if (hi1.Get() == "1")
+            {
+                return hi2;
+            }
+            else if (hi2.Get() == "1")
+            {
+                return hi1;
+            }
+            else
+            {
+                byte l1 = hi1.its_length;
+                byte l2 = hi2.its_length;
+                HugeInteger multi = new HugeInteger("0");
+                HugeInteger prom;
+                for (byte i = 0; i < l1; i++)
+                {
+                    prom = new HugeInteger("0");
+                    for (byte j = 0; j < l2; j++)
+                    {
+                        byte result = (byte)(hi1.its_nums[i] * hi2.its_nums[j]);
+                        prom.its_nums[j + i] = (byte)(result % 10);
+                        prom.its_nums[j + i + 1] = (byte)(result / 10);
+                    }
+                    prom.Recount_Length();
+                    for(byte k = 0; k < prom.its_length; k++)
+                    {
+                        multi.its_nums[k] += (byte)(prom.its_nums[k]);
+                        multi.its_nums[k+1] += (byte)(multi.its_nums[k] / 10);
+                        multi.its_nums[k] = (byte)(multi.its_nums[k] % 10);
+                    }
+                }
+                multi.Recount_Length();
+                return multi;
+            }
+        }
+        public static HugeInteger operator /(HugeInteger hi1, HugeInteger hi2)
+        {
+            if (hi1.isZero() || hi2.isZero())
+            {
+                throw new DivideByZeroException();
+            }
+            else if (hi2.Get() == "1")
+            {
+                return hi1;
+            }
+            else
+            {
+                byte l1 = hi1.its_length;
+                byte l2 = hi2.its_length;
+                HugeInteger multi = new HugeInteger("0");
+                for (byte i = 0; i < l1; i++)
+                {
+                    for (byte j = 0; j < l2; j++)
+                    {
+                        byte result = (byte)(hi1.its_nums[i] * hi2.its_nums[j]);
+                        multi.its_nums[i] += (byte)(result % 10);
+                        if (i + 1 < 40)
+                        {
+                            multi.its_nums[(i + 1)] += (byte)(result / 10);
+                        }
+                    }
+                }
+                multi.Recount_Length();
+                return multi;
+            }
+        }
         public static bool operator >(HugeInteger hi1, HugeInteger hi2)
         {
             byte l1 = hi1.its_length;
@@ -315,7 +387,7 @@
         {
             byte l1 = hi1.its_length;
             byte l2 = hi2.its_length;
-            if (l1==l2)
+            if (l1 == l2)
             {
                 for (byte i = 0; i < l1; i++)
                 {
@@ -361,7 +433,7 @@
         }
         public bool isZero()
         {
-            if(this.its_length == 1 && this.its_nums[0]==0)
+            if (this.its_length == 1 && this.its_nums[0] == 0)
             {
                 return true;
             }

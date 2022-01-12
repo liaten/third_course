@@ -215,6 +215,70 @@
                 return false;
             }
         }
+        public static bool operator >=(HugeInteger hi1, HugeInteger hi2)
+        {
+            byte l1 = hi1.its_length;
+            byte l2 = hi2.its_length;
+            if (l1 > l2)
+            {
+                return true;
+            }
+            else if (l1 < l2)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = l1; i > 0; i--)
+                {
+                    if (hi1.its_nums[i] == hi2.its_nums[i])
+                    {
+                        continue;
+                    }
+                    else if (hi1.its_nums[i] > hi2.its_nums[i])
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        public static bool operator <=(HugeInteger hi1, HugeInteger hi2)
+        {
+            byte l1 = hi1.its_length;
+            byte l2 = hi2.its_length;
+            if (l1 > l2)
+            {
+                return false;
+            }
+            else if (l1 < l2)
+            {
+                return true;
+            }
+            else
+            {
+                for (int i = l1; i > 0; i--)
+                {
+                    if (hi1.its_nums[i] == hi2.its_nums[i])
+                    {
+                        continue;
+                    }
+                    else if (hi1.its_nums[i] > hi2.its_nums[i])
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                return true;
+            }
+        }
         public static bool operator <(HugeInteger hi1, HugeInteger hi2)
         {
             byte l1 = hi1.its_length;
@@ -247,14 +311,15 @@
                 return false;
             }
         }
-        public bool Equals(HugeInteger hi)
+        public static bool operator ==(HugeInteger hi1, HugeInteger hi2)
         {
-            byte l = hi.its_length;
-            if (this.its_length == l)
+            byte l1 = hi1.its_length;
+            byte l2 = hi2.its_length;
+            if (l1==l2)
             {
-                for (byte i = 0; i < l; i++)
+                for (byte i = 0; i < l1; i++)
                 {
-                    if (this.its_nums[i] == hi.its_nums[i])
+                    if (hi1.its_nums[i] == hi2.its_nums[i])
                     {
                         continue;
                     }
@@ -270,15 +335,39 @@
                 return false;
             }
         }
-        public bool Not_Equals(HugeInteger hi)
+        public static bool operator !=(HugeInteger hi1, HugeInteger hi2)
         {
-            if (this.Equals(hi))
+            byte l1 = hi1.its_length;
+            byte l2 = hi2.its_length;
+            if (l1 == l2)
             {
+                for (byte i = 0; i < l1; i++)
+                {
+                    if (hi1.its_nums[i] == hi2.its_nums[i])
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
                 return false;
             }
             else
             {
                 return true;
+            }
+        }
+        public bool isZero()
+        {
+            if(this.its_length == 1 && this.its_nums[0]==0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

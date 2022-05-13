@@ -1,79 +1,42 @@
-from math import sqrt
-import numpy as np
 from openpyxl import load_workbook
+from distances import distances
+from distances import print_array
 
 wb = load_workbook(filename = 'irisy.xlsx')
-# l, r - рабочие пространства
-
 l = wb['l']
+
 iris_coordinates = []
 iris_classes = []
+
 for i in range(2,122):
-    length = l.cell(row=i,column=3).value
-    width = l.cell(row=i,column=4).value
+    length1 = l.cell(row=i,column=1).value
+    width1 = l.cell(row=i,column=2).value
+    length2 = l.cell(row=i,column=3).value
+    width2 = l.cell(row=i,column=4).value
     iris_class = l.cell(row=i,column=5).value
-    len_width = [length, width, iris_class]
-    iris_coordinates.append(len_width)
-    iris_classes.append(iris_class)
-iris_classes = set(iris_classes)
+    coords = [length1, width1, length2, width2, iris_class]
+    iris_coordinates.append(coords)
+
+def euclid_distance(c1, c2):
+    distance = 0
+    for i in range(4):
+        distance += (c1[i] - c2[i])**2
+    return distance**(1/2)
+
 iris_size = len(iris_coordinates)
-distances = [0]*iris_size
-minimum = 1000.0
-maximum = 0.0
-for i in range(iris_size):
-    distances[i] = [0] * iris_size
-for i in range(iris_size):
-    il1 = iris_coordinates[i][0] # длина 1го ириса
-    iw1 = iris_coordinates[i][1] # ширина 1го ириса
-    for j in range(iris_size):
-        il2 = iris_coordinates[j][0] # длина 2го ириса
-        iw2 = iris_coordinates[j][1] # ширина 2го ириса
-        distance = sqrt(((il1 - il2) ** 2) + ((iw1 - iw2) ** 2)) # попарное расстояние между ирисами
-        if(distance < minimum):
-            minimum = distance
-        if(distance>maximum):
-            maximum = distance
-        if(i==j):
-            distances[i][j] = 100
+dis = [0]*(iris_size)
+i = 0
+iris_classes = []
+for c1 in iris_coordinates:
+    dist = []
+    for c2 in iris_coordinates:
+        if(iris_coordinates.index(c1)==iris_coordinates.index(c2)):
+            dist.append(1000)
         else:
-            distances[i][j] = distance
-    disti = np.array(distances[i])
-    print(disti)
-
-# Убираем все возможные повторения
-while(True):
-    minimum = 100
-    maximum = 0
-    # print(len_dist)
-    for i in range(len(distances)-1):
-        for j in range(len(distances)-1):
-            if(distances[i][j] < minimum):
-                minimum = distances[i][j]
-    # print('min',minimum,'max',maximum)
-    i_saved = []
-    for i in range(len(distances)-1):
-        for j in range(len(distances)-1):
-            if(distances[i][j]==minimum):
-                i_saved.append(i)
-                i_saved.append(j)
-                for k in range(len(distances)):
-                    if(distances[i_saved[1]][k]<distances[i_saved[0]][k]):
-                        distances[i_saved[0]][k] = distances[i_saved[1]][k]
-                        distances[k][i_saved[0]] = distances[k][i_saved[1]]
-                del distances[i_saved[1]]
-                for k in range(len(distances)-1):
-                    del distances[k][i_saved[1]]
-                break
-
-# Берём пару ближайших кластеров, и склеиваем их по минимумам
-# while(len(distances)>4):
-#     minimum = 100
-#     maximum = 0
-#     len_dist = len(distances)
-#     for i in range(len_dist):
-#         for j in range(len_dist):
-#             if(distances[i][j] < minimum):
-#                 minimum = distances[i][j]
-#                 i_saved = i
-#                 # print(i)
-#                 # print(distances[i])
+            dist.append(euclid_distance(c1,c2))
+    iris_classes.append(c1[4])
+    dis[i] = dist
+    i += 1
+dis = distances(dis,iris_classes,3)
+print_array(dis)
+# print(iris_coordinates[0])

@@ -1,4 +1,7 @@
 # ЭТОТ ФАЙЛ НАПИСАН В КАЧЕСТВЕ БИБЛИОТЕКИ К ФАЙЛУ ALGO_CLUSTER
+from asyncio.windows_events import NULL
+
+
 def min_item_in_list_by_id(list1, list2, id):
     if(list1[id]<list2[id]):
         return list1[id]
@@ -22,14 +25,13 @@ def move_to_start(dist,min_c):
     for i in range(len(dist)):
         (dist[i])[0],(dist[i])[min_c[0]],(dist[i])[1],(dist[i])[min_c[1]] = (dist[i])[min_c[0]], (dist[i])[0], (dist[i])[min_c[1]], (dist[i])[1]
 
-def print_array(array):
-    for element in array:
-        print(element)
-    print()
-
-def print_array(array, classes):
-    for i in range(len(array)):
-        print(array[i], classes[i])
+def print_array(array, classes=None):
+    if classes is None:
+        for element in array:
+            print(element)
+    else:
+        for i in range(len(array)):
+            print(array[i], classes[i])
     print()
 
 def create_smallest_list(lists,new_len):
@@ -68,21 +70,21 @@ def distances(dist_input, classes_input, N):
     return dist
 
 # Для тестирования работы алгоритма:
-# dist = [
-#         [1000,17,21,31,23],
-#         [17,1000,30,34,21],
-#         [21,30,1000,28,39],
-#         [31,34,28,1000,43],
-#         [23,21,39,43,1000],
-#     ]
-# classes = [
-#     'Iris-setosa',
-#     'Iris-setosa',
-#     'Iris-versicolor',
-#     'Iris-versicolor',
-#     'Iris-virginica'
-# ]
+dist = [
+        [1000,17,21,31,23],
+        [17,1000,30,34,21],
+        [21,30,1000,28,39],
+        [31,34,28,1000,43],
+        [23,21,39,43,1000],
+    ]
+classes = [
+    'Iris-setosa',
+    'Iris-setosa',
+    'Iris-versicolor',
+    'Iris-versicolor',
+    'Iris-virginica'
+]
 
-# dist = distances(dist,classes,3)
-# print_array(dist)
-# print_array(classes)
+dist = distances(dist,classes,3)
+print_array(dist)
+print_array(classes)
